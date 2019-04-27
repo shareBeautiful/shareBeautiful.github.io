@@ -1,0 +1,4 @@
+fangs	方正少儿
+fangx 	方正行楷体
+fangm 	方正毡笔黑体
+fangk 	方正卡通
