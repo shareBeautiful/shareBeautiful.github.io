@@ -32,18 +32,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -52,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -60,23 +48,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
 
 
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
 
 
 
@@ -84,15 +70,17 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: true,
-    fastclick: false,
+    fastclick: true,
     lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -112,13 +100,6 @@
 
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-1699000869797523",
-    enable_page_level_ads: true
-  });
-</script>
   <meta name="description" content="个人博客，写出人生！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="天空">
@@ -136,12 +117,13 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="http://www.xin666.cc/">
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -158,30 +140,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -200,7 +183,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -214,6 +197,7 @@
       
         <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
       
+    
     
   </div>
 
@@ -237,64 +221,136 @@
         
           
           <li class="menu-item menu-item-home menu-item-active">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about.html" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-schedule">
-    <a href="/schedule/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-commonweal">
-    <a href="/404/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
   </li>
         
         
         
           
-          <li class="menu-item menu-item-javascript">
-    <a href="/pages/index.html" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>JS属性</a>
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>runoob</a>
+
   </li>
 
       
@@ -393,9 +449,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/函数节流与函数防抖/" itemprop="url">
-                  函数节流与函数防抖
-                </a>
+                
+                <a href="/函数节流与函数防抖/" class="post-title-link" itemprop="url">函数节流与函数防抖</a>
               
             
           </h2>
@@ -464,6 +519,7 @@
 
           
             
+            
           
 
           
@@ -496,7 +552,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -518,19 +574,23 @@
       
         
           
-          什么是函数节流与函数防抖
+            <p>
+              什么是函数节流与函数防抖
 函数节流: 指定时间间隔内只会执行一次任务；
 函数防抖: 任务频繁触发的情况下，只有任务触发的间隔超过指定间隔的时候，任务才会执行。
 
 函数节流(throttle)
-这里以判断页面是否滚动到底部为例，普通的做法就是
-          ...
+这里以判断页面是否滚动到底部为例，普通的做法就是监听 window 对象的 scroll 事件，然后再函数体
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/函数节流与函数防抖/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/函数节流与函数防抖/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -544,6 +604,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -602,9 +665,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/懒加载和预加载/" itemprop="url">
-                  懒加载和预加载
-                </a>
+                
+                <a href="/懒加载和预加载/" class="post-title-link" itemprop="url">懒加载和预加载</a>
               
             
           </h2>
@@ -673,6 +735,7 @@
 
           
             
+            
           
 
           
@@ -705,7 +768,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">8 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -727,15 +790,20 @@
       
         
           
-          懒加载1. 什么是懒加载？
-懒加载也叫延迟加载，指的是在长网页中延迟加载图像，是一种很好优化网页性能的方式。用户滚动到它们之前，可视区域外的图像不会加载。这与图像预加载相反，在长网页上使用延迟加载将使网页加载更快。在某些情况下，它还可以帮助
-          ...
+            <p>
+              懒加载1. 什么是懒加载？
+懒加载也叫延迟加载，指的是在长网页中延迟加载图像，是一种很好优化网页性能的方式。用户滚动到它们之前，可视区域外的图像不会加载。这与图像预加载相反，在长网页上使用延迟加载将使网页加载更快。在某些情况下，它还可以帮助减少服务器负载。常适用图片很多，页面很长的电商网站场景中。
+
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/懒加载和预加载/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/懒加载和预加载/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -749,6 +817,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -807,9 +878,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/小程序文档笔记/" itemprop="url">
-                  小程序文档笔记
-                </a>
+                
+                <a href="/小程序文档笔记/" class="post-title-link" itemprop="url">小程序文档笔记</a>
               
             
           </h2>
@@ -878,6 +948,7 @@
 
           
             
+            
           
 
           
@@ -910,7 +981,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -932,7 +1003,8 @@
       
         
           
-          准备:
+            <p>
+              准备:
 注册和申请appid
 下载开发工具并完成启动
 
@@ -940,14 +1012,18 @@
 基础：文档
 
 小程序文件结构(app.json, app.wxss, app.js);
-小程序文件介绍(index.json, index.wxml, index.wxss, i
-          ...
+小程序文件介绍(index.json, index.wxml, index.wxss, index.js);
+小程序的App,page,窗口,tarB
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/小程序文档笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/小程序文档笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -961,6 +1037,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1019,9 +1098,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/jQuery插件开发/" itemprop="url">
-                  jQuery插件开发
-                </a>
+                
+                <a href="/jQuery插件开发/" class="post-title-link" itemprop="url">jQuery插件开发</a>
               
             
           </h2>
@@ -1090,6 +1168,7 @@
 
           
             
+            
           
 
           
@@ -1122,7 +1201,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">16 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -1144,16 +1223,20 @@
       
         
           
-          译自 jQuery Plugins / Authoring 
+            <p>
+              译自 jQuery Plugins / Authoring 
 看来 jQuery 你已经用得很爽了，插件和方法来扩展 jQuery 非常强大，把最聪明的功能封装到插件中可以为你及团队节省大量开发时间。
-开始要编写一个 jQuery 插件，需
-          ...
+开始要编写一个 jQuery 插件，需要为 jQuery.fn 对象增加一个新的函数属性，属性名就
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/jQuery插件开发/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/jQuery插件开发/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1167,6 +1250,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1225,9 +1311,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/浏览器多进程和JS单线程/" itemprop="url">
-                  浏览器多进程和JS单线程
-                </a>
+                
+                <a href="/浏览器多进程和JS单线程/" class="post-title-link" itemprop="url">浏览器多进程和JS单线程</a>
               
             
           </h2>
@@ -1296,6 +1381,7 @@
 
           
             
+            
           
 
           
@@ -1328,7 +1414,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -1352,11 +1438,13 @@
           <h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><p>进程是cpu资源分配的最小单位,系统会给它分配内存,是能拥有资源和独立运行的最小单位。<br>线程是cpu调度的最小单位，线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程。<br>单线程与多线程，都是指在一个进程内的单和多。所以核心还是得属于一个进程才行。</p>
 <p><strong>浏览器是多进程的</strong><br>浏览器之所以能够运行，是因为系统给它的进程分配了资源（cpu、内存）<br>每打开一个Tab页，就相当于创建了一个独立的浏览器进程。<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/浏览器多进程和JS单线程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/浏览器多进程和JS单线程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1370,6 +1458,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1428,9 +1519,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Ubuntu18安装后要做的事/" itemprop="url">
-                  Ubuntu18安装后要做的事
-                </a>
+                
+                <a href="/Ubuntu18安装后要做的事/" class="post-title-link" itemprop="url">Ubuntu18安装后要做的事</a>
               
             
           </h2>
@@ -1499,6 +1589,7 @@
 
           
             
+            
           
 
           
@@ -1531,7 +1622,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">8 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -1570,11 +1661,13 @@
 <p> <strong>注意</strong> <code>boot</code>和<code>/</code>分区是必须要有的，其它分区可无。</p>
 </blockquote>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Ubuntu18安装后要做的事/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Ubuntu18安装后要做的事/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1588,6 +1681,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1646,9 +1742,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/CSS3属性总结/" itemprop="url">
-                  CSS3属性总结
-                </a>
+                
+                <a href="/CSS3属性总结/" class="post-title-link" itemprop="url">CSS3属性总结</a>
               
             
           </h2>
@@ -1717,6 +1812,7 @@
 
           
             
+            
           
 
           
@@ -1749,7 +1845,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">13 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -1825,11 +1921,13 @@ margin,padding,border,transform,linear-gradient</code></p>
 </tbody>
 </table>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/CSS3属性总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/CSS3属性总结/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1843,6 +1941,9 @@ margin,padding,border,transform,linear-gradient</code></p>
 
     
 
+    
+      
+    
     
 
     
@@ -1901,9 +2002,8 @@ margin,padding,border,transform,linear-gradient</code></p>
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Python基础语法-02/" itemprop="url">
-                  Python基础语法(下)
-                </a>
+                
+                <a href="/Python基础语法-02/" class="post-title-link" itemprop="url">Python基础语法(下)</a>
               
             
           </h2>
@@ -1972,6 +2072,7 @@ margin,padding,border,transform,linear-gradient</code></p>
 
           
             
+            
           
 
           
@@ -2004,7 +2105,7 @@ margin,padding,border,transform,linear-gradient</code></p>
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">16 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -2027,11 +2128,13 @@ margin,padding,border,transform,linear-gradient</code></p>
         
           <h2 id="一-高级特效"><a href="#一-高级特效" class="headerlink" title="一 高级特效"></a>一 高级特效</h2><h3 id="1-切片"><a href="#1-切片" class="headerlink" title="1.切片"></a>1.切片</h3><p>这种经常取指定索引范围的操作，<br>用循环十分繁琐，因此，Python提供了切片（Slice）操作符<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Python基础语法-02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Python基础语法-02/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2045,6 +2148,9 @@ margin,padding,border,transform,linear-gradient</code></p>
 
     
 
+    
+      
+    
     
 
     
@@ -2103,9 +2209,8 @@ margin,padding,border,transform,linear-gradient</code></p>
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Python基础语法-01/" itemprop="url">
-                  Python基础语法(上)
-                </a>
+                
+                <a href="/Python基础语法-01/" class="post-title-link" itemprop="url">Python基础语法(上)</a>
               
             
           </h2>
@@ -2174,6 +2279,7 @@ margin,padding,border,transform,linear-gradient</code></p>
 
           
             
+            
           
 
           
@@ -2206,7 +2312,7 @@ margin,padding,border,transform,linear-gradient</code></p>
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">30 分钟</span>
+                <span title="阅读时长">15 分钟</span>
               
             </div>
           
@@ -2229,11 +2335,13 @@ margin,padding,border,transform,linear-gradient</code></p>
         
           <p><strong>Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。</strong><br>Python 是由 Guido van Rossum 在八十年代末和九十年代初，在荷兰国家数学和计算机科学研究所设计出来的。<br>Python 本身也是由诸多其他语言发展而来的,这包括 ABC、Modula-3、C、C++、Algol-68、SmallTalk、Unix shell 和其他的脚本语言等等。<br>像 Perl 语言一样，Python 源代码同样遵循 GPL(GNU General Public License)协议。<br>现在 Python 是由一个核心开发团队在维护，Guido van Rossum 仍然占据着至关重要的作用，指导其进展。<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Python基础语法-01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Python基础语法-01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2247,6 +2355,9 @@ margin,padding,border,transform,linear-gradient</code></p>
 
     
 
+    
+      
+    
     
 
     
@@ -2305,9 +2416,8 @@ margin,padding,border,transform,linear-gradient</code></p>
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/CSS网格Grid布局/" itemprop="url">
-                  CSS网格Grid布局
-                </a>
+                
+                <a href="/CSS网格Grid布局/" class="post-title-link" itemprop="url">CSS网格Grid布局</a>
               
             
           </h2>
@@ -2376,6 +2486,7 @@ margin,padding,border,transform,linear-gradient</code></p>
 
           
             
+            
           
 
           
@@ -2408,7 +2519,7 @@ margin,padding,border,transform,linear-gradient</code></p>
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -2431,11 +2542,13 @@ margin,padding,border,transform,linear-gradient</code></p>
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSS Grid 布局是 CSS 中最强大的布局系统。与 flexbox 的一维布局系统不同，CSS Grid 布局是一个二维布局系统，也就意味着它可以同时处理列和行。通过将 CSS 规则应用于 父元素 (成为 Grid Container 网格容器)和其 子元素（成为 Grid Items 网格项），你就可以轻松使用 Grid(网格) 布局。<br>CSS Grid(网格) 布局（又称为 “Grid(网格)” ），是一个二维的基于网格的布局系统它的目标是完全改变我们基于网格的用户界面的布局方式。<br><a href="https://caniuse.com/#feat=css-grid" target="_blank" rel="noopener">浏览器兼容支持</a><br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/CSS网格Grid布局/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/CSS网格Grid布局/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2449,6 +2562,9 @@ margin,padding,border,transform,linear-gradient</code></p>
 
     
 
+    
+      
+    
     
 
     
@@ -2498,21 +2614,20 @@ margin,padding,border,transform,linear-gradient</code></p>
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="xiaoxin">
             
               <p class="site-author-name" itemprop="name">xiaoxin</p>
-              <p class="site-description motion-element" itemprop="description">个人博客，写出人生！</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
           </div>
 
           
@@ -2532,7 +2647,11 @@ margin,padding,border,transform,linear-gradient</code></p>
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
                     
                     
                       
@@ -2583,7 +2702,11 @@ margin,padding,border,transform,linear-gradient</code></p>
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2664,6 +2787,7 @@ margin,padding,border,transform,linear-gradient</code></p>
           
 
           
+
           
 
           
@@ -2675,7 +2799,7 @@ margin,padding,border,transform,linear-gradient</code></p>
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2683,6 +2807,7 @@ margin,padding,border,transform,linear-gradient</code></p>
 
     </div>
   </aside>
+  
 
 
         
@@ -2691,7 +2816,7 @@ margin,padding,border,transform,linear-gradient</code></p>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017/08/08 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2716,16 +2841,12 @@ margin,padding,border,transform,linear-gradient</code></p>
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">15:11</span>
+    <span title="站点阅读时长">7:35</span>
   
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -2733,12 +2854,38 @@ margin,padding,border,transform,linear-gradient</code></p>
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -2761,7 +2908,7 @@ margin,padding,border,transform,linear-gradient</code></p>
     
 
     
-	
+
     
 
     
@@ -2769,7 +2916,7 @@ margin,padding,border,transform,linear-gradient</code></p>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2779,6 +2926,8 @@ margin,padding,border,transform,linear-gradient</code></p>
 
 
 
+  
+
 
 
 
@@ -2803,32 +2952,27 @@ margin,padding,border,transform,linear-gradient</code></p>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
   
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+  <script src="/js/utils.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+  <script src="/js/motion.js?v=7.1.0"></script>
 
 
 
@@ -2836,9 +2980,10 @@ margin,padding,border,transform,linear-gradient</code></p>
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
 
 
 
@@ -2847,28 +2992,21 @@ margin,padding,border,transform,linear-gradient</code></p>
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+  <script src="/js/next-boot.js?v=7.1.0"></script>
 
 
+  
+
+  
+
+  
 
   
 
 
 
   
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2954,7 +3092,7 @@ margin,padding,border,transform,linear-gradient</code></p>
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
                 
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -3123,9 +3261,9 @@ margin,padding,border,transform,linear-gradient</code></p>
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -3201,7 +3339,6 @@ margin,padding,border,transform,linear-gradient</code></p>
   
 
   
-  
 
   
 
@@ -3212,75 +3349,49 @@ margin,padding,border,transform,linear-gradient</code></p>
   
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
 
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
+  
 
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
 
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap')
-      $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text()
-        }).toArray().join('\n')
-        var ta = document.createElement('textarea')
-        document.body.appendChild(ta)
-        ta.style.position = 'absolute'
-        ta.style.top = '0px'
-        ta.style.left = '0px'
-        ta.value = code
-        ta.select()
-        ta.focus()
-        var result = document.execCommand('copy')
-        document.body.removeChild(ta)
-        
-          if(result)$(this).text('复制成功')
-          else $(this).text('复制失败')
-        
-        $(this).blur()
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn')
-        setTimeout(function () {
-          $b.text('复制')
-        }, 300)
-      }).append(e)
-    })
-  </script>
 
+  
+
+  
 
 </body>
 </html>

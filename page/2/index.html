@@ -32,18 +32,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -52,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -60,23 +48,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
 
 
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
 
 
 
@@ -84,15 +70,17 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: true,
-    fastclick: false,
+    fastclick: true,
     lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -112,13 +100,6 @@
 
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-1699000869797523",
-    enable_page_level_ads: true
-  });
-</script>
   <meta name="description" content="个人博客，写出人生！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="天空">
@@ -136,12 +117,13 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="http://www.xin666.cc/page/2/">
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -158,30 +140,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -200,7 +183,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -214,6 +197,7 @@
       
         <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
       
+    
     
   </div>
 
@@ -237,64 +221,136 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about.html" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-schedule">
-    <a href="/schedule/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-commonweal">
-    <a href="/404/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
   </li>
         
         
         
           
-          <li class="menu-item menu-item-javascript">
-    <a href="/pages/index.html" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>JS属性</a>
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>runoob</a>
+
   </li>
 
       
@@ -393,9 +449,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Vue-04学习笔记-动画/" itemprop="url">
-                  Vue-04学习笔记-动画
-                </a>
+                
+                <a href="/Vue-04学习笔记-动画/" class="post-title-link" itemprop="url">Vue-04学习笔记-动画</a>
               
             
           </h2>
@@ -464,6 +519,7 @@
 
           
             
+            
           
 
           
@@ -496,7 +552,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">15 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -520,11 +576,13 @@
           <h2 id="Vue中css动画原理"><a href="#Vue中css动画原理" class="headerlink" title="Vue中css动画原理"></a>Vue中css动画原理</h2><ul>
 <li>过度动画效果<br><strong><code>&lt;transition&gt;过度动画</code></strong><br>首先点击按钮的时候，页面即将被显示，当还没有显示，动画运行要第一帧的时候<br>fade-enter和fade-enter-active一起存在，当动画运行到第二帧的时候，vue把<br>fade-enter给移除了
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Vue-04学习笔记-动画/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Vue-04学习笔记-动画/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -538,6 +596,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -596,9 +657,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Vue-03学习笔记-组件/" itemprop="url">
-                  Vue-03学习笔记-组件
-                </a>
+                
+                <a href="/Vue-03学习笔记-组件/" class="post-title-link" itemprop="url">Vue-03学习笔记-组件</a>
               
             
           </h2>
@@ -667,6 +727,7 @@
 
           
             
+            
           
 
           
@@ -699,7 +760,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">14 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -731,11 +792,13 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'row'</span>, &#123;</span><br><span class="line">    data: <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">'content'</span>: <span class="string">'this is a rowa'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: <span class="string">'&lt;tr&gt;&lt;td&gt;&#123;&#123;content&#125;&#125;&lt;/td&gt;&lt;/tr&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Vue-03学习笔记-组件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Vue-03学习笔记-组件/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -749,6 +812,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -807,9 +873,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Vue-02学习笔记-基础/" itemprop="url">
-                  Vue-02学习笔记-基础
-                </a>
+                
+                <a href="/Vue-02学习笔记-基础/" class="post-title-link" itemprop="url">Vue-02学习笔记-基础</a>
               
             
           </h2>
@@ -878,6 +943,7 @@
 
           
             
+            
           
 
           
@@ -910,7 +976,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">9 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -936,11 +1002,13 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#root'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Vue-02学习笔记-基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Vue-02学习笔记-基础/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -954,6 +1022,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1012,9 +1083,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Vue-01学习笔记-起步/" itemprop="url">
-                  Vue-01学习笔记-起步
-                </a>
+                
+                <a href="/Vue-01学习笔记-起步/" class="post-title-link" itemprop="url">Vue-01学习笔记-起步</a>
               
             
           </h2>
@@ -1083,6 +1153,7 @@
 
           
             
+            
           
 
           
@@ -1115,7 +1186,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -1152,11 +1223,13 @@
 <blockquote>
 <p>vue开发模式，是一个面向数据的开发，让开发者专注于view和model层，其它(双向数据、指令、事件)交给view model自动完成<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Vue-01学习笔记-起步/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Vue-01学习笔记-起步/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1170,6 +1243,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1228,9 +1304,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/javascript判断和易错/" itemprop="url">
-                  JavaScript判断和易错
-                </a>
+                
+                <a href="/javascript判断和易错/" class="post-title-link" itemprop="url">JavaScript判断和易错</a>
               
             
           </h2>
@@ -1299,6 +1374,7 @@
 
           
             
+            
           
 
           
@@ -1331,7 +1407,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">21 分钟</span>
+                <span title="阅读时长">11 分钟</span>
               
             </div>
           
@@ -1354,11 +1430,13 @@
         
           <h2 id="js判断方法"><a href="#js判断方法" class="headerlink" title="js判断方法"></a>js判断方法</h2><h3 id="1-判断一个变量是否为空"><a href="#1-判断一个变量是否为空" class="headerlink" title="1.判断一个变量是否为空"></a>1.判断一个变量是否为空</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">if</span>(a)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(a===<span class="literal">null</span> || a === <span class="literal">undefined</span> || a === <span class="string">''</span>)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/javascript判断和易错/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/javascript判断和易错/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1372,6 +1450,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1430,9 +1511,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/计算机知识要点/" itemprop="url">
-                  计算机知识要点
-                </a>
+                
+                <a href="/计算机知识要点/" class="post-title-link" itemprop="url">计算机知识要点</a>
               
             
           </h2>
@@ -1501,6 +1581,7 @@
 
           
             
+            
           
 
           
@@ -1533,7 +1614,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -1561,11 +1642,13 @@
 </ul>
 <p><img src="http://p09g3b06f.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86%E8%A6%81%E7%82%B9/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg" alt="计算机组成"></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/计算机知识要点/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/计算机知识要点/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1579,6 +1662,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1637,9 +1723,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/WebSocket了解一下/" itemprop="url">
-                  WebSocket了解一下
-                </a>
+                
+                <a href="/WebSocket了解一下/" class="post-title-link" itemprop="url">WebSocket了解一下</a>
               
             
           </h2>
@@ -1708,6 +1793,7 @@
 
           
             
+            
           
 
           
@@ -1740,7 +1826,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -1765,11 +1851,13 @@
 <p>WebSocket并非一个工具，而是HTML5里面的协议。它从某种角度上弥补了上一部分中我们介绍过的HTTP协议的缺陷。<br>它诞生的最大价值，在于解决客户端和服务器之间的实时通信。WebSocket提供使用一个TCP连接进行双向通讯的机制，包括网络协议和API，以取代网页和服务器采用HTTP轮询进行双向通讯的机制。<br>由于使用WebSocket使用HTTP的端口，因此TCP连接建立后的握手消息是基于HTTP的，由服务器判断这是一个HTTP协议，还是WebSocket协议。 WebSocket连接除了建立和关闭时的握手，数据传输和HTTP没有任何关系。</p>
 <p><img src="http://p09g3b06f.bkt.clouddn.com/WebSocket%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE.png" alt="协议"><br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/WebSocket了解一下/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/WebSocket了解一下/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1783,6 +1871,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1841,9 +1932,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/React学习笔记/" itemprop="url">
-                  React学习笔记
-                </a>
+                
+                <a href="/React学习笔记/" class="post-title-link" itemprop="url">React学习笔记</a>
               
             
           </h2>
@@ -1912,6 +2002,7 @@
 
           
             
+            
           
 
           
@@ -1944,7 +2035,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -1967,11 +2058,13 @@
         
           <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p>高内聚（High Cohesion ）和低搞合（ LowCoupling）的原则。<br>“差劲的程序员操心代码，优秀的程序员操心数据结构和它们之间的关系。<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/React学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/React学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1985,6 +2078,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -2043,9 +2139,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/JavaScript基础-05之事件、冒泡、捕获、传播、委托/" itemprop="url">
-                  JavaScript基础-05之事件、冒泡、捕获、传播、委托
-                </a>
+                
+                <a href="/JavaScript基础-05之事件、冒泡、捕获、传播、委托/" class="post-title-link" itemprop="url">JavaScript基础-05之事件、冒泡、捕获、传播、委托</a>
               
             
           </h2>
@@ -2114,6 +2209,7 @@
 
           
             
+            
           
 
           
@@ -2146,7 +2242,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">10 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -2175,11 +2271,13 @@
 </ul>
 <p><img src="http://p09g3b06f.bkt.clouddn.com/JavaScript%E4%B9%8B%E4%BA%8B%E4%BB%B6%E3%80%81%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7%E3%80%81%E4%BC%A0%E6%92%AD%E3%80%81%E5%A7%94%E6%89%98/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7.jpg" alt="事件冒泡和捕获"><br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/JavaScript基础-05之事件、冒泡、捕获、传播、委托/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/JavaScript基础-05之事件、冒泡、捕获、传播、委托/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2193,6 +2291,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -2251,9 +2352,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/正则表达式学习笔记/" itemprop="url">
-                  正则表达式学习笔记
-                </a>
+                
+                <a href="/正则表达式学习笔记/" class="post-title-link" itemprop="url">正则表达式学习笔记</a>
               
             
           </h2>
@@ -2322,6 +2422,7 @@
 
           
             
+            
           
 
           
@@ -2354,7 +2455,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">21 分钟</span>
+                <span title="阅读时长">10 分钟</span>
               
             </div>
           
@@ -2387,11 +2488,13 @@
 </blockquote>
 <p>此时正则表达式匹配完成，报告匹配成功。匹配结果为“abc”，开始位置为0，结束位置为3。<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/正则表达式学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/正则表达式学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2405,6 +2508,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -2454,21 +2560,20 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="xiaoxin">
             
               <p class="site-author-name" itemprop="name">xiaoxin</p>
-              <p class="site-description motion-element" itemprop="description">个人博客，写出人生！</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
           </div>
 
           
@@ -2488,7 +2593,11 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
                     
                     
                       
@@ -2539,7 +2648,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2620,6 +2733,7 @@
           
 
           
+
           
 
           
@@ -2631,7 +2745,7 @@
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2639,6 +2753,7 @@
 
     </div>
   </aside>
+  
 
 
         
@@ -2647,7 +2762,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017/08/08 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2672,16 +2787,12 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">15:11</span>
+    <span title="站点阅读时长">7:35</span>
   
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -2689,12 +2800,38 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -2717,7 +2854,7 @@
     
 
     
-	
+
     
 
     
@@ -2725,7 +2862,7 @@
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2735,6 +2872,8 @@
 
 
 
+  
+
 
 
 
@@ -2759,32 +2898,27 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
   
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+  <script src="/js/utils.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+  <script src="/js/motion.js?v=7.1.0"></script>
 
 
 
@@ -2792,9 +2926,10 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
 
 
 
@@ -2803,28 +2938,21 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+  <script src="/js/next-boot.js?v=7.1.0"></script>
 
 
+  
+
+  
+
+  
 
   
 
 
 
   
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2910,7 +3038,7 @@
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
                 
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -3079,9 +3207,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -3157,7 +3285,6 @@
   
 
   
-  
 
   
 
@@ -3168,75 +3295,49 @@
   
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
 
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
+  
 
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
 
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap')
-      $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text()
-        }).toArray().join('\n')
-        var ta = document.createElement('textarea')
-        document.body.appendChild(ta)
-        ta.style.position = 'absolute'
-        ta.style.top = '0px'
-        ta.style.left = '0px'
-        ta.value = code
-        ta.select()
-        ta.focus()
-        var result = document.execCommand('copy')
-        document.body.removeChild(ta)
-        
-          if(result)$(this).text('复制成功')
-          else $(this).text('复制失败')
-        
-        $(this).blur()
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn')
-        setTimeout(function () {
-          $b.text('复制')
-        }, 300)
-      }).append(e)
-    })
-  </script>
 
+  
+
+  
 
 </body>
 </html>

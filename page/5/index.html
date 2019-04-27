@@ -32,18 +32,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -52,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -60,23 +48,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
 
 
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
 
 
 
@@ -84,15 +70,17 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: true,
-    fastclick: false,
+    fastclick: true,
     lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -112,13 +100,6 @@
 
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-1699000869797523",
-    enable_page_level_ads: true
-  });
-</script>
   <meta name="description" content="个人博客，写出人生！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="天空">
@@ -136,12 +117,13 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="http://www.xin666.cc/page/5/">
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -158,30 +140,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -200,7 +183,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -214,6 +197,7 @@
       
         <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
       
+    
     
   </div>
 
@@ -237,64 +221,136 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about.html" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-schedule">
-    <a href="/schedule/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-commonweal">
-    <a href="/404/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
   </li>
         
         
         
           
-          <li class="menu-item menu-item-javascript">
-    <a href="/pages/index.html" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>JS属性</a>
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>runoob</a>
+
   </li>
 
       
@@ -393,9 +449,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/win10子系统linux安装/" itemprop="url">
-                  win10子系统linux安装
-                </a>
+                
+                <a href="/win10子系统linux安装/" class="post-title-link" itemprop="url">win10子系统linux安装</a>
               
             
           </h2>
@@ -464,6 +519,7 @@
 
           
             
+            
           
 
           
@@ -496,7 +552,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">9 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -522,11 +578,13 @@
 <p>windows 10 1703（创新者更新）提供了新的Ubuntu 16.04， 建议大家用 lxrun重新安装wsl</p>
 </blockquote>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/win10子系统linux安装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/win10子系统linux安装/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -540,6 +598,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -598,9 +659,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/javascript-奇淫巧技44招(转)/" itemprop="url">
-                  (转)javascript 奇淫巧技44招
-                </a>
+                
+                <a href="/javascript-奇淫巧技44招(转)/" class="post-title-link" itemprop="url">(转)javascript 奇淫巧技44招</a>
               
             
           </h2>
@@ -669,6 +729,7 @@
 
           
             
+            
           
 
           
@@ -701,7 +762,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">18 分钟</span>
+                <span title="阅读时长">9 分钟</span>
               
             </div>
           
@@ -725,11 +786,13 @@
           <h2 id="1、首次为变量赋值时务必使用var关键字"><a href="#1、首次为变量赋值时务必使用var关键字" class="headerlink" title="1、首次为变量赋值时务必使用var关键字"></a>1、首次为变量赋值时务必使用var关键字</h2><p>变量没有声明而直接赋值得话，默认会作为一个新的全局变量，要尽量避免使用全局变量。</p>
 <h2 id="2、使用-取代"><a href="#2、使用-取代" class="headerlink" title="2、使用===取代=="></a>2、使用===取代==</h2><p>==和!=操作符会在需要的情况下自动转换数据类型。但===和!==不会，它们会同时比较值和数据类型，这也使得它们要比==和!=快。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/javascript-奇淫巧技44招(转)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/javascript-奇淫巧技44招(转)/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -743,6 +806,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -801,9 +867,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/理解JavaScript中的原型对象/" itemprop="url">
-                  理解JavaScript中的原型对象
-                </a>
+                
+                <a href="/理解JavaScript中的原型对象/" class="post-title-link" itemprop="url">理解JavaScript中的原型对象</a>
               
             
           </h2>
@@ -872,6 +937,7 @@
 
           
             
+            
           
 
           
@@ -904,7 +970,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">4 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -930,11 +996,13 @@
 <p><strong><br>通过构造函数F创建的对象实例p 这个对象p的原型对象是 构造函数中prototype属性指向的对象s，<br>这个对象p中也有个非标准的<strong>proto</strong>属性指向构造函数prototype属性<br>所指向的对象s，所以就有 p.<strong>proto</strong> === F.prototype;<br>在对象P的原型对象s中有个属性constructor属性，指向的是构造函数本身。<br>如果对象p的原型对象s被重写，那么P的构造函数不再是F，而是Object
 </strong></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/理解JavaScript中的原型对象/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/理解JavaScript中的原型对象/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -948,6 +1016,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1006,9 +1077,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/ES6学习笔记/" itemprop="url">
-                  ES6学习笔记
-                </a>
+                
+                <a href="/ES6学习笔记/" class="post-title-link" itemprop="url">ES6学习笔记</a>
               
             
           </h2>
@@ -1077,6 +1147,7 @@
 
           
             
+            
           
 
           
@@ -1109,7 +1180,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">26 分钟</span>
+                <span title="阅读时长">13 分钟</span>
               
             </div>
           
@@ -1134,11 +1205,13 @@
 <p>2000年，ECMAScript 4.0 开始酝酿。这个版本最后没有通过，但是它的大部分内容被 ES6 继承了。因此，ES6 制定的起点其实是2000年。  </p>
 <p>2007年10月，ECMAScript 4.0 版草案发布，本来预计次年8月发布正式版本。<br>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/ES6学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/ES6学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1152,6 +1225,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1210,9 +1286,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/sass的使用笔记/" itemprop="url">
-                  sass的使用笔记
-                </a>
+                
+                <a href="/sass的使用笔记/" class="post-title-link" itemprop="url">sass的使用笔记</a>
               
             
           </h2>
@@ -1281,6 +1356,7 @@
 
           
             
+            
           
 
           
@@ -1313,7 +1389,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">34 分钟</span>
+                <span title="阅读时长">17 分钟</span>
               
             </div>
           
@@ -1337,11 +1413,13 @@
           <h2 id="安装sass"><a href="#安装sass" class="headerlink" title="安装sass"></a>安装sass</h2><p>sass基于Ruby语言开发而成，sass依赖于ruby环境,因此安装sass前需要安装Ruby。<br>先到官网下载个<a href="https://rubyinstaller.org/downloads/" target="_blank" rel="noopener">ruby</a><br>在安装的时候，请勾选Add Ruby executables to your PATH这个选项，添加环境变量，不然以后使用编译软件的时候会提示找不到ruby环境</p>
 <p><img src="https://www.sass.hk/images/2015-08-04_55c05d4ed0a05.png" alt="Alt text"></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/sass的使用笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/sass的使用笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1355,6 +1433,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1413,9 +1494,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/JavaScript基础-04事件循环机制/" itemprop="url">
-                  JavaScript基础-04事件循环机制
-                </a>
+                
+                <a href="/JavaScript基础-04事件循环机制/" class="post-title-link" itemprop="url">JavaScript基础-04事件循环机制</a>
               
             
           </h2>
@@ -1484,6 +1564,7 @@
 
           
             
+            
           
 
           
@@ -1516,7 +1597,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">15 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -1541,11 +1622,13 @@
 <p>宏任务-&gt;执行栈-&gt;微任务  </p>
 <p><br><br><br><img src="http://img.blog.csdn.net/20170613001549300?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzM5MTMzMTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="Alt text"><br><br></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/JavaScript基础-04事件循环机制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/JavaScript基础-04事件循环机制/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1559,6 +1642,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1617,9 +1703,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Ubuntu软件安装和远程连接/" itemprop="url">
-                  Ubuntu软件安装和远程连接
-                </a>
+                
+                <a href="/Ubuntu软件安装和远程连接/" class="post-title-link" itemprop="url">Ubuntu软件安装和远程连接</a>
               
             
           </h2>
@@ -1688,6 +1773,7 @@
 
           
             
+            
           
 
           
@@ -1720,7 +1806,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">10 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -1743,11 +1829,13 @@
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Ubuntu是一个以桌面应用为主的Linux操作系统，其名称来自非洲南部祖鲁语或豪萨语的“ubuntu”一词（译为吾帮托或乌班图），意思是“人性”、“我的存在是因为大家的存在”，是非洲传统的一种价值观，类似华人社会的“仁爱”思想。Ubuntu基于Debian发行版和GNOME桌面环境，与Debian的不同在于它每6个月会发布一个新版本。Ubuntu的目标在于为一般用户提供一个最新的、同时又相当稳定的主要由自由软件构建而成的操作系统。Ubuntu具有庞大的社区力量，用户可以方便地从社区获得帮助。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Ubuntu软件安装和远程连接/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Ubuntu软件安装和远程连接/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1761,6 +1849,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1819,9 +1910,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/JavaScript基础-03defered和promise对象/" itemprop="url">
-                  JavaScript基础-03 deferred和promise对象
-                </a>
+                
+                <a href="/JavaScript基础-03defered和promise对象/" class="post-title-link" itemprop="url">JavaScript基础-03 deferred和promise对象</a>
               
             
           </h2>
@@ -1890,6 +1980,7 @@
 
           
             
+            
           
 
           
@@ -1922,7 +2013,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">15 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -1947,11 +2038,13 @@
 <li>1.5版本后引入<br>Promise对象其实就是deferred对象的特例，因为Promise对象不能更改异步状态，<br>而deferred对象可以。这点在他们的方法设计上，有着明显的体现。</li>
 </ul>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/JavaScript基础-03defered和promise对象/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/JavaScript基础-03defered和promise对象/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1965,6 +2058,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -2023,9 +2119,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gulp教程/" itemprop="url">
-                  gulp使用笔记
-                </a>
+                
+                <a href="/gulp教程/" class="post-title-link" itemprop="url">gulp使用笔记</a>
               
             
           </h2>
@@ -2094,6 +2189,7 @@
 
           
             
+            
           
 
           
@@ -2126,7 +2222,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">10 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -2151,11 +2247,13 @@
 <p>Gulp是Web开发中帮你自动完成任务的工具。它可以完成的前端任务包括：<br>启动Web Server<br>当文件修改保存后，自动刷新浏览器<br>批量处理Sass或者Less文件<br>优化资源CSS, JavaScript, 和 images<br>Gulp能做的比以上更多。你甚至可以用Gulp创建一个静态站点生成器。Gulp真是非常强大的。下面我们来学习创建自己的Gulp任务。</p>
 <p>目前最流行的构建工具有Gulp和Grunt.<br>Gulp和Grunt的主要区别在于配置工作流的不同。Gulp的配置更加简洁，运行速度更快。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/gulp教程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/gulp教程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2169,6 +2267,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -2227,9 +2328,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/npm基本使用/" itemprop="url">
-                  npm基本使用
-                </a>
+                
+                <a href="/npm基本使用/" class="post-title-link" itemprop="url">npm基本使用</a>
               
             
           </h2>
@@ -2298,6 +2398,7 @@
 
           
             
+            
           
 
           
@@ -2330,7 +2431,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -2353,11 +2454,13 @@
         
           <p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：<br>允许用户从NPM服务器下载别人编写的第三方包到本地使用。<br>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。<br>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。<br>由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同样可以通过输入 <code>npm -v</code>来测试是否成功安装。命令如下，出现版本提示表示安装成功</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/npm基本使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/npm基本使用/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2371,6 +2474,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -2420,21 +2526,20 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="xiaoxin">
             
               <p class="site-author-name" itemprop="name">xiaoxin</p>
-              <p class="site-description motion-element" itemprop="description">个人博客，写出人生！</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
           </div>
 
           
@@ -2454,7 +2559,11 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
                     
                     
                       
@@ -2505,7 +2614,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2586,6 +2699,7 @@
           
 
           
+
           
 
           
@@ -2597,7 +2711,7 @@
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2605,6 +2719,7 @@
 
     </div>
   </aside>
+  
 
 
         
@@ -2613,7 +2728,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017/08/08 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2638,16 +2753,12 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">15:11</span>
+    <span title="站点阅读时长">7:35</span>
   
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -2655,12 +2766,38 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -2683,7 +2820,7 @@
     
 
     
-	
+
     
 
     
@@ -2691,7 +2828,7 @@
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2701,6 +2838,8 @@
 
 
 
+  
+
 
 
 
@@ -2725,32 +2864,27 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
   
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+  <script src="/js/utils.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+  <script src="/js/motion.js?v=7.1.0"></script>
 
 
 
@@ -2758,9 +2892,10 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
 
 
 
@@ -2769,28 +2904,21 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+  <script src="/js/next-boot.js?v=7.1.0"></script>
 
 
+  
+
+  
+
+  
 
   
 
 
 
   
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2876,7 +3004,7 @@
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
                 
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -3045,9 +3173,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -3123,7 +3251,6 @@
   
 
   
-  
 
   
 
@@ -3134,75 +3261,49 @@
   
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
 
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
+  
 
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
 
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap')
-      $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text()
-        }).toArray().join('\n')
-        var ta = document.createElement('textarea')
-        document.body.appendChild(ta)
-        ta.style.position = 'absolute'
-        ta.style.top = '0px'
-        ta.style.left = '0px'
-        ta.value = code
-        ta.select()
-        ta.focus()
-        var result = document.execCommand('copy')
-        document.body.removeChild(ta)
-        
-          if(result)$(this).text('复制成功')
-          else $(this).text('复制失败')
-        
-        $(this).blur()
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn')
-        setTimeout(function () {
-          $b.text('复制')
-        }, 300)
-      }).append(e)
-    })
-  </script>
 
+  
+
+  
 
 </body>
 </html>
