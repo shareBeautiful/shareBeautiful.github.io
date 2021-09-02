@@ -32,6 +32,18 @@
 
 
 
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,7 +52,7 @@
 
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,39 +60,39 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
 
 
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
 
 
 
 
 
-<script id="hexo.configurations">
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    fastclick: true,
+    fastclick: false,
     lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -100,6 +112,13 @@
 
 
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-1699000869797523",
+    enable_page_level_ads: true
+  });
+</script>
   <meta name="description" content="个人博客，写出人生！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xin">
@@ -117,13 +136,12 @@
 
 
 
-  
-  
+
   <link rel="canonical" href="https://www.xin666.cc/page/6/">
 
 
 
-<script id="page.configurations">
+<script type="text/javascript" id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -140,31 +158,30 @@
 
 
 
-
-
-
   <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
   </style>
 </noscript>
 
@@ -183,7 +200,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
+  <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
@@ -197,7 +214,6 @@
       
         <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
       
-    
     
   </div>
 
@@ -221,136 +237,64 @@
         
           
           <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
-
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
-
+    <a href="/about.html" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
-
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
-
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
-
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-schedule">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
-
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-commonweal">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
-
+    <a href="/404/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
   </li>
         
         
         
           
-          <li class="menu-item menu-item-runoob">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
-
+          <li class="menu-item menu-item-javascript">
+    <a href="/pages/runobb/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>JS属性</a>
   </li>
 
       
@@ -449,8 +393,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/npm%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">npm基本使用</a>
+                <a class="post-title-link" href="/npm基本使用/" itemprop="url">
+                  npm基本使用
+                </a>
               
             
           </h2>
@@ -519,7 +464,6 @@
 
           
             
-            
           
 
           
@@ -552,7 +496,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">11 分钟</span>
+                <span title="阅读时长">21 分钟</span>
               
             </div>
           
@@ -575,13 +519,11 @@
         
           <p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：<br>允许用户从NPM服务器下载别人编写的第三方包到本地使用。<br>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。<br>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。<br>由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同样可以通过输入 <code>npm -v</code>来测试是否成功安装。命令如下，出现版本提示表示安装成功</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/npm基本使用/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/npm基本使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -595,9 +537,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -656,8 +595,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/php%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%E6%B8%85%E5%8D%95/" class="post-title-link" itemprop="url">php基础笔记清单</a>
+                <a class="post-title-link" href="/php基础笔记清单/" itemprop="url">
+                  php基础笔记清单
+                </a>
               
             
           </h2>
@@ -726,7 +666,6 @@
 
           
             
-            
           
 
           
@@ -759,7 +698,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">28 分钟</span>
+                <span title="阅读时长">57 分钟</span>
               
             </div>
           
@@ -783,13 +722,11 @@
           <h2 id="简要"><a href="#简要" class="headerlink" title="简要"></a>简要</h2><p>PHP 继承自一个老的工程，名叫 PHP/FI。PHP/FI 在 1995 年由 Rasmus Lerdorf 创建，最初只是一套简单的 Perl 脚本，用来跟踪访问他主页的人们的信息。它给这一套脚本取名为“Personal Home Page Tools”。随着更多功能需求的增加，Rasmus 写了一个更大的 C 语言的实现，它可以访问数据库，可以让用户开发简单的动态 Web 程序。Rasmus » 发布了 PHP/FI 的源代码，以便每个人都可以使用它，同时大家也可以修正它的 Bug 并且改进它的源代码。</p>
 <p>PHP/FI，一个专为个人主页／表单提供解释程序的程序，已经包含了今天 PHP 的一些基本功能。它有着 Perl 样式的变量，自动解释表单变量，并可以嵌入 HTML。语法本身与 Perl 很相似，但是它很有限，很简单，还稍微有些不协调。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/php基础笔记清单/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/php基础笔记清单/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -803,9 +740,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -864,8 +798,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/JavaScript%E5%9F%BA%E7%A1%80-02%E5%8F%98%E9%87%8F%E3%80%81%E9%97%AD%E5%8C%85%E3%80%81this%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="post-title-link" itemprop="url">JavaScript基础-02 变量、闭包、this、作用域</a>
+                <a class="post-title-link" href="/JavaScript基础-02变量、闭包、this、作用域/" itemprop="url">
+                  JavaScript基础-02 变量、闭包、this、作用域
+                </a>
               
             
           </h2>
@@ -934,7 +869,6 @@
 
           
             
-            
           
 
           
@@ -967,7 +901,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">14 分钟</span>
+                <span title="阅读时长">28 分钟</span>
               
             </div>
           
@@ -1001,13 +935,11 @@
 <li><input checked disabled type="checkbox"> 作用域，作用域链,变量声明</li>
 </ul>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/JavaScript基础-02变量、闭包、this、作用域/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/JavaScript基础-02变量、闭包、this、作用域/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -1021,9 +953,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -1082,8 +1011,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/JavaScript%E5%9F%BA%E7%A1%80-01%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E3%80%81%E5%8E%9F%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript基础-01 类型转换和原型</a>
+                <a class="post-title-link" href="/JavaScript基础-01类型转换、原型/" itemprop="url">
+                  JavaScript基础-01 类型转换和原型
+                </a>
               
             
           </h2>
@@ -1152,7 +1082,6 @@
 
           
             
-            
           
 
           
@@ -1185,7 +1114,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">29 分钟</span>
+                <span title="阅读时长">58 分钟</span>
               
             </div>
           
@@ -1219,13 +1148,11 @@
 <li>如果valueOf()方法返回对象,则调用 toString()方法,如果toString方法返回原始类型的值，则对该值使用Number函数。</li>
 <li>如果toString方法返回的是对象，就报错。
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/JavaScript基础-01类型转换、原型/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/JavaScript基础-01类型转换、原型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -1239,9 +1166,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -1300,8 +1224,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/vim%E7%BC%96%E8%BE%91%E5%99%A8/" class="post-title-link" itemprop="url">vim编辑器基本用法</a>
+                <a class="post-title-link" href="/vim编辑器/" itemprop="url">
+                  vim编辑器基本用法
+                </a>
               
             
           </h2>
@@ -1370,7 +1295,6 @@
 
           
             
-            
           
 
           
@@ -1403,7 +1327,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">21 分钟</span>
+                <span title="阅读时长">43 分钟</span>
               
             </div>
           
@@ -1426,13 +1350,11 @@
         
           <p>vi编辑器通常被简称为vi，而vi又是visual editor的简称 。它在Linux上的地位就像Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制，这是其他编辑程序所没有的。<br>vi 编辑器并不是一个排版程序，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。没有菜单，只有命令，且命令繁多。vi有3种基本工作模式：命令行模式、文本输入模式和末行模式。<br>Vim是vi的加强版，比vi更容易使用。vi的命令几乎全部都可以在vim上使用。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/vim编辑器/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/vim编辑器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -1446,9 +1368,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -1507,8 +1426,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Linux常用指令</a>
+                <a class="post-title-link" href="/Linux常用指令/" itemprop="url">
+                  Linux常用指令
+                </a>
               
             
           </h2>
@@ -1577,7 +1497,6 @@
 
           
             
-            
           
 
           
@@ -1610,7 +1529,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">11 分钟</span>
+                <span title="阅读时长">22 分钟</span>
               
             </div>
           
@@ -1640,13 +1559,11 @@
 &gt; cd ..          //上一级目录切换
 &gt; cd ~ 或 cd  //直接切换到当前用户对应的家目录</code></pre>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Linux常用指令/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/Linux常用指令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -1660,9 +1577,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -1721,8 +1635,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/%E5%B1%8F%E5%B9%95%E8%AE%BE%E5%A4%87%E7%9A%84%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">屏幕设备的一些概念</a>
+                <a class="post-title-link" href="/屏幕设备的一些概念/" itemprop="url">
+                  屏幕设备的一些概念
+                </a>
               
             
           </h2>
@@ -1791,7 +1706,6 @@
 
           
             
-            
           
 
           
@@ -1824,7 +1738,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">12 分钟</span>
+                <span title="阅读时长">23 分钟</span>
               
             </div>
           
@@ -1855,13 +1769,11 @@
 <li>设备独立像素</li>
 </ul>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/屏幕设备的一些概念/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/屏幕设备的一些概念/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -1875,9 +1787,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -1936,8 +1845,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/%E5%89%8D%E7%AB%AF%E5%8D%9A%E6%96%87%E6%8E%A8%E8%8D%90%E5%9C%B0%E5%9D%80/" class="post-title-link" itemprop="url">博文推荐地址</a>
+                <a class="post-title-link" href="/前端博文推荐地址/" itemprop="url">
+                  博文推荐地址
+                </a>
               
             
           </h2>
@@ -2006,7 +1916,6 @@
 
           
             
-            
           
 
           
@@ -2039,7 +1948,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">11 分钟</span>
+                <span title="阅读时长">22 分钟</span>
               
             </div>
           
@@ -2067,13 +1976,11 @@
 <p><a href="https://segmentfault.com/a/1190000008590012" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008590012</a><br><a href="http://www.jianshu.com/p/d647aa6d1ae6" target="_blank" rel="noopener">http://www.jianshu.com/p/d647aa6d1ae6</a><br><a href="http://www.cnblogs.com/Wayou/p/all-this.html" target="_blank" rel="noopener">http://www.cnblogs.com/Wayou/p/all-this.html</a></p>
 </blockquote>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/前端博文推荐地址/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/前端博文推荐地址/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -2087,9 +1994,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -2148,8 +2052,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/css%E6%8F%AD%E7%A7%98/" class="post-title-link" itemprop="url">css揭秘</a>
+                <a class="post-title-link" href="/css揭秘/" itemprop="url">
+                  css揭秘
+                </a>
               
             
           </h2>
@@ -2218,7 +2123,6 @@
 
           
             
-            
           
 
           
@@ -2251,7 +2155,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">23 分钟</span>
+                <span title="阅读时长">46 分钟</span>
               
             </div>
           
@@ -2283,13 +2187,11 @@
 
 <p>如果要检测选择符和@规则的支持情况：在解析CSS代码时，浏览器总会丢弃它自己无法识别的部分，因此可以动态地应用样式并检查它是否生效，以此来判断浏览器是否可以识别某个特性。当然，<strong>浏览器可以解析某个CSS特性并不代表它已经实现（或正确实现）了这个特性。</strong></p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/css揭秘/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/css揭秘/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -2303,9 +2205,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -2364,8 +2263,9 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/javaScript%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%B2%BE%E8%A6%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">JavaScript面向对象精要读书笔记</a>
+                <a class="post-title-link" href="/javaScript面向对象精要读书笔记/" itemprop="url">
+                  JavaScript面向对象精要读书笔记
+                </a>
               
             
           </h2>
@@ -2434,7 +2334,6 @@
 
           
             
-            
           
 
           
@@ -2467,7 +2366,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1:49</span>
+                <span title="阅读时长">3:37</span>
               
             </div>
           
@@ -2493,13 +2392,11 @@
 <p>为了让开发者能够把原始类型和引用类型按相同的方式处理，JavaScript花费了很大的努力来保证语言的一致性。</p>
 <p>其他编程语言用栈存原始类型，用对存储引用类型。而JavaScript则完全不同：它使用一个变量对象追踪变量的生存期。原始值被直接保存在变量对象内，而引用值则作为一个指针保存在变量对象内，该指针指向实际对象在内存中的存储位置。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/javaScript面向对象精要读书笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/javaScript面向对象精要读书笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
@@ -2513,9 +2410,6 @@
 
     
 
-    
-      
-    
     
 
     
@@ -2565,20 +2459,21 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
             
               <p class="site-author-name" itemprop="name">zhixin</p>
-              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+              <p class="site-description motion-element" itemprop="description">个人博客，写出人生！</p>
           </div>
 
           
@@ -2598,11 +2493,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -2653,11 +2544,7 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -2738,7 +2625,6 @@
           
 
           
-
           
 
           
@@ -2750,7 +2636,7 @@
           
 
         </div>
-      </div>
+      </section>
 
       
 
@@ -2758,7 +2644,6 @@
 
     </div>
   </aside>
-  
 
 
         
@@ -2767,7 +2652,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017/08/08 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2792,12 +2677,16 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">13:06</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -2805,38 +2694,12 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
 
 
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
 
 
 
@@ -2859,7 +2722,7 @@
     
 
     
-
+	
     
 
     
@@ -2867,7 +2730,7 @@
 
   
 
-<script>
+<script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2877,8 +2740,6 @@
 
 
 
-  
-
 
 
 
@@ -2903,61 +2764,72 @@
 
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script src="/js/utils.js?v=7.1.0"></script>
-
-  <script src="/js/motion.js?v=7.1.0"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-  <script src="/js/affix.js?v=7.1.0"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
-
-
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
   
 
 
-  <script src="/js/next-boot.js?v=7.1.0"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
 
 
   
 
   
 
-  
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
 
   
 
 
 
   
-  <script>
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -3043,7 +2915,7 @@
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
                 
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -3212,9 +3084,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -3290,7 +3162,6 @@
   
 
   
-
   
 
   
@@ -3302,49 +3173,77 @@
   
 
   
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
 
-  
-<script>
-  $('.highlight').each(function(i, e) {
-    var $wrap = $('<div>').addClass('highlight-wrap');
-    $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-        return $(e).text();
-      }).toArray().join('\n');
-      var ta = document.createElement('textarea');
-      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-      ta.style.top = yPosition + 'px'; // Prevent page scroll
-      ta.style.position = 'absolute';
-      ta.style.opacity = '0';
-      ta.readOnly = true;
-      ta.value = code;
-      document.body.appendChild(ta);
-      ta.select();
-      ta.setSelectionRange(0, code.length);
-      ta.readOnly = false;
-      var result = document.execCommand('copy');
-      
-        if (result) $(this).text('复制成功');
-        else $(this).text('复制失败');
-      
-      ta.blur(); // For iOS
-      $(this).blur();
-    })).on('mouseleave', function(e) {
-      var $b = $(this).find('.copy-btn');
-      setTimeout(function() {
-        $b.text('复制');
-      }, 300);
-    }).append(e);
-  })
-</script>
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
 
-  
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
 
-  
 
 </body>
 <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/love.js"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
 </html>

@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   NexT.utils.registerESCKeyEvent();
 
-  CONFIG.back2top && NexT.utils.registerBackToTop();
+  NexT.utils.registerBackToTop();
 
   // Mobile top menu bar.
   $('.site-nav-toggle button').on('click', function() {
