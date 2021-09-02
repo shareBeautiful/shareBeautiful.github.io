@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <!--国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!--ie兼容模式 chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <title>首页</title>
+    <!--引入css-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+
+<div class="container-fluid body" id="app">
+    <div class="row" id="my-gallery-container">
+        <div class="item" v-for="item of list" :data-order="item.id" :key="item.id">
+            <h3 class="bg-primary title">{{ item.title }}</h3>
+            <ol class="list-unstyled list-box">
+                <li v-for="i of item.data" @click="toLink(i.link)" :key="i.id">
+                    <code>{{ i.code }}</code>
+                    <small>{{ i.intro }}</small>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mp.mansory.js"></script>
+<script src="js/vue.js"></script>
+<script src="data.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list: data,
+            isTrue: true
+        },
+        methods: {
+            toLink: function (href) {
+                window.location.href = href
+            }
+        }
+    })
+
+    jQuery(document).ready(function ($) {
+        $("#my-gallery-container").mpmansory(
+            {
+                childrenClass: 'item', // default is a div
+                columnClasses: 'padding', //add classes to items
+                breakpoints: {
+                    lg: 3,
+                    md: 4,
+                    sm: 6,
+                    xs: 12
+                },
+                distributeBy: {order: false, height: false, attr: 'data-order', attrOrder: 'asc'}, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
+                onload: function (items) {
+                    //make somthing with items
+                }
+            }
+        );
+        var allHeight = 0;
+        for (item of $('.item')){
+           allHeight = allHeight + Number($(item).height())
+        }
+        console.log(allHeight)
+
+    });
+</script>
+
+</html>

@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="理论正则引擎 DFA (Deterministic finite automaton) 确定型有穷自动机 NFA (Non-deterministic finite automaton) 非确定型有穷自动机，大部分都是NFA  DFA引擎不需要进行回溯，所以匹配效率一般情况下要高，但是它并不支持捕获组，于是也就不支持反向引用和$这种形式的引用，也不支持环视(Lookaround)、非贪婪模式等一些">
+<meta name="keywords" content="正则表达">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式学习笔记">
+<meta property="og:url" content="https://www.xin666.cc/正则表达式学习笔记/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="理论正则引擎 DFA (Deterministic finite automaton) 确定型有穷自动机 NFA (Non-deterministic finite automaton) 非确定型有穷自动机，大部分都是NFA  DFA引擎不需要进行回溯，所以匹配效率一般情况下要高，但是它并不支持捕获组，于是也就不支持反向引用和$这种形式的引用，也不支持环视(Lookaround)、非贪婪模式等一些">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E5%AD%97%E7%AC%A6%E5%92%8C%E4%BD%8D%E7%BD%AE.jpg">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E6%AD%A3%E5%88%99%E8%AF%AD%E6%B3%95.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E8%BD%AC%E4%B9%89%E7%B1%BB.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E8%8C%83%E5%9B%B4%E7%B1%BB.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E9%87%8F%E8%AF%8D.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/RegExp%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95.png">
+<meta property="og:updated_time" content="2021-08-11T07:17:59.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式学习笔记">
+<meta name="twitter:description" content="理论正则引擎 DFA (Deterministic finite automaton) 确定型有穷自动机 NFA (Non-deterministic finite automaton) 非确定型有穷自动机，大部分都是NFA  DFA引擎不需要进行回溯，所以匹配效率一般情况下要高，但是它并不支持捕获组，于是也就不支持反向引用和$这种形式的引用，也不支持环视(Lookaround)、非贪婪模式等一些">
+<meta name="twitter:image" content="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E5%AD%97%E7%AC%A6%E5%92%8C%E4%BD%8D%E7%BD%AE.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/正则表达式学习笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>正则表达式学习笔记 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/正则表达式学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">正则表达式学习笔记
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-07 12:23:00" itemprop="dateCreated datePublished" datetime="2018-02-07T12:23:00+08:00">2018-02-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:59" itemprop="dateModified" datetime="2021-08-11T15:17:59+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具-资源/" itemprop="url" rel="index"><span itemprop="name">工具/资源</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">34k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">31 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><h3 id="正则引擎"><a href="#正则引擎" class="headerlink" title="正则引擎"></a>正则引擎</h3><ol>
+<li>DFA (Deterministic finite automaton) 确定型有穷自动机</li>
+<li>NFA (Non-deterministic finite automaton) 非确定型有穷自动机，大部分都是NFA</li>
+</ol>
+<p>DFA引擎不需要进行回溯，所以匹配效率一般情况下要高，但是它并不支持捕获组，于是也就不支持反向引用和$这种形式的引用，也不支持环视(Lookaround)、非贪婪模式等一些NFA引擎特有的特性。</p>
+<h3 id="字符串组成"><a href="#字符串组成" class="headerlink" title="字符串组成"></a>字符串组成</h3><p>对于字符串”abc”，是由三个字符“a”、“b”、“c”以及四个位置组成的，<br>这一点对于正则表达式的匹配原理理解很重要。</p>
+<p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E5%AD%97%E7%AC%A6%E5%92%8C%E4%BD%8D%E7%BD%AE.jpg" alt="正则字符串">  </p>
+<blockquote>
+<p>首先由字符“a”取得控制权，从位置0开始匹配，由“a”来匹配“a”，匹配成功，控制权交给字符“b”；由于“a”已被“a”匹配，所以“b”从位置1开始尝试匹配，由“b”来匹配“b”，匹配成功，控制权交给“c”；由“c”来匹配“c”，匹配成功。</p>
+</blockquote>
+<p>此时正则表达式匹配完成，报告匹配成功。匹配结果为“abc”，开始位置为0，结束位置为3。</p>
+<a id="more"></a>
+<h3 id="占有字符和零宽度"><a href="#占有字符和零宽度" class="headerlink" title="占有字符和零宽度"></a>占有字符和零宽度</h3><p><strong>占有字符</strong><br>正则表达式匹配过程中，如果子表达式匹配到的是字符内容，而非位置，<br>并被保存到最终的匹配结果中，那么就认为这个子表达式是<strong>占有字符</strong>；</p>
+<blockquote>
+<p>比如<code>/ha/</code>（匹配ha）就是占有字符的；</p>
+</blockquote>
+<p><strong>零宽度</strong><br>如果子表达式匹配的仅仅是位置，或者匹配的内容并不保存到最终的匹配结果中，<br>那么就认为这个子表达式是<strong>零宽度</strong>的。 </p>
+<blockquote>
+<p>比如<code>/read(?=ing)/</code>（匹配reading，但是只将read放入结果中</p>
+</blockquote>
+<p><strong>占有字符是互斥的，零宽度是非互斥的</strong>。也就是一个字符，同一时间只能由一个子表达式匹配，<br>而一个位置，却可以同时由多个零宽度的子表达式匹配。</p>
+<blockquote>
+<p>比如<code>/aa/</code>是匹配不了a的,但是位置是可以多个匹配的，比如<code>/\b\ba/</code>是可以匹配a的</p>
+</blockquote>
+<h2 id="控制权和传动"><a href="#控制权和传动" class="headerlink" title="控制权和传动"></a>控制权和传动</h2><ul>
+<li>控制权是指哪一个正则子表达式</li>
+<li>传动是指正则引擎的一种机制，传动装置将定位正则从字符串的哪里开始匹配</li>
+</ul>
+<p>正则的匹配过程，通常情况下都是由一个子表达式（可能为一个普通字符、元字符或元字符序列组成）<br>取得控制权，从字符串的某一位置开始尝试匹配，一个子表达式开始尝试匹配的位置，<br>是从前一子表达匹配成功的结束位置开始的。  </p>
+<p>而对于整个表达式来说，通常是由字符串位置0开始尝试匹配的。<br>如果在位置0开始的尝试，匹配到字符串某一位置时整个表达式匹配失败，<br>那么引擎会使正则向前传动，整个表达式从位置1开始重新尝试匹配，<br>依此类推，直到报告匹配成功或尝试到最后一个位置后报告匹配失败。</p>
+<h2 id="回溯法原理"><a href="#回溯法原理" class="headerlink" title="回溯法原理"></a>回溯法原理</h2><p>回溯是影响正则表达式效率的一个非常重要的原因，<br>我们在进行正则表达式匹配时，一定要尽可能的避免回溯。<br><strong>定义</strong><br>回溯法就是指正则表达式从头开始依次进行匹配，如果匹配到某个特定的情况下时，<br>发现无法继续进行匹配，需要回退到之前匹配的结果，选择另一个分支继续进行匹配中的现象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/ab&#123;1,3&#125;c/</span>;</span><br><span class="line"><span class="keyword">const</span> str = <span class="string">'abbc'</span>;</span><br><span class="line"><span class="comment">// 第1步：匹配/a/，得到'a'</span></span><br><span class="line"><span class="comment">// 第2步：匹配/ab&#123;1&#125;/，得到'ab'</span></span><br><span class="line"><span class="comment">// 第3步：匹配/ab&#123;2&#125;/，得到'abb'</span></span><br><span class="line"><span class="comment">// 第4步：匹配/ab&#123;3&#125;/，匹配失败，需要进行回溯</span></span><br><span class="line"><span class="comment">// 第5步：回溯到/ab&#123;2&#125;/,继续匹配/ab&#123;2&#125;c/，得到'abbc'</span></span><br><span class="line"><span class="comment">// 第6步：正则表达式匹配完成，得到'abbc'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>产生场景</strong>  </p>
+<ol>
+<li>贪婪量词（贪婪匹配）</li>
+<li>惰性量词（非贪婪匹配）</li>
+<li>分支结构（分支匹配）</li>
+</ol>
+<blockquote>
+<p>如果我们把正则表达式的各个分支都整理成一棵树的话，<br>正则表达式的匹配其实就是一个深度优先搜索算法。<br>而回溯其实就是在进行深度优先匹配失败后的后退正常操作逻辑。</p>
+</blockquote>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E6%AD%A3%E5%88%99%E8%AF%AD%E6%B3%95.png" alt="正则语法">  </p>
+<h3 id="什么是正则表达式："><a href="#什么是正则表达式：" class="headerlink" title="什么是正则表达式："></a>什么是正则表达式：</h3><p>正则表达式(Regular Expression)是一种匹配模式，描述的是一串文本的特征 使用单个字符串描述、匹配一系列符合某个语句规则的字符<br>按照某种规则去匹配符合条件的字符串，<br>两种方法实例 RegExp</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字面量 </span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\bis\b/</span>;</span><br><span class="line"><span class="comment">// 构造函数</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\bis\\b"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="修饰符i-g-m"><a href="#修饰符i-g-m" class="headerlink" title="修饰符i,g,m"></a>修饰符i,g,m</h3><ul>
+<li>g: global全文搜索，</li>
+<li>i: ignore case忽略大小写</li>
+<li>m: multiple lines 多行搜索</li>
+</ul>
+<p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%BF%AE%E9%A5%B0%E7%AC%A6.png" alt="正则修饰符"></p>
+<h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><p>由2中字符组成</p>
+<ul>
+<li>原义文本字符</li>
+<li>元字符</li>
+<li>元字符是在正则表达式中有特殊含义的非字母符号</li>
+<li><code>* + ? ^ $ . | \ () {} []</code><br><code>[]</code></li>
+<li>我们可以使用元字符[] 来构建一个简单的类</li>
+<li>所谓类是指符合某些特性的对象，一个泛指，而不是特指某个字符</li>
+<li>表达式[abc]把字符a或b或c归为一类</li>
+</ul>
+<h3 id="预定义类"><a href="#预定义类" class="headerlink" title="预定义类"></a>预定义类</h3><p>预定义： <code>\d \D . \s \S \w \W</code><br>边界： <code>^ $ \b \B</code><br>零宽断言： <code>(?=exp)</code>，<code>(?!exp)</code> </p>
+<blockquote>
+<p>注意这个表达式仅仅匹配一个位置，只是它对于这个位置的右边有要求，<br>而右边的东西是不会被放进结果的</p>
+</blockquote>
+<p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E8%BD%AC%E4%B9%89%E7%B1%BB.png" alt="预定义类"></p>
+<h3 id="范围类"><a href="#范围类" class="headerlink" title="范围类"></a>范围类</h3><p>[0-9] [a-z-] [A-Z] [0-9a-zA-Z_]</p>
+<p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E8%8C%83%E5%9B%B4%E7%B1%BB.png" alt="范围类"></p>
+<h3 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h3><p><code>* + ? {}</code></p>
+<p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E9%87%8F%E8%AF%8D.png" alt="量词类"></p>
+<h3 id="贪婪与惰性"><a href="#贪婪与惰性" class="headerlink" title="贪婪与惰性"></a>贪婪与惰性</h3><p>贪婪模式：匹配尽可能多的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"12345678"</span>.replace(<span class="regexp">/\d&#123;3,6&#125;/g</span>,<span class="string">'X'</span>) <span class="comment">// "X78"</span></span><br></pre></td></tr></table></figure>
+
+<p>非贪婪模式：匹配尽可能少的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"12345678"</span>.replace(<span class="regexp">/\d&#123;3,6&#125;?/g</span>,<span class="string">'X'</span>) <span class="comment">// "XX78"</span></span><br></pre></td></tr></table></figure>
+
+<p>贪婪模式只要是在后面 加上 ? 既可变成惰性模式</p>
+<h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h3><p>当一个字符串的某一子串具有多种可能时，采用分支结构来匹配，<br>“|”表示多个子表达式之间“或”的关系，“|”是以()限定范围的，<br>如果在“|”的左右两侧没有()来限定范围，那么它的作用范围即为“|”左右两侧整体。</p>
+<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><h4 id="捕获组（Capture-Group）"><a href="#捕获组（Capture-Group）" class="headerlink" title="捕获组（Capture Group）"></a>捕获组（Capture Group）</h4><p>用() 可以到达分组的功能，使量词作用于分组 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abc,abc,abcabcabc,aabc"</span>.replace(<span class="regexp">/(abc)&#123;3&#125;/g</span>, <span class="string">"X"</span>)  <span class="comment">// "abc,abc,X,aabc"</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 | 或 作用与分组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ByronCasper'</span>.replace(<span class="regexp">/Byron|Casper/g</span>,<span class="string">'X'</span>) <span class="comment">// 'XX'</span></span><br><span class="line"><span class="string">'ByronsperByrCasper'</span>.replace(<span class="regexp">/Byr(on|Ca)sper/g</span>,<span class="string">'X'</span>) <span class="comment">// 'XX'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="非捕获组"><a href="#非捕获组" class="headerlink" title="非捕获组"></a>非捕获组</h4><p><strong>忽略分组：</strong><br>不希望捕获某些分组，只需要在分组内加上 ?: 就可以</p>
+<h4 id="正向引用"><a href="#正向引用" class="headerlink" title="正向引用"></a>正向引用</h4><p>用$1,$2,$3来捕获分组匹配的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'2018-02-06'</span>.replace(<span class="regexp">/(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/g</span>, <span class="string">'$2/$3/$1'</span>) <span class="comment">// "02-06-2018"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h4><p><code>(a|b)\1</code>在匹配”abaa”时，匹配成功，匹配到的结果是“aa”。后面的<code>\1</code>代表<br><code>()</code>中匹配的内容</p>
+<h3 id="环视-Look-Around）"><a href="#环视-Look-Around）" class="headerlink" title="环视(Look Around）"></a>环视(Look Around）</h3><p><strong>环视只进行子表达式的匹配，匹配内容不计入最终的匹配结果，是零宽度的。</strong>  </p>
+<ul>
+<li>正则表达式从文本头部向尾部开始解析，文本尾部方向成为 “前”，文本头部就叫 “后”</li>
+<li>前瞻就是正则表达式匹配到规则的时候，向前检查是否符合断言,后顾/后瞻方向相反</li>
+<li>JavaScript 不支持后顾</li>
+<li>符合和不符合特定的断言称为 肯定/正向 匹配和 否定/负向 匹配</li>
+</ul>
+<p>正向前瞻 <code>exp(?=assert)</code><br>负向前瞻 <code>exp(?!assert)</code><br>正向后顾 <code>exp(?&lt;=assert)</code><br>负向后顾 <code>exp(?&lt;!assert)</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">分类</th>
+<th align="left">代码/语法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>捕获</strong></td>
+<td align="left"><code>(exp)</code></td>
+<td align="left">匹配exp,并捕获文本到自动命名的组里</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"><code>(?&lt;name&gt;exp)</code></td>
+<td align="left">匹配exp,并捕获文本到名称为name的组里，也可以写成(?’name’exp)</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"><code>(?:exp)</code></td>
+<td align="left">匹配exp,不捕获匹配的文本，也不给此分组分配组号</td>
+</tr>
+<tr>
+<td align="left"><strong>零宽断言</strong></td>
+<td align="left"><code>(?=exp)</code></td>
+<td align="left">匹配exp表达式前面的位置</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"><code>(?&lt;=exp)</code></td>
+<td align="left">匹配exp表达式后面的位置</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"><code>(?!exp)</code></td>
+<td align="left">匹配不是exp表达式前面的位置</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"><code>(?&lt;!exp)</code></td>
+<td align="left">匹配不是exp表达式后面的位置</td>
+</tr>
+<tr>
+<td align="left"><strong>注释</strong></td>
+<td align="left"><code>(?#comment)</code></td>
+<td align="left">用于提供注释让人阅读,这种类型的分组不对正则表达式的处理产生任何影响</td>
+</tr>
+</tbody></table>
+<p><code>(?!1)\d+</code>在匹配“123”时，匹配成功，匹配的结果为“23”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a235v6'</span>.replace(<span class="regexp">/\w(?=\d)/g</span>, <span class="string">'X'</span>)  <span class="comment">// 'X2*X5X6'</span></span><br><span class="line"><span class="string">'a235vv'</span>.replace(<span class="regexp">/\w(?!\d)/g</span>, <span class="string">'X'</span>)  <span class="comment">// 'a23XXX'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7.png" alt="优先级"></p>
+<h3 id="字符串支持正则方法"><a href="#字符串支持正则方法" class="headerlink" title="字符串支持正则方法"></a>字符串支持正则方法</h3><h4 id="1-匹配捕获的match方法"><a href="#1-匹配捕获的match方法" class="headerlink" title="1. 匹配捕获的match方法"></a>1. 匹配捕获的match方法</h4><p>在字符串上调用match方法，本质上和在正则上调用exec相同，<br>但是match方法返回的结果数组是没有input和index属性的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"Reading and Writing"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern=<span class="regexp">/\b([a-zA-Z]+)ing\b/g</span>; </span><br><span class="line"><span class="comment">//在String上调用match</span></span><br><span class="line"><span class="keyword">var</span> matches=str.match(pattern);</span><br><span class="line"><span class="comment">// ["Reading", "Writing"]</span></span><br><span class="line"><span class="comment">//等价于在RegExp上调用exec</span></span><br><span class="line"><span class="keyword">var</span> matches=pattern.exec(str);</span><br><span class="line"><span class="comment">// ["Reading", "Read", index: 0, input: "Reading and Writing", groups: undefined]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>groups属性保存的是命名捕获组内容的对象</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'2018-08-01'</span>;</span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg).groups)</span><br><span class="line"><span class="comment">//直接输出groups对象 &#123;year:2018,month:08,day:01&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-返回索引的search方法"><a href="#2-返回索引的search方法" class="headerlink" title="2. 返回索引的search方法"></a>2. 返回索引的search方法</h4><p>接受的参数和match方法相同。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"I am reading."</span>;</span><br><span class="line"><span class="keyword">var</span> pattern=<span class="regexp">/\b([a-zA-Z]+)ing\b/g</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> matches=pattern.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(matches.index); <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pos=str.search(pattern);</span><br><span class="line"><span class="built_in">console</span>.log(pos); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-查找并替换的replace方法"><a href="#3-查找并替换的replace方法" class="headerlink" title="3. 查找并替换的replace方法"></a>3. 查找并替换的replace方法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">'hello,world,hello,world'</span></span><br><span class="line">reg = <span class="regexp">/w\w+?d/g</span></span><br><span class="line"><span class="keyword">var</span> res = str.replace(reg, <span class="string">'ab'</span>);</span><br><span class="line"><span class="comment">// hello,ab,hello,ab</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-转换数组的split方法"><a href="#4-转换数组的split方法" class="headerlink" title="4. 转换数组的split方法"></a>4. 转换数组的split方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">'ab-cd/ef.gh'</span>;</span><br><span class="line">reg = <span class="regexp">/[-\/\.]/</span></span><br><span class="line">res = str.split(reg)</span><br><span class="line"><span class="comment">// ["ab", "cd", "ef", "gh"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="正则对象属性"><a href="#正则对象属性" class="headerlink" title="正则对象属性"></a>正则对象属性</h3><p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/RegExp%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png" alt><br>reg.exec()<br>reg.match()<br>reg.global全文搜索，<br>reg.ignoreCase<br>reg.multiline<br>reg.source<br>reg.test();<br>reg.lastIndex() // 当前匹配结果的最后一个字符的下一字符<br>str.replace()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(reg.test(<span class="string">'ab'</span>)) &#123;</span><br><span class="line">    consoel.log(reg.lastIndex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://p09g3b06f.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95.png" alt></p>
+<h3 id="命名捕获"><a href="#命名捕获" class="headerlink" title="命名捕获"></a>命名捕获</h3><blockquote>
+<p>命名捕获分组自身的语法是 <code>(?&lt;name&gt;...)</code>，比普通的分组多了一个 <code>?&lt;name&gt;</code> 字样，其中 <code>name</code> 的起法就和你平时起变量名一样即可（不过在这里关键字也可用）。<br>反向引用一个命名分组的语法是 <code>\k&lt;name&gt;</code>，注意命名分组同样可以通过数字索引来反向引用</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(?&lt;foo&gt;a)\k&lt;foo&gt;\1/.test("aaa") // true</span><br><span class="line">"abc".replace(/(?&lt;foo&gt;a)/, "$&lt;foo&gt;-") // "a-bc"，同样 $1 仍然可用</span><br></pre></td></tr></table></figure>
+
+<h3 id="exec和match"><a href="#exec和match" class="headerlink" title="exec和match"></a>exec和match</h3><blockquote>
+<p><code>exec()</code> 和 <code>match()</code> 方法返回的匹配结果数组上多了一个 <code>groups</code> 属性，里面存放着每个命名分组的名称以及它们匹配到的值，利用 ES6 的解构语法，可以方便的提取出想要的字段。注意这个 <code>groups</code> 属性只有在当前正则里至少存在一个命名分组的前提下才会存在，比如：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\d&#123;<span class="number">2</span>&#125;)-(\d&#123;<span class="number">2</span>&#125;)-(\d&#123;<span class="number">4</span>&#125;)/.exec(<span class="string">"04-25-2017"</span>).groups <span class="comment">// undefined，因为没有命名分组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="exec-方法详解"><a href="#exec-方法详解" class="headerlink" title="exec()方法详解"></a>exec()方法详解</h3><blockquote>
+<p>该函数通过对指定你的字符串进行一次匹配检测，<br>获取字符串中的第一个与正则表达式的内容，并且将匹配的内容和子匹配的结果存放在返回数组中</p>
+</blockquote>
+<p><strong>没有g修饰符</strong><br>在非全局匹配模式下，此函数的作用和match()函数是一样的，只能够在字符串中匹配一次，<br>如果没有找到匹配的字符串，那么返回null，否则将返回一个数组。</p>
+<p>数组的第0个元素存储的是匹配字符串，第1个元素存放的是第一个分组(子表达式)匹配的字符串，第2个元素存放的是第分组(子表达式)匹配的字符串，依次类推。同时此数组还包括两个对象属性，index属性声明的是匹配字符串的起始字符在要匹配的完整字符串中的位置，input属性声明的是对要匹配的完整字符串的引用。</p>
+<p><strong>具有g修饰符</strong><br>在全局匹配模式下，此函数返回值同样是一个数组，并且也只能够在字符串中匹配一次。<br>不过此时，此函数一般会和lastIndex属性匹配使用，<br>此函数会在lastIndex属性指定的字符处开始检索字符串，<br>当exec()找到与表达式相匹配的字符串时，<br>在匹配后，它将lastIndex 属性设置为匹配字符串的最后一个字符的下一个位置。<br>可以通过反复调用exec()函数遍历字符串中的所有匹配，当exec()函数再也找不到匹配的文本时，<br>它将返回null，并把lastIndex 属性重置为0。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匹配所有ing结尾的单词</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">"Reading and Writing"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern=<span class="regexp">/\b([a-zA-Z]+)ing\b/g</span>; </span><br><span class="line"><span class="keyword">var</span> matches;</span><br><span class="line"><span class="keyword">while</span>(matches=pattern.exec(str))&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(matches.index +<span class="string">' '</span>+ matches[<span class="number">0</span>] + <span class="string">' '</span> + matches[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//循环2次输出</span></span><br><span class="line"><span class="comment">//0 Reading Read</span></span><br><span class="line"><span class="comment">//12 Writing Writ</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用正则"><a href="#常用正则" class="headerlink" title="常用正则"></a>常用正则</h2><h3 id="校验数字的表达式"><a href="#校验数字的表达式" class="headerlink" title="校验数字的表达式"></a>校验数字的表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">数字：^[0-9]*$</span><br><span class="line">n 位的数字：^\d&#123;n&#125;$</span><br><span class="line">至少 n 位的数字：^\d&#123;n,&#125;$</span><br><span class="line">m-n 位的数字：^\d&#123;m,n&#125;$</span><br><span class="line">零和非零开头的数字：^(0|[1-9][0-9]*)$</span><br><span class="line">非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]&#123;1,2&#125;)?$</span><br><span class="line">带 1-2 位小数的正数或负数：^(\-)?\d+(\.\d&#123;1,2&#125;)?$</span><br><span class="line">正数、负数、和小数：^(\-|\+)?\d+(\.\d+)?$</span><br><span class="line">有两位小数的正实数：^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br><span class="line">有 1~3 位小数的正实数：^[0-9]+(.[0-9]&#123;1,3&#125;)?$</span><br><span class="line">非零的正整数：^[1-9]\d*$ 或 ^([1-9][0-9]*)&#123;1,3&#125;$ 或 ^\+?[1-9][0-9]*$</span><br><span class="line">非零的负整数：^\-[1-9][]0-9&quot;*$ 或 ^-[1-9]\d*$</span><br><span class="line">非负整数：^\d+$ 或 ^[1-9]\d*|0$</span><br><span class="line">非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</span><br><span class="line">非负浮点数：^\d+(\.\d+)?$ 或 ^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$</span><br><span class="line">非正浮点数：^((-\d+(\.\d+)?)|(0+(\.0+)?))$ 或 ^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$</span><br><span class="line">正浮点数：^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</span><br><span class="line">负浮点数：^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$ 或 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</span><br><span class="line">浮点数：^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</span><br></pre></td></tr></table></figure>
+
+<h3 id="校验字符的表达式"><a href="#校验字符的表达式" class="headerlink" title="校验字符的表达式"></a>校验字符的表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">汉字：^[\u4e00-\u9fa5]&#123;0,&#125;$</span><br><span class="line"></span><br><span class="line">英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]&#123;4,40&#125;$</span><br><span class="line"></span><br><span class="line">长度为 3-20 的所有字符：^.&#123;3,20&#125;$</span><br><span class="line"></span><br><span class="line">由 26 个英文字母组成的字符串：^[A-Za-z]+$</span><br><span class="line"></span><br><span class="line">由 26 个大写英文字母组成的字符串：^[A-Z]+$</span><br><span class="line"></span><br><span class="line">由 26 个小写英文字母组成的字符串：^[a-z]+$</span><br><span class="line"></span><br><span class="line">由数字和 26 个英文字母组成的字符串：^[A-Za-z0-9]+$</span><br><span class="line"></span><br><span class="line">由数字、26 个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w&#123;3,20&#125;$</span><br><span class="line"></span><br><span class="line">中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$</span><br><span class="line"></span><br><span class="line">中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]&#123;2,20&#125;$</span><br><span class="line"></span><br><span class="line">可以输入含有 ^%&amp;&apos;,;=?$&quot; 等字符：[^%&amp;&apos;,;=?$\x22]+</span><br><span class="line"></span><br><span class="line">禁止输入含有 ~ 的字符：[^~\x22]+</span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊需求表达式"><a href="#特殊需求表达式" class="headerlink" title="特殊需求表达式"></a>特殊需求表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">Email 地址：^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</span><br><span class="line"></span><br><span class="line">域名：[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(/.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+/.?</span><br><span class="line"></span><br><span class="line">InternetURL：[a-zA-z]+://[^\s]* 或 ^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$</span><br><span class="line"></span><br><span class="line">手机号码：^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$</span><br><span class="line"></span><br><span class="line">电话号码（&quot;XXX-XXXXXXX&quot;、&quot;XXXX-XXXXXXXX&quot;、&quot;XXX-XXXXXXX&quot;、&quot;XXX-XXXXXXXX&quot;、&quot;XXXXXXX&quot;和&quot;XXXXXXXX）：^(\(\d&#123;3,4&#125;-)|\d&#123;3.4&#125;-)?\d&#123;7,8&#125;$</span><br><span class="line"></span><br><span class="line">国内电话号码（0511-4405222、021-87888822）：\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;</span><br><span class="line"></span><br><span class="line">身份证号（15 位、18 位数字）： 15 位： ^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$ 18 位： ^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;([0-9]|X)$</span><br><span class="line"></span><br><span class="line">短身份证号码（数字、字母 x 结尾）：^([0-9])&#123;7,18&#125;(x|X)?$ 或 ^\d&#123;8,18&#125;|[0-9x]&#123;8,18&#125;|[0-9X]&#123;8,18&#125;?$</span><br><span class="line"></span><br><span class="line">帐号是否合法（字母开头，允许 5-16 字节，允许字母数字下划线）：^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$</span><br><span class="line"></span><br><span class="line">密码（以字母开头，长度在 6~18 之间，只能包含字母、数字和下划线）：^[a-zA-Z]\w&#123;5,17&#125;$</span><br><span class="line"></span><br><span class="line">强密码（必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间）：^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</span><br><span class="line"></span><br><span class="line">日期格式：^\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;</span><br><span class="line"></span><br><span class="line">一年的 12 个月（01～09 和 1～12）：^(0?[1-9]|1[0-2])$</span><br><span class="line"></span><br><span class="line">一个月的 31 天（01～09 和 1～31）：^((0?[1-9])|((1|2)[0-9])|30|31)$</span><br><span class="line"></span><br><span class="line">xml 文件：^([a-zA-Z]+-?)+[a-zA-Z0-9]+\\.[x|X][m|M][l|L]$</span><br><span class="line"></span><br><span class="line">双字节字符：[^\x00-\xff] （包括汉字在内，可以用来计算字符串的长度（一个双字节字符长度计 2，ASCII字符计 1））</span><br><span class="line"></span><br><span class="line">空白行的正则表达式：\n\s*\r （可以用来删除空白行）</span><br><span class="line"></span><br><span class="line">HTML 标记的正则表达式：&lt;(\S*?)[^&gt;]*&gt;.*?&lt;/\1&gt;|&lt;.*? /&gt; （网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力）</span><br><span class="line"></span><br><span class="line">首尾空白字符的正则表达式：^\s*|\s*$或(^\s*)|(\s*$) （可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等），非常有用的表达式）</span><br><span class="line"></span><br><span class="line">校验金额（2位小数）： ^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br><span class="line"></span><br><span class="line">腾讯 QQ 号：[1-9][0-9]&#123;4,&#125; （腾讯 QQ 号从 10000 开始）</span><br><span class="line"></span><br><span class="line">中国邮政编码：[1-9]\d&#123;5&#125;(?!\d) （中国邮政编码为 6 位数字）</span><br><span class="line"></span><br><span class="line">IP 地址：\d+\.\d+\.\d+\.\d+ （提取IP地址时有用）</span><br><span class="line"></span><br><span class="line">IP 地址：((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.)&#123;3&#125;(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))</span><br><span class="line"></span><br><span class="line">IPV6 地址： (([0-9a-fA-F]&#123;1,4&#125;:)&#123;7,7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))</span><br><span class="line"></span><br><span class="line">URL 链接： ((http|ftp|https)://)(([a-zA-Z0-9\._-]+\.[a-zA-Z]&#123;2,6&#125;)|([0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;))(:[0-9]&#123;1,4&#125;)*(/[a-zA-Z0-9\&amp;%_\./-~-]*)?</span><br><span class="line"></span><br><span class="line">EMOJI 表情: ([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])</span><br><span class="line"></span><br><span class="line">检查 IE 版本 ^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\/[5-9]\\.0).*$</span><br></pre></td></tr></table></figure>
+
+<h2 id="手册"><a href="#手册" class="headerlink" title="手册"></a>手册</h2><p><a href="http://tool.oschina.net/uploads/apidocs/jquery/regexp.html" target="_blank" rel="noopener">正则手册</a></p>
+<h2 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h2><p><a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="noopener">正则表达式30分钟入门教程</a><br><a href="https://segmentfault.com/a/1190000008088937" target="_blank" rel="noopener">JS正则表达式一条龙讲解，从原理和语法到JS正则、ES6正则扩展，最后再到正则实践思路</a><br><a href="https://blog.csdn.net/lxcnn" target="_blank" rel="noopener">正则表达式教程</a><br><a href="http://www.zjmainstay.cn/" target="_blank" rel="noopener">正则表达式入门教程和高级教程</a><br><a href="https://segmentfault.com/a/1190000013075245" target="_blank" rel="noopener">60分钟正则从入门到深入</a>  </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则表达/" rel="tag"># 正则表达</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/vscode插件/" rel="next" title="web编辑器插件">
+                <i class="fa fa-chevron-left"></i> web编辑器插件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript基础-05之事件、冒泡、捕获、传播、委托/" rel="prev" title="JavaScript基础-05之事件、冒泡、捕获、传播、委托">
+                JavaScript基础-05之事件、冒泡、捕获、传播、委托 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则引擎"><span class="nav-number">1.1.</span> <span class="nav-text">正则引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串组成"><span class="nav-number">1.2.</span> <span class="nav-text">字符串组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#占有字符和零宽度"><span class="nav-number">1.3.</span> <span class="nav-text">占有字符和零宽度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制权和传动"><span class="nav-number">2.</span> <span class="nav-text">控制权和传动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯法原理"><span class="nav-number">3.</span> <span class="nav-text">回溯法原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是正则表达式："><span class="nav-number">4.1.</span> <span class="nav-text">什么是正则表达式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修饰符i-g-m"><span class="nav-number">4.2.</span> <span class="nav-text">修饰符i,g,m</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符类"><span class="nav-number">4.3.</span> <span class="nav-text">字符类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预定义类"><span class="nav-number">4.4.</span> <span class="nav-text">预定义类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围类"><span class="nav-number">4.5.</span> <span class="nav-text">范围类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#量词"><span class="nav-number">4.6.</span> <span class="nav-text">量词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪与惰性"><span class="nav-number">4.7.</span> <span class="nav-text">贪婪与惰性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支结构"><span class="nav-number">4.8.</span> <span class="nav-text">分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组"><span class="nav-number">4.9.</span> <span class="nav-text">分组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获组（Capture-Group）"><span class="nav-number">4.9.1.</span> <span class="nav-text">捕获组（Capture Group）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非捕获组"><span class="nav-number">4.9.2.</span> <span class="nav-text">非捕获组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正向引用"><span class="nav-number">4.9.3.</span> <span class="nav-text">正向引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反向引用"><span class="nav-number">4.9.4.</span> <span class="nav-text">反向引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环视-Look-Around）"><span class="nav-number">4.10.</span> <span class="nav-text">环视(Look Around）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级"><span class="nav-number">4.11.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串支持正则方法"><span class="nav-number">4.12.</span> <span class="nav-text">字符串支持正则方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-匹配捕获的match方法"><span class="nav-number">4.12.1.</span> <span class="nav-text">1. 匹配捕获的match方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-返回索引的search方法"><span class="nav-number">4.12.2.</span> <span class="nav-text">2. 返回索引的search方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-查找并替换的replace方法"><span class="nav-number">4.12.3.</span> <span class="nav-text">3. 查找并替换的replace方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-转换数组的split方法"><span class="nav-number">4.13.</span> <span class="nav-text">4. 转换数组的split方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则对象属性"><span class="nav-number">4.14.</span> <span class="nav-text">正则对象属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名捕获"><span class="nav-number">4.15.</span> <span class="nav-text">命名捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec和match"><span class="nav-number">4.16.</span> <span class="nav-text">exec和match</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-方法详解"><span class="nav-number">4.17.</span> <span class="nav-text">exec()方法详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用正则"><span class="nav-number">5.</span> <span class="nav-text">常用正则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#校验数字的表达式"><span class="nav-number">5.1.</span> <span class="nav-text">校验数字的表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验字符的表达式"><span class="nav-number">5.2.</span> <span class="nav-text">校验字符的表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊需求表达式"><span class="nav-number">5.3.</span> <span class="nav-text">特殊需求表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手册"><span class="nav-number">6.</span> <span class="nav-text">手册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐"><span class="nav-number">7.</span> <span class="nav-text">推荐</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

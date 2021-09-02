@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="类型转换 强制类型转换(显式转换) Number String Boolean,  Number转换   Number() 当转换一个 对象 时，先调用 valueOf()方法，如果返回原始类型的值,则直接对该值使用Number函数。 如果valueOf()方法返回对象,则调用 toString()方法,如果toString方法返回原始类型的值，则对该值使用Number函数。 如果toString">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础-01 类型转换和原型">
+<meta property="og:url" content="https://www.xin666.cc/JavaScript基础-01类型转换、原型/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="类型转换 强制类型转换(显式转换) Number String Boolean,  Number转换   Number() 当转换一个 对象 时，先调用 valueOf()方法，如果返回原始类型的值,则直接对该值使用Number函数。 如果valueOf()方法返回对象,则调用 toString()方法,如果toString方法返回原始类型的值，则对该值使用Number函数。 如果toString">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-11T07:17:58.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础-01 类型转换和原型">
+<meta name="twitter:description" content="类型转换 强制类型转换(显式转换) Number String Boolean,  Number转换   Number() 当转换一个 对象 时，先调用 valueOf()方法，如果返回原始类型的值,则直接对该值使用Number函数。 如果valueOf()方法返回对象,则调用 toString()方法,如果toString方法返回原始类型的值，则对该值使用Number函数。 如果toString">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/JavaScript基础-01类型转换、原型/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript基础-01 类型转换和原型 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/JavaScript基础-01类型转换、原型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript基础-01 类型转换和原型
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-29 10:07:00" itemprop="dateCreated datePublished" datetime="2017-08-29T10:07:00+08:00">2017-08-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:58" itemprop="dateModified" datetime="2021-08-11T15:17:58+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">32k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">29 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://segmentfault.com/a/1190000016845337" target="_blank" rel="noopener">类型转换</a></p>
+<h2 id="强制类型转换-显式转换"><a href="#强制类型转换-显式转换" class="headerlink" title="强制类型转换(显式转换)"></a>强制类型转换(显式转换)</h2><ol>
+<li>Number</li>
+<li>String</li>
+<li>Boolean,</li>
+</ol>
+<h3 id="Number转换"><a href="#Number转换" class="headerlink" title="Number转换"></a>Number转换</h3><blockquote>
+</blockquote>
+<ol>
+<li>Number() 当转换一个 对象 时，先调用 valueOf()方法，如果返回原始类型的值,则直接对该值使用Number函数。</li>
+<li>如果valueOf()方法返回对象,则调用 toString()方法,如果toString方法返回原始类型的值，则对该值使用Number函数。</li>
+<li>如果toString方法返回的是对象，就报错。<a id="more"></a></li>
+</ol>
+<p><strong>数字的进制表示</strong>   </p>
+<ul>
+<li>二进制使用0b或0B开头</li>
+<li>八进制使用0或0o或0O开头</li>
+<li>十进制没有前缀</li>
+<li>十六进制使用0x开头<br>默认情况下，JavaScript 内部会自动将八进制、十六进制、二进制转为十进制。</li>
+</ul>
+<blockquote>
+<p>注意以0开头的数值如果没有超出8进制范围则表示为一个8进制的数如果超出则表示一个十进制的数，使用0o超出则报错</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(066) // 54</span><br><span class="line">console.log(0o66) // 54</span><br><span class="line">console.log(099) // 99</span><br><span class="line">console.log(0o99) // Uncaught SyntaxError: Invalid or unexpected token</span><br></pre></td></tr></table></figure>
+
+<p><strong>原始值类型的转换</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数值：转换后还是原来的值</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="number">324</span>) <span class="comment">// 324</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串：如果可以被解析为数值，则转换为相应的数值</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'324'</span>) <span class="comment">// 324</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串：如果不可以被解析为数值，返回 NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'324abc'</span>) <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 空字符串转为0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">''</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 布尔值：true 转成 1，false 转成 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// undefined：转成 NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>) <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// null：转成0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// parseInt逐个解析字符，而Number函数整体转换字符串的类型。</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'42.22 cats'</span>, <span class="number">10</span>) <span class="comment">// 42 // 第二个参数表示转换成多少进制的数值</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'42.22 cats'</span>, <span class="number">10</span>) <span class="comment">// 42.22</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'42 cats'</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>对象的转换</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转换对象</span></span><br><span class="line"><span class="built_in">Number</span>(&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="number">5</span>]) <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(&#123;</span><br><span class="line">  valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="built_in">Number</span>(obj) <span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> obj.valueOf() === <span class="string">'object'</span>) &#123;</span><br><span class="line">  <span class="built_in">Number</span>(obj.toString());</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">Number</span>(obj.valueOf());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>转换报错</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(obj)</span><br><span class="line"><span class="comment">// TypeError: Cannot convert object to primitive value</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="String转换"><a href="#String转换" class="headerlink" title="String转换"></a>String转换</h3><blockquote>
+</blockquote>
+<p>String() 当转换一个 对象 时，先调用 toString()方法，如果返回对象，则调用 valueOf()方法<br>String方法背后的转换规则，与Number方法基本相同，只是互换了valueOf方法和toString方法的执行顺序。<br>Object.prototype.valueOf();<br>Object.prototype.toString();<br>valueOf()方法返回的是对象的 ‘值’，默认返回对象本身；<br>toString()返回对象字符串的形式</p>
+<p><strong>原始类型值</strong> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="number">123</span>) <span class="comment">// "123"</span></span><br><span class="line"><span class="built_in">String</span>(<span class="string">'abc'</span>) <span class="comment">// "abc"</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">true</span>) <span class="comment">// "true"</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>) <span class="comment">// "undefined"</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">null</span>) <span class="comment">// "null"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>对象转换</strong><br>String方法的参数如果是对象，返回一个类型字符串；如果是数组，返回该数组的字符串形式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;) <span class="comment">// "[object Object]"</span></span><br><span class="line"><span class="built_in">String</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// "1,2,3"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="toString转换"><a href="#toString转换" class="headerlink" title="toString转换"></a>toString转换</h3><blockquote>
+<p>Number对象部署了自己的toString方法，用来将一个数值转为字符串形式。</p>
+</blockquote>
+<p>toString方法可以接受一个参数，表示输出的进制。如果省略这个参数，默认将数值先转为十进制，再输出字符串；<br>否则，就根据参数指定的进制，将一个数字转化成某个进制的字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">10</span>).toString(<span class="number">2</span>) <span class="comment">// "1010"</span></span><br><span class="line">(<span class="number">10</span>).toString(<span class="number">8</span>) <span class="comment">// "12"</span></span><br><span class="line">(<span class="number">10</span>).toString(<span class="number">16</span>) <span class="comment">// "a"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.</span>.toString(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// "1010"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 其他方法还包括</span></span><br><span class="line"><span class="number">10</span> .toString(<span class="number">2</span>) <span class="comment">// "1010"</span></span><br><span class="line"><span class="number">10.0</span>.toString(<span class="number">2</span>) <span class="comment">// "1010"</span></span><br><span class="line"><span class="number">10</span>[<span class="string">'toString'</span>](<span class="number">2</span>) <span class="comment">// "1010"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>toString方法只能将十进制的数，转为其他进制的字符串。如果要将其他进制的数，转回十进制，需要使用parseInt方法。</p>
+</blockquote>
+<h3 id="Boolean转换"><a href="#Boolean转换" class="headerlink" title="Boolean转换"></a>Boolean转换</h3><blockquote>
+<p>Boolean函数可以将任意类型的值转为布尔值。<br>它的转换规则相对简单：除了以下五个值的转换结果为false，其他的值全部为true。<br>undefined<br>null<br>-0或+0<br>NaN<br>‘’（空字符串）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>(<span class="literal">undefined</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">null</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">0</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">''</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oolean(&#123;&#125;) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Boolean</span>([]) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，所有对象（包括空对象）的转换结果都是true，甚至连false对应的布尔对象new Boolean(false)也是true</p>
+</blockquote>
+<h2 id="自动转换-隐式转换"><a href="#自动转换-隐式转换" class="headerlink" title="自动转换(隐式转换)"></a>自动转换(隐式转换)</h2><blockquote>
+</blockquote>
+<p>自动转换的规则是这样的：预期什么类型的值，就调用该类型的转换函数。比如，某个位置预期为字符串，就调用String函数进行转换。<strong>如果该位置即可以是字符串，也可能是数值，那么默认转为数值。</strong><br>由于自动转换具有不确定性，而且不易除错，建议在预期为布尔值、数值、字符串的地方，全部使用Boolean、Number和String函数进行显式转换。</p>
+<p>三种情况JavaScript 会自动转换数据类型  </p>
+<p><strong>1. 不同类型的数据互相运算</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">'abc'</span> <span class="comment">// "123abc"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 对非布尔值类型的数据求布尔值。</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'abc'</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line">&#125;  <span class="comment">// "hello"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 对非数值类型的值使用一元运算符（即+和-）</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ &#123;<span class="attr">foo</span>: <span class="string">'bar'</span>&#125; <span class="comment">// NaN</span></span><br><span class="line">- [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自动转换为布尔值"><a href="#自动转换为布尔值" class="headerlink" title="自动转换为布尔值"></a>自动转换为布尔值</h3><blockquote>
+</blockquote>
+<p>JavaScript 遇到预期为布尔值的地方（比如if语句,三元，!!exp,的条件部分），就会将非布尔值的参数自动转换为布尔值。系统内部会自动调用Boolean函数。</p>
+<p>因此除了以下五个值，其他都是自动转为true。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="literal">null</span></span><br><span class="line">+<span class="number">0</span>或<span class="number">-0</span></span><br><span class="line"><span class="literal">NaN</span></span><br><span class="line"><span class="string">''</span>（空字符串）</span><br></pre></td></tr></table></figure>
+
+<h3 id="自动转换为字符串"><a href="#自动转换为字符串" class="headerlink" title="自动转换为字符串"></a>自动转换为字符串</h3><blockquote>
+<p>JavaScript 遇到预期为字符串的地方，就会将非字符串的值自动转为字符串。具体规则是，先将复合类型的值转为原始类型的值，再将原始类型的值转为字符串。<br>字符串的自动转换，主要发生在字符串的加法运算时。当一个值为字符串，另一个值为非字符串，则后者转为字符串。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'5'</span> + <span class="number">1</span> <span class="comment">// '51'</span></span><br><span class="line"><span class="string">'5'</span> + <span class="literal">true</span> <span class="comment">// "5true"</span></span><br><span class="line"><span class="string">'5'</span> + <span class="literal">false</span> <span class="comment">// "5false"</span></span><br><span class="line"><span class="string">'5'</span> + &#123;&#125; <span class="comment">// "5[object Object]"</span></span><br><span class="line"><span class="string">'5'</span> + [] <span class="comment">// "5"</span></span><br><span class="line"><span class="string">'5'</span> + <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125; <span class="comment">// "5function ()&#123;&#125;"</span></span><br><span class="line"><span class="string">'5'</span> + <span class="literal">undefined</span> <span class="comment">// "5undefined"</span></span><br><span class="line"><span class="string">'5'</span> + <span class="literal">null</span> <span class="comment">// "5null"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>这种自动转换很容易出错</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  width: <span class="string">'100'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.width + <span class="number">20</span> <span class="comment">// "10020"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自动转换为数值"><a href="#自动转换为数值" class="headerlink" title="自动转换为数值"></a>自动转换为数值</h3><blockquote>
+</blockquote>
+<p>JavaScript 遇到预期为数值的地方，就会将参数值自动转换为数值。系统内部会自动调用Number函数。<br>除了加法运算符（+）有可能把运算子转为字符串，其他运算符都会把运算子自动转成数值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'5'</span> - <span class="string">'2'</span> <span class="comment">// 3</span></span><br><span class="line"><span class="string">'5'</span> * <span class="string">'2'</span> <span class="comment">// 10</span></span><br><span class="line"><span class="literal">true</span> - <span class="number">1</span>  <span class="comment">// 0</span></span><br><span class="line"><span class="literal">false</span> - <span class="number">1</span> <span class="comment">// -1</span></span><br><span class="line"><span class="string">'1'</span> - <span class="number">1</span>   <span class="comment">// 0</span></span><br><span class="line"><span class="string">'5'</span> * []    <span class="comment">// 0</span></span><br><span class="line"><span class="literal">false</span> / <span class="string">'5'</span> <span class="comment">// 0</span></span><br><span class="line"><span class="string">'abc'</span> - <span class="number">1</span>   <span class="comment">// NaN</span></span><br><span class="line"><span class="literal">null</span> + <span class="number">1</span> <span class="comment">// 1</span></span><br><span class="line"><span class="literal">undefined</span> + <span class="number">1</span> <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>一元运算符也会把运算子转成数值。</strong>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+<span class="string">'abc'</span> <span class="comment">// NaN</span></span><br><span class="line">-<span class="string">'abc'</span> <span class="comment">// NaN</span></span><br><span class="line">+<span class="literal">true</span> <span class="comment">// 1</span></span><br><span class="line">-<span class="literal">false</span> <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：null转为数值时为0，而undefined转为数值时为NaN。</strong></p>
+</blockquote>
+<h2 id="Object-上的的属性有"><a href="#Object-上的的属性有" class="headerlink" title="Object 上的的属性有:"></a>Object 上的的属性有:</h2><blockquote>
+</blockquote>
+<p>Object.assign(target, …sources) //把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。<br>Object.create(proto,[propertiesobject]) //创建一个拥有指定原型和若干个指定属性的对象。<br>Object.entries(obj) //返回一个包含由给定对象所有可枚举属性的属性名和属性值组成的<br>//[属性名，属性值] 键值对的数组，数组中键值对的排列顺序和使用for…in循环遍历该对象时返回的顺序一致。<br>Object.keys(obj) //返回一个由给定对象的所有可枚举自身属性的属性名组成的数组</p>
+<blockquote>
+</blockquote>
+<p>Object.getOwnPropertyNames(obj) //返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组。<br>Object.defineProperties(obj,{‘prop1’:{},’prop2’:{}}) //在一个对象上添加或修改一个或者多个自有属性，并返回该对象。<br>Object.defineProperty(obj,’property’,{}) //直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象<br>Object.getOwnPropertyDescriptor(obj, prop) //返回指定对象上一个自有属性对应的属性描述符。<br>Object.freeze(obj)  //冻结一个对象 冻结指的是不能向这个对象添加新的属性,删除、修改、属性<br>Object.getPrototypeOf(object) //返回该对象的原型。<br>Object.is(value1, value2) //判断两个值是否是同一个值。<br>Object.isExtensible(obj) //判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）<br>Object.isFrozen(obj) //判断一个对象是否被冻结（frozen）<br>Object.isSealed(obj) //判断一个对象是否是密封的（sealed）<br>Object.preventExtensions(obj) //让一个对象变的不可扩展，也就是永远不能再添加新的属性。<br>Object.setPrototypeOf(obj, prototype) //将一个指定的对象的原型设置为另一个对象或者null<br>Object.values(obj) //返回一个包含指定对象所有的可枚举属性值的数组</p>
+<h3 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h3><blockquote>
+</blockquote>
+<p>Object.prototype.writable //默认为false<br>Object.prototype.enumerable //默认为false<br>Object.prototype.configurable //默认为false<br>Object.prototype.constructor //用于创建一个对象的原型。</p>
+<blockquote>
+</blockquote>
+<p>Object.prototype 上的的属性有：Object又继承自Object.prototype,所以Object上也有prototype的方法</p>
+<blockquote>
+</blockquote>
+<p>Object.prototype.hasOwnProperty(‘prop’) //返回一个布尔值，表示某个对象是否含有指定的属性，而且此属性非原型链继承。<br>Object.prototype.isPrototypeOf(obj) //返回一个布尔值，表示指定的对象是否在本对象的原型链中。<br>Object.prototype.propertyIsEnumerable() //判断指定属性是否可枚举。<br>Object.prototype.toString() //返回对象的字符串表示。<br>Object.prototype.valueOf() //返回指定对象的原始值。</p>
+<h3 id="Array-prototype-上的属性："><a href="#Array-prototype-上的属性：" class="headerlink" title="Array.prototype 上的属性："></a>Array.prototype 上的属性：</h3><p>slice(),splice(),indexOf(),join()<br>…</p>
+<h3 id="Function-prototype-上的属性"><a href="#Function-prototype-上的属性" class="headerlink" title="Function.prototype 上的属性:"></a>Function.prototype 上的属性:</h3><blockquote>
+</blockquote>
+<p>Function.prototype.length //返回函数参数的个数<br>Function.prototype.call(); //改变函数调用的对象<br>Function.prototype.apply();<br>Function.prototype.bind(this,arg1,arg2); //bind方法每运行一次，就返回一个新函数</p>
+<h3 id="自定义的函数、Object、Array、String、Number、Boolean、包括-Function-都是-Function构造出的实例"><a href="#自定义的函数、Object、Array、String、Number、Boolean、包括-Function-都是-Function构造出的实例" class="headerlink" title="自定义的函数、Object、Array、String、Number、Boolean、包括 Function 都是 Function构造出的实例"></a>自定义的函数、Object、Array、String、Number、Boolean、包括 Function 都是 Function构造出的实例</h3><blockquote>
+</blockquote>
+<p>所以有这些函数的<strong>proto</strong> 引用指向 Function.prototype<br>而Function<br>而 Function.prototype.<strong>proto</strong>的引用 又 指向 Object.prototype<br>Object.<strong>proto</strong>  === Function.<strong>proto</strong> === Function.prototype<br>Function.prototype.<strong>proto</strong> === Object.prototype<br>Object.<strong>proto</strong>.<strong>proto</strong> === Object.prototype<br>Object.prototype.<strong>proto</strong> === null</p>
+<h2 id="函数："><a href="#函数：" class="headerlink" title="函数："></a>函数：</h2><blockquote>
+</blockquote>
+<p>arguments.callee当前函数的引用<br>arguments.callee.caller调用当前函数的函数的引用<br>length命名参数个数 和prototype属性<br>apply(this,[a1,a2])和call(this,a1,a2),bind(this,a1,a2)</p>
+<blockquote>
+</blockquote>
+<p>函数中参数是按 “值” 传递的而不是按引用传递的,<br>在传递一个引用类型作为参数时，传递的是这个对象的地址，而不是引用(指针)<br>每个执行环境都有一个与之关联的 变量对象 ，环境中定义的所有变量和函数都<br>保存在这个对象中。<br>在函数中 执行环境 就是这个函数中的作用域，“活动对象” 就作为这个函数的 “变量对象”，<br>开始这个活动对象只包含 arguments对象 (在全局作用域中是不存在的)，<br>作用域中下一个变量对象就是包含 “外部的环境”，而再下一个变量对象则来自下一个包含环境。<br>这样一直延续到下一全局执行环境(全局环境中的变量对象始终是作用域链中的最后一个对象)。</p>
+<h2 id="数组："><a href="#数组：" class="headerlink" title="数组："></a>数组：</h2><blockquote>
+</blockquote>
+<ol>
+<li>队列方法：push(),pop(),unshift(),shift();</li>
+<li>排序方法: resverse(),sort(call);</li>
+<li>操作方法: splice(star,num,ars3…),slice(star,end),join();</li>
+<li>位置方法: indexOf(),lastIndexOf();//返回给定元素在数组中第一次出现的位置 如果没有返回-1</li>
+<li>迭代方法: every(),some(),map(),filter(function(val,index,arr){},this),forEach()无返回</li>
+<li>缩小方法: reduce(),reduceRight(function(val1,val2,index.arr){},val);val累积变量初始值</li>
+</ol>
+<h2 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h2><blockquote>
+</blockquote>
+<ol>
+<li>字符方法: charAt(),charCodeAt();</li>
+<li>字符串操作方法: concat(),slice(),substring(),substr(),trim();</li>
+<li>字符串位置方法: indexOf(),lastIndexOf();</li>
+<li>匹配方法: match()返回数组,search(),splite(‘,’,num)</li>
+</ol>
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值:"></a>数值:</h2><blockquote>
+</blockquote>
+<ol>
+<li>数字转字符串方法: toString(2) 转2进制，toFixed(2) //转保留小数,toExponential 转科学计数法toPrecision(2) 转有效数字</li>
+<li>Math方法: Math.ceil(),Math.floor().Math.pow(),Math.random()随机,PI</li>
+</ol>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON:"></a>JSON:</h2><blockquote>
+</blockquote>
+<ol>
+<li><p>字符串必须使用双引号表示，不能使用单引号。</p>
+</li>
+<li><p>对象的键名必须放在双引号里面</p>
+</li>
+<li><p>数组或对象最后一个成员的后面，不能加逗号。</p>
+</li>
+<li><p>复合类型的值只能是数组或对象，不能是函数、正则表达式对象、日期对象。</p>
+</li>
+<li><p>简单类型的值只有四种：字符串、数值（必须以十进制表示）、布尔值和null（不能使用NaN, Infinity, -Infinity和undefined）。合格的JSON值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>]</span><br><span class="line">&#123; <span class="string">"one"</span>: <span class="number">1</span>, <span class="string">"two"</span>: <span class="number">2</span>, <span class="string">"three"</span>: <span class="number">3</span> &#125;</span><br><span class="line">&#123;<span class="string">"names"</span>: [<span class="string">"张三"</span>, <span class="string">"李四"</span>] &#125;</span><br><span class="line">[ &#123; <span class="string">"name"</span>: <span class="string">"张三"</span>&#125;, &#123;<span class="string">"name"</span>: <span class="string">"李四"</span>&#125; ]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JSON.stringfy()</strong> 将一个json值转为字符串 JSON字符串以 单引号’’第二个参数接受一个数组指定需要转成字符串的属性</p>
+</li>
+<li><p>JSON.stringify发现参数对象有toJSON方法，就直接使用这个方法的返回值作为参数，而忽略原对象的其他参数。</p>
+</li>
+<li><p><strong>JSON.parse</strong>方法用于将JSON字符串转化成对象。</p>
+</li>
+</ol>
+<h2 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象:"></a>Date对象:</h2><ol>
+<li><p>Date() 带有参数，Date对象作为普通函数使用时，返回的还是当前时间。</p>
+<blockquote>
+</blockquote>
+<p>1&gt; Date.now() 返回当前距离1970年1月1日 00:00:00 UTC的毫秒数<br>2&gt; Date.parse() 用来解析日期字符串，返回距离1970年1月1日 00:00:00的毫秒数<br>3&gt; Date.UTC() Date.UTC方法可以返回UTC时间</p>
+</li>
+<li><p>new Date()</p>
+<blockquote>
+</blockquote>
+<p>注意：月份从0开始计算，但是，天数从1开始计算。<br>另外，除了日期默认为1，小时、分钟、秒钟和毫秒默认都是0。<br>1&gt; 如果不加参数，生成的就是代表当前时间的对象。<br>2&gt; new Date(‘2008,4,28’)支持多种写法’-‘,’/‘<br>3&gt; new Date(2008,4) 最少需要提供两个参数（年和月）</p>
+</li>
+<li><p>data = new Date():<br>get类：</p>
+<blockquote>
+</blockquote>
+<p>getTime()：返回距离1970年1月1日00:00:00的毫秒数，等同于valueOf方法。<br>getDate()：返回实例对象对应每个月的几号（从1开始）。<br>getDay()：返回星期几，星期日为0，星期一为1，以此类推。<br>getYear()：返回距离1900的年数。<br>getFullYear()：返回四位的年份。<br>getMonth()：返回月份（0表示1月，11表示12月）。<br>getHours()：返回小时（0-23）。<br>getMilliseconds()：返回毫秒（0-999）。<br>getMinutes()：返回分钟（0-59）。<br>getSeconds()：返回秒（0-59）。<br>getTimezoneOffset()：返回当前时间与UTC的时区差异，以分钟表示，返回结果考虑到了夏令时因素。<br>set类：<br>setDate(date)：设置实例对象对应的每个月的几号（1-31），返回改变后毫秒时间戳。<br>setYear(year): 设置距离1900年的年数。<br>setFullYear(year [, month, date])：设置四位年份。<br>setHours(hour [, min, sec, ms])：设置小时（0-23）。<br>setMilliseconds()：设置毫秒（0-999）。<br>setMinutes(min [, sec, ms])：设置分钟（0-59）。<br>setMonth(month [, date])：设置月份（0-11）。<br>setSeconds(sec [, ms])：设置秒（0-59）。<br>setTime(milliseconds)：设置毫秒时间戳。</p>
+</li>
+</ol>
+<h2 id="RegExp对象"><a href="#RegExp对象" class="headerlink" title="RegExp对象:"></a>RegExp对象:</h2><ol>
+<li>写法：字面量，构造函数<blockquote>
+</blockquote>
+var regex = /xyz/i;<br>var regex = new RegExp(‘xyz’,”i”);<br>test(),exec();</li>
+</ol>
+<h2 id="JavaScript中的操作符顺序"><a href="#JavaScript中的操作符顺序" class="headerlink" title="JavaScript中的操作符顺序"></a>JavaScript中的操作符顺序</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">运算符优先级</a></p>
+<ol>
+<li><code>()</code> 运算符优先级最高，然后<code>. []</code></li>
+<li>一元运算符：++，–，！，delete，~</li>
+<li>算数运算符： 先 * ，/，%后+，-</li>
+<li>判断运算符：&gt;，&gt;=，&lt;，&lt;=，后 ==，！=，===，！==</li>
+<li>位移运算符：先&amp;，再^，后|</li>
+<li>短路运算符：先 &amp;&amp; 后 || 在后 :?</li>
+<li>赋值运算符：+=，-=，*=，/=，%=，=</li>
+<li>多重求值： <code>,</code></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/vim编辑器/" rel="next" title="vim编辑器基本用法">
+                <i class="fa fa-chevron-left"></i> vim编辑器基本用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript基础-02变量、闭包、this、作用域/" rel="prev" title="JavaScript基础-02 变量、闭包、this、作用域">
+                JavaScript基础-02 变量、闭包、this、作用域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换-显式转换"><span class="nav-number">1.</span> <span class="nav-text">强制类型转换(显式转换)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Number转换"><span class="nav-number">1.1.</span> <span class="nav-text">Number转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String转换"><span class="nav-number">1.2.</span> <span class="nav-text">String转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toString转换"><span class="nav-number">1.3.</span> <span class="nav-text">toString转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean转换"><span class="nav-number">1.4.</span> <span class="nav-text">Boolean转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动转换-隐式转换"><span class="nav-number">2.</span> <span class="nav-text">自动转换(隐式转换)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自动转换为布尔值"><span class="nav-number">2.1.</span> <span class="nav-text">自动转换为布尔值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动转换为字符串"><span class="nav-number">2.2.</span> <span class="nav-text">自动转换为字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动转换为数值"><span class="nav-number">2.3.</span> <span class="nav-text">自动转换为数值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-上的的属性有"><span class="nav-number">3.</span> <span class="nav-text">Object 上的的属性有:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-prototype"><span class="nav-number">3.1.</span> <span class="nav-text">Object.prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-prototype-上的属性："><span class="nav-number">3.2.</span> <span class="nav-text">Array.prototype 上的属性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-prototype-上的属性"><span class="nav-number">3.3.</span> <span class="nav-text">Function.prototype 上的属性:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义的函数、Object、Array、String、Number、Boolean、包括-Function-都是-Function构造出的实例"><span class="nav-number">3.4.</span> <span class="nav-text">自定义的函数、Object、Array、String、Number、Boolean、包括 Function 都是 Function构造出的实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数："><span class="nav-number">4.</span> <span class="nav-text">函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组："><span class="nav-number">5.</span> <span class="nav-text">数组：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串："><span class="nav-number">6.</span> <span class="nav-text">字符串：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值"><span class="nav-number">7.</span> <span class="nav-text">数值:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">8.</span> <span class="nav-text">JSON:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date对象"><span class="nav-number">9.</span> <span class="nav-text">Date对象:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp对象"><span class="nav-number">10.</span> <span class="nav-text">RegExp对象:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript中的操作符顺序"><span class="nav-number">11.</span> <span class="nav-text">JavaScript中的操作符顺序</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

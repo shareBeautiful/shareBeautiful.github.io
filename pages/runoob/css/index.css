@@ -1,0 +1,84 @@
+.w1000 {
+    width: 1000px;
+}
+
+.w1200 {
+    width: 1200px;
+}
+
+.w100p {
+    width: 100%;
+}
+
+.w1920 {
+    width: 1920px;
+}
+
+body {
+    font-size: 14px;
+    color: #262626;
+}
+
+.body {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.row {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.row div[class^=col] {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.list-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-box li {
+    width: 100%;
+    cursor: pointer;
+    margin: 5px 0;
+}
+.list-box li:hover {
+
+}
+
+.title {
+    font-size: 20px;
+    padding: 3px 10px;
+    border-radius: 0;
+}
+
+
+
+.item {
+    float: left;
+    padding:0 10px;
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+/* @media (min-width: 768px) { 
+    .item {
+        width: 50%;
+    }
+}
+
+中等屏幕（桌面显示器，大于等于 992px）
+@media (min-width: 992px) {
+    .item {
+        width: 33.333333%;
+    }
+}
+
+大屏幕（大桌面显示器，大于等于 1200px）
+@media (min-width: 1200px) {
+    .item {
+        width: 25%;
+    }
+} */

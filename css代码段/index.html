@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CSS书写顺序  位置属性(position, top, right, z-index, display, float等) 大小(width, height, padding, margin) 文字系列(font, line-height, letter-spacing, color- text-align等) 背景(background, border等) 其他(animation, trans">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css代码段">
+<meta property="og:url" content="https://www.xin666.cc/css代码段/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="CSS书写顺序  位置属性(position, top, right, z-index, display, float等) 大小(width, height, padding, margin) 文字系列(font, line-height, letter-spacing, color- text-align等) 背景(background, border等) 其他(animation, trans">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-11T07:17:58.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css代码段">
+<meta name="twitter:description" content="CSS书写顺序  位置属性(position, top, right, z-index, display, float等) 大小(width, height, padding, margin) 文字系列(font, line-height, letter-spacing, color- text-align等) 背景(background, border等) 其他(animation, trans">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/css代码段/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>css代码段 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/css代码段/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">css代码段
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-05 20:07:00" itemprop="dateCreated datePublished" datetime="2018-02-05T20:07:00+08:00">2018-02-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:58" itemprop="dateModified" datetime="2021-08-11T15:17:58+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">122k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1:51</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CSS书写顺序</p>
+<ol>
+<li>位置属性(position, top, right, z-index, display, float等)</li>
+<li>大小(width, height, padding, margin)</li>
+<li>文字系列(font, line-height, letter-spacing, color- text-align等)</li>
+<li>背景(background, border等)</li>
+<li>其他(animation, transition, cursor等)<a id="more"></a>
+
+</li>
+</ol>
+<h2 id="常用css代码段"><a href="#常用css代码段" class="headerlink" title="常用css代码段"></a>常用css代码段</h2><h3 id="强制英文换行"><a href="#强制英文换行" class="headerlink" title="强制英文换行"></a>强制英文换行</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.text</span> &#123;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word; </span><br><span class="line">  <span class="attribute">word-break</span>: normal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="超过指定行数后显示省略号"><a href="#超过指定行数后显示省略号" class="headerlink" title="超过指定行数后显示省略号"></a>超过指定行数后显示省略号</h3><p>一行显示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;<span class="comment">/*对宽度的定义,根据情况修改*/</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>多行显示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">  <span class="attribute">word-break</span>: break-all;</span><br><span class="line">  <span class="attribute">white-space</span>: normal <span class="meta">!important</span>;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承box-sizing"><a href="#继承box-sizing" class="headerlink" title="继承box-sizing"></a>继承box-sizing</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">, <span class="selector-pseudo">:before</span>, *<span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">.clearFix:after &#123;</span></span><br><span class="line"><span class="comment">    content: ".";</span></span><br><span class="line"><span class="comment">    display: block;</span></span><br><span class="line"><span class="comment">    height: 0;</span></span><br><span class="line"><span class="comment">    clear: both;</span></span><br><span class="line"><span class="comment">    visibility: hidden;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>, </span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123; </span><br><span class="line">    <span class="attribute">display</span>: table; </span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="flex-两端对齐问题"><a href="#flex-两端对齐问题" class="headerlink" title="flex 两端对齐问题"></a>flex 两端对齐问题</h3><p>flex给我们的布局带来了很大的方便 ，但有时候也会碰到一些问题，比如space-between最后一行元素的排列问题</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">90px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="两端对齐"><a href="#两端对齐" class="headerlink" title="两端对齐"></a>两端对齐</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">text-align</span>:justify;</span><br><span class="line">    <span class="attribute">text-align-last</span>:justify</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="跨浏览器的透明度"><a href="#跨浏览器的透明度" class="headerlink" title="跨浏览器的透明度"></a>跨浏览器的透明度</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.transparent</span> &#123;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">alpha</span>(opacity=<span class="number">50</span>); <span class="comment">/* internet explorer */</span></span><br><span class="line">    <span class="attribute">-khtml-opacity</span>: <span class="number">0.5</span>;      <span class="comment">/* khtml, old safari */</span></span><br><span class="line">    <span class="attribute">-moz-opacity</span>: <span class="number">0.5</span>;       <span class="comment">/* mozilla, netscape */</span></span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0.5</span>;           <span class="comment">/* fx, safari, opera */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行文本或图片垂直居中"><a href="#多行文本或图片垂直居中" class="headerlink" title="多行文本或图片垂直居中"></a>多行文本或图片垂直居中</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> /&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123; <span class="attribute">line-height</span>:<span class="number">250px</span>;<span class="attribute">text-align</span>:center&#125;</span><br><span class="line"><span class="selector-class">.box</span> &gt; <span class="selector-class">.text</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>:inline-block;<span class="attribute">line-height</span>:normal;</span><br><span class="line">  <span class="attribute">text-align</span>: left; <span class="attribute">vertical-aligin</span>:middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="不定宽高元素水平垂直居中"><a href="#不定宽高元素水平垂直居中" class="headerlink" title="不定宽高元素水平垂直居中"></a>不定宽高元素水平垂直居中</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;  </span><br><span class="line"><span class="selector-tag">left</span>: 50%;  </span><br><span class="line"><span class="selector-tag">top</span>: 50%;  </span><br><span class="line"><span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">translate</span>(<span class="selector-tag">-50</span>%,<span class="selector-tag">-50</span>%);  </span><br><span class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(<span class="selector-tag">-50</span>%,<span class="selector-tag">-50</span>%);</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义文本选择"><a href="#自定义文本选择" class="headerlink" title="自定义文本选择"></a>自定义文本选择</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">::selection</span> &#123; <span class="attribute">background</span>: <span class="number">#e2eae2</span>; &#125;</span><br><span class="line"><span class="selector-pseudo">::-moz-selection</span> &#123; <span class="attribute">background</span>: <span class="number">#e2eae2</span>; &#125;</span><br><span class="line"><span class="selector-pseudo">::-webkit-selection</span> &#123; <span class="attribute">background</span>: <span class="number">#e2eae2</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义checkbox框"><a href="#自定义checkbox框" class="headerlink" title="自定义checkbox框"></a>自定义checkbox框</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=checkbox]</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">appearance</span>: none;</span><br><span class="line">    <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#dadada</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=checkbox]</span><span class="selector-pseudo">:checked</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#d9534f</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="背景图片全屏铺满"><a href="#背景图片全屏铺满" class="headerlink" title="背景图片全屏铺满"></a>背景图片全屏铺满</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123; </span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'images/bg.jpg'</span>) no-repeat center center fixed; </span><br><span class="line">    <span class="attribute">-webkit-background-size</span>: cover;</span><br><span class="line">    <span class="attribute">-moz-background-size</span>: cover;</span><br><span class="line">    <span class="attribute">-o-background-size</span>: cover;</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义字体"><a href="#自定义字体" class="headerlink" title="自定义字体"></a>自定义字体</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">'MyWebFont'</span>;</span><br><span class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'webfont.eot'</span>); <span class="comment">/* IE9 Compat Modes */</span></span><br><span class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'webfont.eot?#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>), <span class="comment">/* IE6-IE8 */</span></span><br><span class="line">    <span class="built_in">url</span>(<span class="string">'webfont.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>), <span class="comment">/* Modern Browsers */</span></span><br><span class="line">    <span class="built_in">url</span>(<span class="string">'webfont.ttf'</span>)  <span class="built_in">format</span>(<span class="string">'truetype'</span>), <span class="comment">/* Safari, Android, iOS */</span></span><br><span class="line">    <span class="built_in">url</span>(<span class="string">'webfont.svg#svgFontName'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>); <span class="comment">/* Legacy iOS */</span></span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">'MyWebFont'</span>, Arial, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义彩红字体"><a href="#定义彩红字体" class="headerlink" title="定义彩红字体"></a>定义彩红字体</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;think&lt;/p&gt;</span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20vw</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">font-family</span>: sans-serif;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="attribute">text-transform</span>: uppercase;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(</span><br><span class="line">        to right,</span><br><span class="line">        orangered,</span><br><span class="line">        orange,</span><br><span class="line">        gold,</span><br><span class="line">        lightgreen,</span><br><span class="line">        cyan,</span><br><span class="line">        dodgerblue,</span><br><span class="line">        mediumpurple,</span><br><span class="line">        hotpink,</span><br><span class="line">        orangered);</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">110vw</span>;</span><br><span class="line">    <span class="attribute">animation</span>: sliding <span class="number">30s</span> linear infinite;</span><br><span class="line">    <span class="attribute">-webkit-background-clip</span>: text;</span><br><span class="line">    <span class="attribute">-webkit-text-fill-color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> sliding &#123;</span><br><span class="line">    <span class="selector-tag">to</span> &#123;</span><br><span class="line">        <span class="attribute">background-position</span>: -<span class="number">2000vw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="段落首字母样式"><a href="#段落首字母样式" class="headerlink" title="段落首字母样式"></a>段落首字母样式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-letter</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ff3366</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">5.4em</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: Georgia, Times New Roman, serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="css3阴影"><a href="#css3阴影" class="headerlink" title="css3阴影"></a>css3阴影</h3><ol>
+<li><p>盒子内部阴影</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#mydiv</span> &#123; </span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: inset <span class="number">2px</span> <span class="number">0</span> <span class="number">4px</span> <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: inset <span class="number">2px</span> <span class="number">0</span> <span class="number">4px</span> <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: inset <span class="number">2px</span> <span class="number">0</span> <span class="number">4px</span> <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>盒子外部阴影</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#mydiv</span> &#123; </span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.52</span>);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.52</span>);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.52</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>与CSS3内阴影一样,我也提供一段外阴影的代码. 注意第三个数字表示模糊距离,第四个表示范围。</p>
+<h3 id="li列表前面’▶’插入"><a href="#li列表前面’▶’插入" class="headerlink" title="li列表前面’▶’插入"></a>li列表前面’▶’插入</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0.75em</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:before</span> &#123; </span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">border-color</span>: transparent <span class="number">#111</span>;</span><br><span class="line">    <span class="attribute">border-style</span>: solid;</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">0.35em</span> <span class="number">0</span> <span class="number">0.35em</span> <span class="number">0.45em</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>: -<span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0.9em</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="强制代码包装"><a href="#强制代码包装" class="headerlink" title="强制代码包装"></a>强制代码包装</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">pre</span> &#123;</span><br><span class="line">    <span class="attribute">white-space</span>: pre-wrap;       <span class="comment">/* css-3 */</span></span><br><span class="line">    <span class="attribute">white-space</span>: -moz-pre-wrap;  <span class="comment">/* Mozilla, since 1999 */</span></span><br><span class="line">    <span class="attribute">white-space</span>: -pre-wrap;      <span class="comment">/* Opera 4-6 */</span></span><br><span class="line">    <span class="attribute">white-space</span>: -o-pre-wrap;    <span class="comment">/* Opera 7 */</span></span><br><span class="line">    <span class="attribute">word-wrap</span>: break-word;       <span class="comment">/* Internet Explorer 5.5+ */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>典型的pre标签是在布局中用来显示大块代码的。</p>
+<h3 id="css3发光输入框"><a href="#css3发光输入框" class="headerlink" title="css3发光输入框"></a>css3发光输入框</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=text]</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-transition</span>: all <span class="number">0.30s</span> ease-in-out;</span><br><span class="line">    <span class="attribute">-moz-transition</span>: all <span class="number">0.30s</span> ease-in-out;</span><br><span class="line">    <span class="attribute">-ms-transition</span>: all <span class="number">0.30s</span> ease-in-out;</span><br><span class="line">    <span class="attribute">-o-transition</span>: all <span class="number">0.30s</span> ease-in-out;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">3px</span> <span class="number">0px</span> <span class="number">3px</span> <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">1px</span> <span class="number">3px</span> <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=text]</span><span class="selector-pseudo">:focus</span>, <span class="selector-tag">textarea</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">81</span>, <span class="number">203</span>, <span class="number">238</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">3px</span> <span class="number">0px</span> <span class="number">3px</span> <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">1px</span> <span class="number">3px</span> <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(<span class="number">81</span>, <span class="number">203</span>, <span class="number">238</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="网页两端阴影"><a href="#网页两端阴影" class="headerlink" title="网页两端阴影"></a>网页两端阴影</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0px</span> <span class="number">0px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">8</span>);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0px</span> <span class="number">0px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">8</span>);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">0px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">8</span>);</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="css背景噪音"><a href="#css背景噪音" class="headerlink" title="css背景噪音"></a>css背景噪音</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">      <span class="attribute">background-image</span>: <span class="built_in">url</span>(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+<span class="number">6</span>hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+<span class="number">76</span>pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/<span class="number">7</span>gC9hesnr+<span class="number">7</span>wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/<span class="number">3</span>fEV5a+<span class="number">4</span>wz//<span class="number">6</span>qy8JxjZsmxxy5+<span class="number">4</span>w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+<span class="number">4</span>/wuqcXY47QILbgAAAABJRU5ErkJggg==);</span><br><span class="line">  <span class="attribute">background-color</span>: tan;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="按钮渐变动画"><a href="#按钮渐变动画" class="headerlink" title="按钮渐变动画"></a>按钮渐变动画</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(#<span class="number">5187</span>c4, #<span class="number">1</span>c2f45);</span><br><span class="line">    <span class="attribute">background-size</span>: auto <span class="number">200%</span>;</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">0</span> <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">transition</span>: background-position <span class="number">0.5s</span>;</span><br><span class="line">&#125;    </span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="css3实现load省略号显示"><a href="#css3实现load省略号显示" class="headerlink" title="css3实现load省略号显示"></a>css3实现load省略号显示</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.loading</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>: bottom;</span><br><span class="line">    <span class="attribute">animation</span>: ellipsis <span class="number">2s</span> infinite;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"\2026"</span>; <span class="comment">/* ascii code for the ellipsis character */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> ellipsis &#123;</span><br><span class="line">    <span class="selector-tag">from</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">2px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">to</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">15px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">7.一般媒体查询</span><br><span class="line"><span class="comment">/* Smartphones (portrait and landscape) ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen </span><br><span class="line"><span class="keyword">and</span> (min-device-width : <span class="number">320px</span>) <span class="keyword">and</span> (max-device-width : <span class="number">480px</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Smartphones (landscape) ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (min-width : <span class="number">321px</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Smartphones (portrait) ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (max-width : <span class="number">320px</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* iPads (portrait and landscape) ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (min-device-width : <span class="number">768px</span>) <span class="keyword">and</span> (max-device-width : <span class="number">1024px</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* iPads (landscape) ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (min-device-width : <span class="number">768px</span>) <span class="keyword">and</span> (max-device-width : <span class="number">1024px</span>) <span class="keyword">and</span> (orientation : landscape) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* iPads (portrait) ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (min-device-width : <span class="number">768px</span>) <span class="keyword">and</span> (max-device-width : <span class="number">1024px</span>) <span class="keyword">and</span> (orientation : portrait) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Desktops and laptops ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (min-width : <span class="number">1224px</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Large screens ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (min-width : <span class="number">1824px</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* iPhone 4 ----------- */</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">-webkit-min-device-pixel-ratio:</span><span class="number">1.5</span>), <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">min-device-pixel-ratio:</span><span class="number">1.5</span>) &#123;</span><br><span class="line">  <span class="comment">/* Styles */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="css样式重置"><a href="#css样式重置" class="headerlink" title="css样式重置"></a>css样式重置</h2><h3 id="PC-CSS重置"><a href="#PC-CSS重置" class="headerlink" title="PC-CSS重置"></a>PC-CSS重置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* normalize.css */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">-ms-text-size-adjust</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">  <span class="attribute">-webkit-text-size-adjust</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">article</span>,</span><br><span class="line"><span class="selector-tag">aside</span>,</span><br><span class="line"><span class="selector-tag">footer</span>,</span><br><span class="line"><span class="selector-tag">header</span>,</span><br><span class="line"><span class="selector-tag">nav</span>,</span><br><span class="line"><span class="selector-tag">section</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">2em</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0.67em</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">figcaption</span>,</span><br><span class="line"><span class="selector-tag">figure</span>,</span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">figure</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1em</span> <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">hr</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: content-box;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">overflow</span>: visible;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">pre</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: monospace, monospace;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: transparent;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">-webkit-text-decoration-skip</span>: objects;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">abbr</span><span class="selector-attr">[title]</span> &#123;</span><br><span class="line">  <span class="attribute">border-bottom</span>: none;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">  <span class="attribute">text-decoration</span>: underline dotted;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span>,</span><br><span class="line"><span class="selector-tag">strong</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: inherit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span>,</span><br><span class="line"><span class="selector-tag">strong</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">code</span>,</span><br><span class="line"><span class="selector-tag">kbd</span>,</span><br><span class="line"><span class="selector-tag">samp</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: monospace, monospace;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">dfn</span> &#123;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">mark</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ff0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">80%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">sub</span>,</span><br><span class="line"><span class="selector-tag">sup</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">75%</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">vertical-align</span>: baseline;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">sub</span> &#123;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">0.25em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">sup</span> &#123;</span><br><span class="line">  <span class="attribute">top</span>: -<span class="number">0.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">audio</span>,</span><br><span class="line"><span class="selector-tag">video</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">audio</span><span class="selector-pseudo">:not(</span><span class="selector-attr">[controls]</span>) &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">border-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">svg</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:root)</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">input</span>,</span><br><span class="line"><span class="selector-tag">optgroup</span>,</span><br><span class="line"><span class="selector-tag">select</span>,</span><br><span class="line"><span class="selector-tag">textarea</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: sans-serif;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1.15</span>;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">overflow</span>: visible;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">select</span> &#123;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">text-transform</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">html</span> <span class="selector-attr">[type=<span class="string">"button"</span>]</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 1 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[type=<span class="string">"reset"</span>]</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"submit"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-appearance</span>: button;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">::-moz-focus-inner</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"button"</span>]</span><span class="selector-pseudo">::-moz-focus-inner</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"reset"</span>]</span><span class="selector-pseudo">::-moz-focus-inner</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"submit"</span>]</span><span class="selector-pseudo">::-moz-focus-inner</span> &#123;</span><br><span class="line">  <span class="attribute">border-style</span>: none;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:-moz-focusring</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"button"</span>]</span><span class="selector-pseudo">:-moz-focusring</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"reset"</span>]</span><span class="selector-pseudo">:-moz-focusring</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"submit"</span>]</span><span class="selector-pseudo">:-moz-focusring</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">1px</span> dotted ButtonText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">fieldset</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.35em</span> <span class="number">0.75em</span> <span class="number">0.625em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">legend</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">color</span>: inherit;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">  <span class="attribute">display</span>: table;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/* 3 */</span></span><br><span class="line">  <span class="attribute">white-space</span>: normal;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">progress</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">vertical-align</span>: baseline;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">textarea</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[type=<span class="string">"checkbox"</span>]</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"radio"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[type=<span class="string">"number"</span>]</span><span class="selector-pseudo">::-webkit-inner-spin-button</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"number"</span>]</span><span class="selector-pseudo">::-webkit-outer-spin-button</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[type=<span class="string">"search"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-appearance</span>: textfield;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">outline-offset</span>: -<span class="number">2px</span>;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[type=<span class="string">"search"</span>]</span><span class="selector-pseudo">::-webkit-search-cancel-button</span>,</span><br><span class="line"><span class="selector-attr">[type=<span class="string">"search"</span>]</span><span class="selector-pseudo">::-webkit-search-decoration</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="selector-pseudo">::-webkit-file-upload-button</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-appearance</span>: button;</span><br><span class="line">  <span class="comment">/* 1 */</span></span><br><span class="line">  <span class="attribute">font</span>: inherit;</span><br><span class="line">  <span class="comment">/* 2 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">details</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 1 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">menu</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">summary</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: list-item;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">canvas</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">template</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* reset */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">div</span>,<span class="selector-tag">dl</span>,</span><br><span class="line"><span class="selector-tag">dt</span>,<span class="selector-tag">dd</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">li</span>,<span class="selector-tag">p</span>,<span class="selector-tag">blockquote</span>,<span class="selector-tag">pre</span>,<span class="selector-tag">hr</span>,</span><br><span class="line"><span class="selector-tag">figure</span>,<span class="selector-tag">table</span>,<span class="selector-tag">caption</span>,<span class="selector-tag">th</span>,<span class="selector-tag">td</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,</span><br><span class="line"><span class="selector-tag">legend</span>,<span class="selector-tag">input</span>,<span class="selector-tag">button</span>,<span class="selector-tag">textarea</span>,<span class="selector-tag">menu</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">*,*<span class="selector-pseudo">::before</span>,*<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;<span class="comment">/* 修改默认盒模型 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"."</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Phone-css重置"><a href="#Phone-css重置" class="headerlink" title="Phone-css重置"></a>Phone-css重置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">html</span> &#123; <span class="attribute">font-family</span>: <span class="string">"Helvetica Neue"</span>, Helvetica, STHeiTi, Arial, sans-serif; <span class="attribute">-ms-text-size-adjust</span>: <span class="number">100%</span>; <span class="attribute">-webkit-text-size-adjust</span>: <span class="number">100%</span>; <span class="attribute">font-size</span>: <span class="number">62.5%</span>; &#125;</span><br><span class="line"><span class="selector-tag">body</span> &#123; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">color</span>: <span class="number">#333333</span>; <span class="attribute">background-color</span>: white; <span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">overflow-x</span>: hidden; <span class="attribute">-webkit-overflow-scrolling</span>: touch; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">article</span>, <span class="selector-tag">aside</span>, <span class="selector-tag">details</span>, <span class="selector-tag">figcaption</span>, <span class="selector-tag">figure</span>, <span class="selector-tag">footer</span>, <span class="selector-tag">header</span>, <span class="selector-tag">hgroup</span>, <span class="selector-tag">main</span>, <span class="selector-tag">nav</span>, <span class="selector-tag">section</span>, <span class="selector-tag">summary</span> &#123; <span class="attribute">display</span>: block; &#125;</span><br><span class="line"><span class="selector-tag">audio</span>, <span class="selector-tag">canvas</span>, <span class="selector-tag">progress</span>, <span class="selector-tag">video</span> &#123; <span class="attribute">display</span>: inline-block; <span class="attribute">vertical-align</span>: baseline; &#125;</span><br><span class="line"><span class="selector-tag">audio</span><span class="selector-pseudo">:not(</span><span class="selector-attr">[controls]</span>) &#123; <span class="attribute">display</span>: none; <span class="attribute">height</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-attr">[hidden]</span>, <span class="selector-tag">template</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br><span class="line"><span class="selector-tag">svg</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:root)</span> &#123; <span class="attribute">overflow</span>: hidden; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">background</span>: transparent; <span class="attribute">text-decoration</span>: none; <span class="attribute">-webkit-tap-highlight-color</span>: transparent; <span class="attribute">color</span>: <span class="number">#0088cc</span>; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123; <span class="attribute">outline</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123; <span class="attribute">color</span>: <span class="number">#006699</span>; &#125;</span><br><span class="line"><span class="selector-tag">abbr</span><span class="selector-attr">[title]</span> &#123; <span class="attribute">border-bottom</span>: <span class="number">1px</span> dotted; &#125;</span><br><span class="line"><span class="selector-tag">b</span>, <span class="selector-tag">strong</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span><br><span class="line"><span class="selector-tag">dfn</span> &#123; <span class="attribute">font-style</span>: italic; &#125;</span><br><span class="line"><span class="selector-tag">mark</span> &#123; <span class="attribute">background</span>: <span class="number">#ff0</span>; <span class="attribute">color</span>: <span class="number">#000</span>; &#125;</span><br><span class="line"><span class="selector-tag">small</span> &#123; <span class="attribute">font-size</span>: <span class="number">80%</span>; &#125;</span><br><span class="line"><span class="selector-tag">sub</span>, <span class="selector-tag">sup</span> &#123; <span class="attribute">font-size</span>: <span class="number">75%</span>; <span class="attribute">line-height</span>: <span class="number">0</span>; <span class="attribute">position</span>: relative; <span class="attribute">vertical-align</span>: baseline; &#125;</span><br><span class="line"><span class="selector-tag">sup</span> &#123; <span class="attribute">top</span>: -<span class="number">0.5em</span>; &#125;</span><br><span class="line"><span class="selector-tag">sub</span> &#123; <span class="attribute">bottom</span>: -<span class="number">0.25em</span>; &#125;</span><br><span class="line"><span class="selector-tag">img</span> &#123; <span class="attribute">border</span>: <span class="number">0</span>; <span class="attribute">vertical-align</span>: middle; &#125;</span><br><span class="line"><span class="selector-tag">hr</span> &#123; <span class="attribute">-moz-box-sizing</span>: content-box; <span class="attribute">box-sizing</span>: content-box; <span class="attribute">height</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">pre</span> &#123; <span class="attribute">overflow</span>: auto; <span class="attribute">white-space</span>: pre; <span class="attribute">white-space</span>: pre-wrap; <span class="attribute">word-wrap</span>: break-word; &#125;</span><br><span class="line"><span class="selector-tag">code</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">samp</span> &#123; <span class="attribute">font-family</span>: monospace, monospace; <span class="attribute">font-size</span>: <span class="number">1em</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">optgroup</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">color</span>: inherit; <span class="attribute">font</span>: inherit; <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">button</span> &#123; <span class="attribute">overflow</span>: visible; &#125;</span><br><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">select</span> &#123; <span class="attribute">text-transform</span>: none; &#125;</span><br><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">html</span> <span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"button"</span>]</span>, <span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"reset"</span>]</span>, <span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"submit"</span>]</span> &#123; <span class="attribute">-webkit-appearance</span>: button; <span class="attribute">cursor</span>: pointer; &#125;</span><br><span class="line"><span class="selector-tag">button</span><span class="selector-attr">[disabled]</span>, <span class="selector-tag">html</span> <span class="selector-tag">input</span><span class="selector-attr">[disabled]</span> &#123; <span class="attribute">cursor</span>: default; &#125;</span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">::-moz-focus-inner</span>, <span class="selector-tag">input</span><span class="selector-pseudo">::-moz-focus-inner</span> &#123; <span class="attribute">border</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">input</span> &#123; <span class="attribute">line-height</span>: normal; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"checkbox"</span>]</span>, <span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"radio"</span>]</span> &#123; <span class="attribute">box-sizing</span>: border-box; <span class="attribute">padding</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"number"</span>]</span><span class="selector-pseudo">::-webkit-inner-spin-button</span>, <span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"number"</span>]</span><span class="selector-pseudo">::-webkit-outer-spin-button</span> &#123; <span class="attribute">height</span>: auto; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"search"</span>]</span> &#123; <span class="attribute">-webkit-appearance</span>: textfield; <span class="attribute">-moz-box-sizing</span>: border-box; <span class="attribute">-webkit-box-sizing</span>: border-box; <span class="attribute">box-sizing</span>: border-box; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"search"</span>]</span><span class="selector-pseudo">::-webkit-search-cancel-button</span>, <span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">"search"</span>]</span><span class="selector-pseudo">::-webkit-search-decoration</span> &#123; <span class="attribute">-webkit-appearance</span>: none; &#125;</span><br><span class="line"><span class="selector-tag">fieldset</span> &#123; <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#c0c0c0</span>; <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">2px</span>; <span class="attribute">padding</span>: <span class="number">0.35em</span> <span class="number">0.625em</span> <span class="number">0.75em</span>; &#125;</span><br><span class="line"><span class="selector-tag">legend</span> &#123; <span class="attribute">border</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">textarea</span> &#123; <span class="attribute">overflow</span>: auto; <span class="attribute">resize</span>: vertical; &#125;</span><br><span class="line"><span class="selector-tag">optgroup</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span><br><span class="line"><span class="selector-tag">table</span> &#123; <span class="attribute">border-collapse</span>: collapse; <span class="attribute">border-spacing</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">td</span>, <span class="selector-tag">th</span> &#123; <span class="attribute">padding</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font-family</span>: <span class="string">"Helvetica Neue"</span>, Helvetica, STHeiTi, Arial, sans-serif; &#125;</span><br><span class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">p</span>, <span class="selector-tag">figure</span>, <span class="selector-tag">form</span>, <span class="selector-tag">blockquote</span> &#123; <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">li</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dd</span> &#123; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>; &#125;</span><br><span class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123; <span class="attribute">list-style</span>: none outside none; &#125;</span><br><span class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span> &#123; <span class="attribute">line-height</span>: <span class="number">2</span>; <span class="attribute">font-weight</span>: normal; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">::-moz-placeholder</span>, <span class="selector-tag">textarea</span><span class="selector-pseudo">::-moz-placeholder</span> &#123; <span class="attribute">color</span>: <span class="number">#cccccc</span>; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:-ms-input-placeholder</span>, <span class="selector-tag">textarea</span><span class="selector-pseudo">:-ms-input-placeholder</span> &#123; <span class="attribute">color</span>: <span class="number">#cccccc</span>; &#125;</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">::-webkit-input-placeholder</span>, <span class="selector-tag">textarea</span><span class="selector-pseudo">::-webkit-input-placeholder</span> &#123; <span class="attribute">color</span>: <span class="number">#cccccc</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">max-width</span>:<span class="number">750px</span>;<span class="attribute">margin</span>:<span class="number">0</span> auto;&#125;</span><br><span class="line">*,*<span class="selector-pseudo">::before</span>,*<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;<span class="comment">/* 修改默认盒模型 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"."</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="公共样式"><a href="#公共样式" class="headerlink" title="公共样式"></a>公共样式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 禁止选中文本 */</span></span><br><span class="line"><span class="selector-class">.usn</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-user-select</span>:none;</span><br><span class="line">    <span class="attribute">-moz-user-select</span>:none;</span><br><span class="line">    <span class="attribute">-ms-user-select</span>:none;</span><br><span class="line">    <span class="attribute">-o-user-select</span>:none;</span><br><span class="line">    <span class="attribute">user-select</span>:none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 浮动 */</span></span><br><span class="line"><span class="selector-class">.fl</span> &#123; <span class="attribute">float</span>: left; &#125;</span><br><span class="line"><span class="selector-class">.fr</span> &#123; <span class="attribute">float</span>: right; &#125;</span><br><span class="line"><span class="selector-class">.cf</span> &#123; <span class="attribute">zoom</span>: <span class="number">1</span>; &#125;</span><br><span class="line"><span class="selector-class">.cf</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">"."</span>;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">    <span class="attribute">visibility</span>:hidden;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 元素类型 */</span></span><br><span class="line"><span class="selector-class">.db</span> &#123; <span class="attribute">display</span>: block; &#125;</span><br><span class="line"><span class="selector-class">.dn</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br><span class="line"><span class="selector-class">.di</span> &#123; <span class="attribute">display</span>: inline &#125;</span><br><span class="line"><span class="selector-class">.dib</span> &#123;<span class="attribute">display</span>: inline-block;&#125;</span><br><span class="line"><span class="selector-class">.transparent</span> &#123; <span class="attribute">opacity</span>: <span class="number">0</span> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*文字排版、颜色*/</span></span><br><span class="line"><span class="selector-class">.f12</span> &#123; <span class="attribute">font-size</span>:<span class="number">12px</span> &#125;</span><br><span class="line"><span class="selector-class">.f14</span> &#123; <span class="attribute">font-size</span>:<span class="number">14px</span> &#125;</span><br><span class="line"><span class="selector-class">.f16</span> &#123; <span class="attribute">font-size</span>:<span class="number">16px</span> &#125;</span><br><span class="line"><span class="selector-class">.f18</span> &#123; <span class="attribute">font-size</span>:<span class="number">18px</span> &#125;</span><br><span class="line"><span class="selector-class">.f20</span> &#123; <span class="attribute">font-size</span>:<span class="number">20px</span> &#125;</span><br><span class="line"><span class="selector-class">.fb</span> &#123; <span class="attribute">font-weight</span>:bold &#125;</span><br><span class="line"><span class="selector-class">.fn</span> &#123; <span class="attribute">font-weight</span>:normal &#125;</span><br><span class="line"><span class="selector-class">.t2</span> &#123; <span class="attribute">text-indent</span>:<span class="number">2em</span> &#125;</span><br><span class="line"><span class="selector-class">.red</span>,<span class="selector-tag">a</span><span class="selector-class">.red</span> &#123; <span class="attribute">color</span>:<span class="number">#cc0031</span> &#125;</span><br><span class="line"><span class="selector-class">.darkblue</span>,<span class="selector-tag">a</span><span class="selector-class">.darkblue</span> &#123; <span class="attribute">color</span>:<span class="number">#039</span> &#125;</span><br><span class="line"><span class="selector-class">.gray</span>,<span class="selector-tag">a</span><span class="selector-class">.gray</span> &#123; <span class="attribute">color</span>:<span class="number">#878787</span> &#125;</span><br><span class="line"><span class="selector-class">.lh150</span> &#123; <span class="attribute">line-height</span>:<span class="number">150%</span> &#125;</span><br><span class="line"><span class="selector-class">.lh180</span> &#123; <span class="attribute">line-height</span>:<span class="number">180%</span> &#125;</span><br><span class="line"><span class="selector-class">.lh200</span> &#123; <span class="attribute">line-height</span>:<span class="number">200%</span> &#125;</span><br><span class="line"><span class="selector-class">.unl</span> &#123; <span class="attribute">text-decoration</span>:underline; &#125;</span><br><span class="line"><span class="selector-class">.no_unl</span> &#123; <span class="attribute">text-decoration</span>:none; &#125;</span><br><span class="line"><span class="selector-class">.tl</span> &#123; <span class="attribute">text-align</span>: left; &#125;</span><br><span class="line"><span class="selector-class">.tc</span> &#123; <span class="attribute">text-align</span>: center; &#125;</span><br><span class="line"><span class="selector-class">.tr</span> &#123; <span class="attribute">text-align</span>: right; &#125;</span><br><span class="line"><span class="selector-class">.tj</span> &#123; <span class="attribute">text-align</span>: justify; <span class="attribute">text-justify</span>: inter-ideograph; &#125;</span><br><span class="line"><span class="selector-class">.wn</span> &#123; <span class="comment">/* 强制不换行 */</span></span><br><span class="line">    <span class="attribute">word-wrap</span>:normal;</span><br><span class="line">    <span class="attribute">white-space</span>:nowrap;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wb</span> &#123; <span class="comment">/* 强制换行 */</span></span><br><span class="line">    <span class="attribute">white-space</span>:normal;</span><br><span class="line">    <span class="attribute">word-wrap</span>:break-word;</span><br><span class="line">    <span class="attribute">word-break</span>:break-all;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wp</span> &#123; <span class="comment">/* 保持空白序列*/</span></span><br><span class="line">    <span class="attribute">overflow</span>:hidden;<span class="attribute">text-align</span>:left;<span class="attribute">white-space</span>:pre-wrap;<span class="attribute">word-wrap</span>:break-word;<span class="attribute">word-break</span>:break-all;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wes</span> &#123; <span class="comment">/* 多出部分用省略号表示 , 用于一行 */</span></span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">    <span class="attribute">word-wrap</span>:normal;</span><br><span class="line">    <span class="attribute">white-space</span>:nowrap;</span><br><span class="line">    <span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wes-2</span> &#123; <span class="comment">/* 适用于webkit内核和移动端 */</span></span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>: <span class="number">2</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-class">.wes-3</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wes-4</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>: <span class="number">4</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 溢出样式 */</span></span><br><span class="line"><span class="selector-class">.ofh</span> &#123; <span class="attribute">overflow</span>: hidden; &#125;</span><br><span class="line"><span class="selector-class">.ofs</span> &#123;<span class="attribute">overflow</span>: scroll; &#125;</span><br><span class="line"><span class="selector-class">.ofa</span> &#123;<span class="attribute">overflow</span>: auto; &#125;</span><br><span class="line"><span class="selector-class">.ofv</span> &#123;<span class="attribute">overflow</span>: visible; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定位方式 */</span></span><br><span class="line"><span class="selector-class">.ps</span> &#123;<span class="attribute">position</span>: static; &#125;</span><br><span class="line"><span class="selector-class">.pr</span> &#123;<span class="attribute">position</span>: relative;<span class="attribute">zoom</span>:<span class="number">1</span>; &#125;</span><br><span class="line"><span class="selector-class">.pa</span> &#123;<span class="attribute">position</span>: absolute; &#125;</span><br><span class="line"><span class="selector-class">.pf</span> &#123;<span class="attribute">position</span>: fixed; &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 垂直对齐方式 */</span></span><br><span class="line"><span class="selector-class">.vt</span> &#123;<span class="attribute">vertical-align</span>: top; &#125;</span><br><span class="line"><span class="selector-class">.vm</span> &#123;<span class="attribute">vertical-align</span>: middle; &#125;</span><br><span class="line"><span class="selector-class">.vb</span> &#123;<span class="attribute">vertical-align</span>: bottom; &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标样式 */</span></span><br><span class="line"><span class="selector-class">.csd</span> &#123;<span class="attribute">cursor</span>: default; &#125;</span><br><span class="line"><span class="selector-class">.csp</span> &#123;<span class="attribute">cursor</span>: pointer; &#125;</span><br><span class="line"><span class="selector-class">.csh</span> &#123;<span class="attribute">cursor</span>: help; &#125;</span><br><span class="line"><span class="selector-class">.csm</span> &#123;<span class="attribute">cursor</span>: move; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* flex布局 */</span></span><br><span class="line"><span class="selector-class">.df-sb</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.df-sa</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 垂直居中 */</span></span><br><span class="line"><span class="selector-class">.df-c</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tb-c</span> &#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">    <span class="attribute">display</span>:table-cell;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.ts-c</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>; <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.ts-mc</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 辅助 */</span></span><br><span class="line"><span class="selector-class">.mask-fixed-wrapper</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;<span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.65</span>);</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-cover</span> &#123;</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: center center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-cover-all</span> &#123;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">100%</span> <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: center center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JavaScript中属性总结04-Number/" rel="next" title="JavaScript中属性总结04--Number">
+                <i class="fa fa-chevron-left"></i> JavaScript中属性总结04--Number
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/vscode插件/" rel="prev" title="web编辑器插件">
+                web编辑器插件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用css代码段"><span class="nav-number">1.</span> <span class="nav-text">常用css代码段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强制英文换行"><span class="nav-number">1.1.</span> <span class="nav-text">强制英文换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超过指定行数后显示省略号"><span class="nav-number">1.2.</span> <span class="nav-text">超过指定行数后显示省略号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承box-sizing"><span class="nav-number">1.3.</span> <span class="nav-text">继承box-sizing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除浮动"><span class="nav-number">1.4.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-两端对齐问题"><span class="nav-number">1.5.</span> <span class="nav-text">flex 两端对齐问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两端对齐"><span class="nav-number">1.6.</span> <span class="nav-text">两端对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨浏览器的透明度"><span class="nav-number">1.7.</span> <span class="nav-text">跨浏览器的透明度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多行文本或图片垂直居中"><span class="nav-number">1.8.</span> <span class="nav-text">多行文本或图片垂直居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不定宽高元素水平垂直居中"><span class="nav-number">1.9.</span> <span class="nav-text">不定宽高元素水平垂直居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义文本选择"><span class="nav-number">1.10.</span> <span class="nav-text">自定义文本选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义checkbox框"><span class="nav-number">1.11.</span> <span class="nav-text">自定义checkbox框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景图片全屏铺满"><span class="nav-number">1.12.</span> <span class="nav-text">背景图片全屏铺满</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义字体"><span class="nav-number">1.13.</span> <span class="nav-text">自定义字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义彩红字体"><span class="nav-number">1.14.</span> <span class="nav-text">定义彩红字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段落首字母样式"><span class="nav-number">1.15.</span> <span class="nav-text">段落首字母样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css3阴影"><span class="nav-number">1.16.</span> <span class="nav-text">css3阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#li列表前面’▶’插入"><span class="nav-number">1.17.</span> <span class="nav-text">li列表前面’▶’插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制代码包装"><span class="nav-number">1.18.</span> <span class="nav-text">强制代码包装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css3发光输入框"><span class="nav-number">1.19.</span> <span class="nav-text">css3发光输入框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页两端阴影"><span class="nav-number">1.20.</span> <span class="nav-text">网页两端阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css背景噪音"><span class="nav-number">1.21.</span> <span class="nav-text">css背景噪音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按钮渐变动画"><span class="nav-number">1.22.</span> <span class="nav-text">按钮渐变动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css3实现load省略号显示"><span class="nav-number">1.23.</span> <span class="nav-text">css3实现load省略号显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询"><span class="nav-number">2.</span> <span class="nav-text">媒体查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css样式重置"><span class="nav-number">3.</span> <span class="nav-text">css样式重置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PC-CSS重置"><span class="nav-number">3.1.</span> <span class="nav-text">PC-CSS重置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phone-css重置"><span class="nav-number">3.2.</span> <span class="nav-text">Phone-css重置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公共样式"><span class="nav-number">4.</span> <span class="nav-text">公共样式</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="深入理解JavaScript原型和闭包： http://www.cnblogs.com/wangfupeng1988/p/3977924.html  JavsScript中this的理解： https://segmentfault.com/a/1190000008590012http://www.jianshu.com/p/d647aa6d1ae6http://www.cnblogs.com/Wa">
+<meta name="keywords" content="前端收集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博文推荐地址">
+<meta property="og:url" content="https://www.xin666.cc/前端博文推荐地址/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="深入理解JavaScript原型和闭包： http://www.cnblogs.com/wangfupeng1988/p/3977924.html  JavsScript中this的理解： https://segmentfault.com/a/1190000008590012http://www.jianshu.com/p/d647aa6d1ae6http://www.cnblogs.com/Wa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-11T07:17:59.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博文推荐地址">
+<meta name="twitter:description" content="深入理解JavaScript原型和闭包： http://www.cnblogs.com/wangfupeng1988/p/3977924.html  JavsScript中this的理解： https://segmentfault.com/a/1190000008590012http://www.jianshu.com/p/d647aa6d1ae6http://www.cnblogs.com/Wa">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/前端博文推荐地址/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>博文推荐地址 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/前端博文推荐地址/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">博文推荐地址
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-16 09:43:00" itemprop="dateCreated datePublished" datetime="2017-08-16T09:43:00+08:00">2017-08-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:59" itemprop="dateModified" datetime="2021-08-11T15:17:59+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端收集/" itemprop="url" rel="index"><span itemprop="name">前端收集</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">12k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">11 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="深入理解JavaScript原型和闭包："><a href="#深入理解JavaScript原型和闭包：" class="headerlink" title="深入理解JavaScript原型和闭包："></a>深入理解JavaScript原型和闭包：</h3><blockquote>
+<p><a href="http://www.cnblogs.com/wangfupeng1988/p/3977924.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangfupeng1988/p/3977924.html</a></p>
+</blockquote>
+<h3 id="JavsScript中this的理解："><a href="#JavsScript中this的理解：" class="headerlink" title="JavsScript中this的理解："></a>JavsScript中this的理解：</h3><blockquote>
+<p><a href="https://segmentfault.com/a/1190000008590012" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008590012</a><br><a href="http://www.jianshu.com/p/d647aa6d1ae6" target="_blank" rel="noopener">http://www.jianshu.com/p/d647aa6d1ae6</a><br><a href="http://www.cnblogs.com/Wayou/p/all-this.html" target="_blank" rel="noopener">http://www.cnblogs.com/Wayou/p/all-this.html</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="JavaScript-作用域执行环境ES的理解"><a href="#JavaScript-作用域执行环境ES的理解" class="headerlink" title="JavaScript 作用域执行环境ES的理解:"></a>JavaScript 作用域执行环境ES的理解:</h3><blockquote>
+<p><a href="http://my.csdn.net/pingfan592" target="_blank" rel="noopener">http://my.csdn.net/pingfan592</a><br><a href="https://segmentfault.com/a/1190000005807487" target="_blank" rel="noopener">(译) 你想知道的关于 JavaScript 作用域的一切</a></p>
+</blockquote>
+<h3 id="有趣的css题目："><a href="#有趣的css题目：" class="headerlink" title="有趣的css题目："></a>有趣的css题目：</h3><blockquote>
+<p><a href="https://github.com/chokcoco/iCSS/issues" target="_blank" rel="noopener">https://github.com/chokcoco/iCSS/issues</a></p>
+</blockquote>
+<h3 id="CSS3入门详解"><a href="#CSS3入门详解" class="headerlink" title="CSS3入门详解"></a>CSS3入门详解</h3><p><a href="https://segmentfault.com/a/1190000017138873" target="_blank" rel="noopener">CSS3入门详解一</a><br><a href="https://segmentfault.com/a/1190000017138936" target="_blank" rel="noopener">CSS3入门详解二</a></p>
+<h3 id="HTML5-入门详解"><a href="#HTML5-入门详解" class="headerlink" title="HTML5 入门详解"></a>HTML5 入门详解</h3><p><a href="https://segmentfault.com/a/1190000017097413" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017097413</a></p>
+<h3 id="前端常见算法的JS实现"><a href="#前端常见算法的JS实现" class="headerlink" title="前端常见算法的JS实现"></a>前端常见算法的JS实现</h3><blockquote>
+<p><a href="https://segmentfault.com/a/1190000008593715" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008593715</a></p>
+</blockquote>
+<h3 id="常见前端面试题及答案"><a href="#常见前端面试题及答案" class="headerlink" title="常见前端面试题及答案"></a>常见前端面试题及答案</h3><blockquote>
+<p><a href="http://www.cnblogs.com/syfwhu/p/4434132.html" target="_blank" rel="noopener">http://www.cnblogs.com/syfwhu/p/4434132.html</a></p>
+</blockquote>
+<h3 id="JavaScript编码风格指南"><a href="#JavaScript编码风格指南" class="headerlink" title="JavaScript编码风格指南"></a>JavaScript编码风格指南</h3><blockquote>
+<p><a href="http://www.cnblogs.com/syfwhu/p/4814435.html" target="_blank" rel="noopener">http://www.cnblogs.com/syfwhu/p/4814435.html</a></p>
+</blockquote>
+<h3 id="jQuery插件开发"><a href="#jQuery插件开发" class="headerlink" title="jQuery插件开发"></a>jQuery插件开发</h3><blockquote>
+<p><a href="http://www.cnblogs.com/Wayou/p/jquery_plugin_tutorial.html" target="_blank" rel="noopener">http://www.cnblogs.com/Wayou/p/jquery_plugin_tutorial.html</a></p>
+</blockquote>
+<h3 id="Flex-布局教程：语法篇"><a href="#Flex-布局教程：语法篇" class="headerlink" title="Flex 布局教程：语法篇"></a>Flex 布局教程：语法篇</h3><blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool</a></p>
+</blockquote>
+<h3 id="Grid-布局"><a href="#Grid-布局" class="headerlink" title="Grid 布局"></a>Grid 布局</h3><blockquote>
+<p><a href="http://www.css88.com/archives/8510/comment-page-1" target="_blank" rel="noopener">http://www.css88.com/archives/8510/comment-page-1</a></p>
+</blockquote>
+<h3 id="ES6基础"><a href="#ES6基础" class="headerlink" title="ES6基础"></a>ES6基础</h3><blockquote>
+<p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">http://es6.ruanyifeng.com/</a></p>
+</blockquote>
+<h3 id="php面向对象-OOP-编程完全教程"><a href="#php面向对象-OOP-编程完全教程" class="headerlink" title="php面向对象(OOP)编程完全教程"></a>php面向对象(OOP)编程完全教程</h3><blockquote>
+<p><a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/09/10/1823042.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/09/10/1823042.html</a></p>
+</blockquote>
+<h3 id="python快速教程"><a href="#python快速教程" class="headerlink" title="python快速教程"></a>python快速教程</h3><blockquote>
+<p><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html" target="_blank" rel="noopener">http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html</a></p>
+</blockquote>
+<h3 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h3><blockquote>
+<p><a href="http://www.jianshu.com/p/80e25cb1d81a(关于HTTP协议，一篇就够了)" target="_blank" rel="noopener">http://www.jianshu.com/p/80e25cb1d81a(关于HTTP协议，一篇就够了)</a></p>
+</blockquote>
+<h3 id="tcp-ip协议"><a href="#tcp-ip协议" class="headerlink" title="tcp/ip协议"></a>tcp/ip协议</h3><blockquote>
+<p><a href="http://blog.csdn.net/shenxin870409/article/category/2627701" target="_blank" rel="noopener">http://blog.csdn.net/shenxin870409/article/category/2627701</a></p>
+</blockquote>
+<h3 id="推荐博客"><a href="#推荐博客" class="headerlink" title="推荐博客:"></a>推荐博客:</h3><h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><blockquote>
+<p><a href="http://www.cnblogs.com/xiaohuochai/" target="_blank" rel="noopener">蓝色小火柴</a><br><a href="http://www.cnblogs.com/pssp/" target="_blank" rel="noopener">追梦子</a><br><a href="http://www.cnblogs.com/best/" target="_blank" rel="noopener">张果</a><br><a href="http://www.cnblogs.com/coco1s/" target="_blank" rel="noopener">ChokCoco</a><br><a href="http://www.cnblogs.com/wangfupeng1988/" target="_blank" rel="noopener">王福朋</a><br><a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="noopener">阮一峰</a><br><a href="https://yangbo5207.github.io/wutongluo" target="_blank" rel="noopener">前端进阶</a><br><a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽</a><br><a href="http://layer.layui.com/" target="_blank" rel="noopener">layer</a><br><a href="http://yanhaijing.com/categories/" target="_blank" rel="noopener">颜海镜</a><br><a href="https://segmentfault.com/u/trigkit4/bookmarks" target="_blank" rel="noopener">trigkit4</a><br><a href="http://www.cnblogs.com/tomxu/archive/2011/12/15/2288411.html" target="_blank" rel="noopener">汤姆大叔</a><br><a href="https://segmentfault.com/u/marsman_levi/articles" target="_blank" rel="noopener">Levi丶</a><br><a href="https://github.com/ljianshu/Blog" target="_blank" rel="noopener">ljianshu</a></p>
+</blockquote>
+<h4 id="py"><a href="#py" class="headerlink" title="py"></a>py</h4><blockquote>
+<p><a href="https://cuiqingcai.com/tag/%E7%88%AC%E8%99%AB" target="_blank" rel="noopener">静觅</a><br><a href="http://www.liaoxuefeng.com/" target="_blank" rel="noopener">廖雪峰</a><br><a href="https://woaielf.github.io/" target="_blank" rel="noopener">数林觅风,Python思维导图</a><br><a href="http://www.cnblogs.com/vamei" target="_blank" rel="noopener">Vamei</a></p>
+</blockquote>
+<h3 id="推荐团队博客"><a href="#推荐团队博客" class="headerlink" title="推荐团队博客:"></a>推荐团队博客:</h3><p><a href="https://link.juejin.im?target=http%3A%2F%2Ftaobaofed.org%2F" target="_blank" rel="noopener">淘宝前端团队fed</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fwww.aliued.cn%2F" target="_blank" rel="noopener">阿里巴巴</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Ffex.baidu.com%2F" target="_blank" rel="noopener">百度前端团队</a><br><a href="https://link.juejin.im?target=https%3A%2F%2F75team.com%2F" target="_blank" rel="noopener">360奇舞团</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Ft.75team.com%2Fvideo" target="_blank" rel="noopener">奇舞团视频教程</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Faotu.io%2F" target="_blank" rel="noopener">京东设计体验部-凹凸实验室</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fqqfe.org%2F" target="_blank" rel="noopener">腾讯网前端研发中心</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fwww.alloyteam.com%2F" target="_blank" rel="noopener">腾讯alloyteam</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fimweb.io%2F" target="_blank" rel="noopener">腾讯前端IMWEB团队</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fimweb.github.io%2F" target="_blank" rel="noopener">腾讯前端IMWEB团队-github</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Ftgideas.qq.com%2F" target="_blank" rel="noopener">腾讯游戏</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fued.sina.com.cn%2F%3Fcat%3D4" target="_blank" rel="noopener">新浪UED</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fblog.ymfe.org%2F" target="_blank" rel="noopener">去哪儿网移动架构组</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Fwww.daqianduan.com%2F" target="_blank" rel="noopener">大前端（饿了么）</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Ff2e.souche.com%2Fblog%2F" target="_blank" rel="noopener">搜车大无线团队博客</a></p>
+<blockquote>
+<p>（上面的团队博客，值得关注，博文内容质量很高，但是就是更新不频繁，下面的更新会比较多，质量也不错）</p>
+</blockquote>
+<p><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fdreawer" target="_blank" rel="noopener">极乐科技</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fimweb" target="_blank" rel="noopener">IMWeb前端社区</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Flinshuai" target="_blank" rel="noopener">爱前端-知乎专栏</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fjscss" target="_blank" rel="noopener">前端杂货铺</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2FFrontendMagazine" target="_blank" rel="noopener">前端外刊评论</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2FthinkingInFE" target="_blank" rel="noopener">前端解忧杂货铺</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fddfe-weekly" target="_blank" rel="noopener">DDFE 技术周刊</a><br><a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fqianduanzhidian" target="_blank" rel="noopener">前端之巅</a><br><a href="https://link.juejin.im?target=http%3A%2F%2Ffrontenddev.org%2Fdiscover%2F" target="_blank" rel="noopener">Fed汇总</a></p>
+<h3 id="博客社区推荐："><a href="#博客社区推荐：" class="headerlink" title="博客社区推荐："></a>博客社区推荐：</h3><ul>
+<li><a href="https://www.cnblogs.com/" target="_blank" rel="noopener">博客园</a></li>
+<li><a href="http://www.jianshu.com/" target="_blank" rel="noopener">简书</a></li>
+<li><a href="https://juejin.im/" target="_blank" rel="noopener">据金</a></li>
+<li><a href="https://segmentfault.com/blogs/hottest" target="_blank" rel="noopener">SegmentFault</a></li>
+<li><a href="https://www.v2ex.com/" target="_blank" rel="noopener">V2EX</a></li>
+<li><a href="http://bbs.csdn.net/forums/WebDevelop" target="_blank" rel="noopener">CSDN</a></li>
+<li><a href="http://www.jqhtml.com/" target="_blank" rel="noopener">前端插件</a></li>
+</ul>
+<h3 id="代码托管推荐："><a href="#代码托管推荐：" class="headerlink" title="代码托管推荐："></a>代码托管推荐：</h3><ul>
+<li><a href="https://github.com/" target="_blank" rel="noopener">github</a></li>
+<li><a href="https://coding.net/" target="_blank" rel="noopener">coding</a></li>
+<li><a href="https://bitbucket.org/" target="_blank" rel="noopener">Bitbucket</a></li>
+<li><a href="https://git.oschina.net/" target="_blank" rel="noopener">码云</a></li>
+</ul>
+<h3 id="书籍推荐："><a href="#书籍推荐：" class="headerlink" title="书籍推荐："></a>书籍推荐：</h3><ol>
+<li>&lt;&lt; JavaScript高级程序设计第3版 &gt;&gt;</li>
+<li>&lt;&lt; css 揭秘 &gt;&gt;</li>
+<li>&lt;&lt; 你不知道的JavaScript &gt;&gt;</li>
+<li>&lt;&lt; 锋利的jQuery &gt;&gt;</li>
+<li>&lt;&lt; JavaScript权威指南 &gt;&gt;</li>
+<li>&lt;&lt; 图解HTTP协议 &gt;&gt;</li>
+<li>&lt;&lt; JavaScript面向对象精要 &gt;&gt;</li>
+<li>&lt;&lt; JavaScript设计模式与开发实践 &gt;&gt;</li>
+<li>&lt;&lt; JavaScript编程精解 &gt;&gt;</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端收集/" rel="tag"># 前端收集</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/css揭秘/" rel="next" title="css揭秘">
+                <i class="fa fa-chevron-left"></i> css揭秘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/屏幕设备的一些概念/" rel="prev" title="屏幕设备的一些概念">
+                屏幕设备的一些概念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解JavaScript原型和闭包："><span class="nav-number">1.</span> <span class="nav-text">深入理解JavaScript原型和闭包：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavsScript中this的理解："><span class="nav-number">2.</span> <span class="nav-text">JavsScript中this的理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-作用域执行环境ES的理解"><span class="nav-number">3.</span> <span class="nav-text">JavaScript 作用域执行环境ES的理解:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有趣的css题目："><span class="nav-number">4.</span> <span class="nav-text">有趣的css题目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3入门详解"><span class="nav-number">5.</span> <span class="nav-text">CSS3入门详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-入门详解"><span class="nav-number">6.</span> <span class="nav-text">HTML5 入门详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端常见算法的JS实现"><span class="nav-number">7.</span> <span class="nav-text">前端常见算法的JS实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见前端面试题及答案"><span class="nav-number">8.</span> <span class="nav-text">常见前端面试题及答案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript编码风格指南"><span class="nav-number">9.</span> <span class="nav-text">JavaScript编码风格指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery插件开发"><span class="nav-number">10.</span> <span class="nav-text">jQuery插件开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flex-布局教程：语法篇"><span class="nav-number">11.</span> <span class="nav-text">Flex 布局教程：语法篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grid-布局"><span class="nav-number">12.</span> <span class="nav-text">Grid 布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6基础"><span class="nav-number">13.</span> <span class="nav-text">ES6基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php面向对象-OOP-编程完全教程"><span class="nav-number">14.</span> <span class="nav-text">php面向对象(OOP)编程完全教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python快速教程"><span class="nav-number">15.</span> <span class="nav-text">python快速教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http协议"><span class="nav-number">16.</span> <span class="nav-text">http协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp-ip协议"><span class="nav-number">17.</span> <span class="nav-text">tcp/ip协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐博客"><span class="nav-number">18.</span> <span class="nav-text">推荐博客:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端"><span class="nav-number">18.1.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#py"><span class="nav-number">18.2.</span> <span class="nav-text">py</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐团队博客"><span class="nav-number">19.</span> <span class="nav-text">推荐团队博客:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客社区推荐："><span class="nav-number">20.</span> <span class="nav-text">博客社区推荐：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码托管推荐："><span class="nav-number">21.</span> <span class="nav-text">代码托管推荐：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#书籍推荐："><span class="nav-number">22.</span> <span class="nav-text">书籍推荐：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

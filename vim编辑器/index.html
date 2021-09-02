@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="vi编辑器通常被简称为vi，而vi又是visual editor的简称 。它在Linux上的地位就像Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制，这是其他编辑程序所没有的。vi 编辑器并不是一个排版程序，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。没有菜单，只有命令，且命令">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim编辑器基本用法">
+<meta property="og:url" content="https://www.xin666.cc/vim编辑器/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="vi编辑器通常被简称为vi，而vi又是visual editor的简称 。它在Linux上的地位就像Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制，这是其他编辑程序所没有的。vi 编辑器并不是一个排版程序，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。没有菜单，只有命令，且命令">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-11T07:17:59.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim编辑器基本用法">
+<meta name="twitter:description" content="vi编辑器通常被简称为vi，而vi又是visual editor的简称 。它在Linux上的地位就像Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制，这是其他编辑程序所没有的。vi 编辑器并不是一个排版程序，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。没有菜单，只有命令，且命令">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/vim编辑器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>vim编辑器基本用法 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/vim编辑器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">vim编辑器基本用法
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-28 22:14:26" itemprop="dateCreated datePublished" datetime="2017-08-28T22:14:26+08:00">2017-08-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:59" itemprop="dateModified" datetime="2021-08-11T15:17:59+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">23k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">21 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>vi编辑器通常被简称为vi，而vi又是visual editor的简称 。它在Linux上的地位就像Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制，这是其他编辑程序所没有的。<br>vi 编辑器并不是一个排版程序，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。没有菜单，只有命令，且命令繁多。vi有3种基本工作模式：命令行模式、文本输入模式和末行模式。<br>Vim是vi的加强版，比vi更容易使用。vi的命令几乎全部都可以在vim上使用。</p>
+<a id="more"></a>
+
+<h2 id="1-进入编辑模式（esc退出）"><a href="#1-进入编辑模式（esc退出）" class="headerlink" title="1.进入编辑模式（esc退出）"></a>1.进入编辑模式（esc退出）</h2><blockquote>
+</blockquote>
+<p>a: 光标 向后移动一位<br>i: 光标 和 所在字符 不发生任何变化<br>o: 给新起一行<br>s: 删除光标所在字符</p>
+<h2 id="2-尾行模式的操作-esc或两次esc"><a href="#2-尾行模式的操作-esc或两次esc" class="headerlink" title="2.尾行模式的操作(esc或两次esc)"></a>2.尾行模式的操作(esc或两次esc)</h2><blockquote>
+</blockquote>
+<p>:q                  //quit 退出编辑器<br>:w                  //write 对修改后的内容进行保存<br>:wq                 //write quit 比保存并退出编辑器<br>:q!                 //强制退出编辑器<br>:w!                 //强制保存<br>:wq!                //强制保存并退出编辑器</p>
+<blockquote>
+</blockquote>
+<p>:set number 或 nu        //设置行号<br>:set nonumber 或 nonu    //取消设置行号</p>
+<blockquote>
+</blockquote>
+<p>:/内容/    或    /内容   //查找指定内容<br>                        小写n（next）下一个<br>                        大写N（next）上一个<br>:noh                    //取消查找<br>:数字                     //跳转到数字所在行<br>:m+1                    // 当前行往下移动一行<br>:m-2                    // 当前行往上移动一行</p>
+<h2 id="3-字符串替换cont1被替换为coont2"><a href="#3-字符串替换cont1被替换为coont2" class="headerlink" title="3. 字符串替换cont1被替换为coont2"></a>3. 字符串替换cont1被替换为coont2</h2><blockquote>
+</blockquote>
+<p>:s/cont1/cont2/         //替换光标所在行的第一个count1<br>:s/cont1/cont2/g        //替换光标所在行的全部的count1<br>:%s/cont1/cont2/g       //替换整个文档的count1</p>
+<h2 id="3-命令模式操作"><a href="#3-命令模式操作" class="headerlink" title="3.命令模式操作"></a>3.命令模式操作</h2><blockquote>
+</blockquote>
+<h3 id="1-光标的移动"><a href="#1-光标的移动" class="headerlink" title="1) 光标的移动"></a>1) 光标的移动</h3><p>① 字符级<br>    上(k) 下(j) 左(h) 右(l) 键<br>② 单词级<br>    w: word移动到下个单词的首字母<br>    e: end移动到下(本)个单词的尾字母<br>    b: before移动到上个(本)单词的首字母<br>③ 行级<br>    $: 行尾<br>    0: 行首<br>④ 段落级(翻屏)<br>    {: 上个(本)段落首部<br>    }: 下个(本)段落尾部<br>⑤ 屏幕级(不翻屏)<br>    H: 屏幕首部<br>    L: 屏幕尾部<br>⑥ 文档级<br>    G: 文档尾部<br>    1G: 文档第1行<br>    nG: 文档第n行</p>
+<h3 id="2-内容的删除"><a href="#2-内容的删除" class="headerlink" title="2) 内容的删除"></a>2) 内容的删除</h3><blockquote>
+</blockquote>
+<p>dd:     删除光标当前行<br>2dd:    包括当前行在内，向后删除2行内容<br>ndd:    包括当前行在内，删除后边n行内容<br>x:      删除光标所在字符<br>c+w     从光标所在位置删除单词结尾，并进入编辑模式</p>
+<h3 id="3-内容的复制"><a href="#3-内容的复制" class="headerlink" title="3) 内容的复制"></a>3) 内容的复制</h3><blockquote>
+</blockquote>
+<p>yy:     复制光标当前行<br>2yy:    包括当前行在内，向后复制2行内容<br>nyy:    包括当前行在内，复制后边n行内容<br>p:      对复制好的内容进行粘贴操作</p>
+<h3 id="4-相关快键键操作"><a href="#4-相关快键键操作" class="headerlink" title="4) 相关快键键操作"></a>4) 相关快键键操作</h3><blockquote>
+</blockquote>
+<p>u:      undo撤销<br>ctrl+r  反撤销<br>J:      合并上下两行<br>r:      单个字符替换<br>.点:     重复执行上次最近的命令</p>
+<h2 id="vi-vim编辑器配置"><a href="#vi-vim编辑器配置" class="headerlink" title="vi/vim编辑器配置"></a>vi/vim编辑器配置</h2><p>linux打开<code>vi /etc/vim/vimrc</code><br>添加:</p>
+<h3 id="在线配置"><a href="#在线配置" class="headerlink" title="在线配置"></a>在线配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x</span><br></pre></td></tr></table></figure>
+
+<h3 id="简单配置："><a href="#简单配置：" class="headerlink" title="简单配置："></a>简单配置：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">set hlsearch &quot;高亮度反白</span><br><span class="line">set backspace=2 &quot;可随时用退格键删除</span><br><span class="line">set autoindent &quot;自动缩排</span><br><span class="line">set ruler &quot;可显示最后一行的状态</span><br><span class="line">set showmode &quot;左下角那一行的状态</span><br><span class="line">set nu &quot;可以在第一行的最前面显示行号</span><br><span class="line">set bg=dark &quot;显示不同的底色色调</span><br><span class="line">syntax on &quot;进行语法检验， 颜色显示</span><br><span class="line">set cursorline &quot; 突出显示当前行</span><br><span class="line"></span><br><span class="line">set ts=4 &quot;ts是tabstop的缩写， 设Tab宽4个空格</span><br><span class="line">set expandtab</span><br><span class="line">%retab!      &quot;加!是用于处理非空白字符之后的TAB， 即所有的TAB；若不加， 则只处理行首的TAB</span><br><span class="line"></span><br><span class="line">&quot; Encoding related</span><br><span class="line">set encoding=UTF-8</span><br><span class="line">set langmenu=zh_CN.UTF-8</span><br><span class="line">set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1</span><br><span class="line">set fileencoding=utf-8</span><br><span class="line"></span><br><span class="line">&quot;支持&#123;&#125;、[]、()、&quot;&quot;、&apos;&apos;自动补全</span><br><span class="line">inoremap ( &lt;c-r&gt;=OpenPair(&apos;(&apos;)&lt;CR&gt;</span><br><span class="line">inoremap ) &lt;c-r&gt;=ClosePair(&apos;)&apos;)&lt;CR&gt;</span><br><span class="line">inoremap &#123; &lt;c-r&gt;=OpenPair(&apos;&#123;&apos;)&lt;CR&gt;</span><br><span class="line">inoremap &#125; &lt;c-r&gt;=ClosePair(&apos;&#125;&apos;)&lt;CR&gt;</span><br><span class="line">inoremap [ &lt;c-r&gt;=OpenPair(&apos;[&apos;)&lt;CR&gt;</span><br><span class="line">inoremap ] &lt;c-r&gt;=ClosePair(&apos;]&apos;)&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; just for xml document, but need not for now.</span><br><span class="line">&quot;inoremap &lt; &lt;c-r&gt;=OpenPair(&apos;&lt;&apos;)&lt;CR&gt;</span><br><span class="line">&quot;inoremap &gt; &lt;c-r&gt;=ClosePair(&apos;&gt;&apos;)&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">function! OpenPair(char)</span><br><span class="line">    let PAIRs = &#123;</span><br><span class="line">                \ &apos;&#123;&apos; : &apos;&#125;&apos;,</span><br><span class="line">                \ &apos;[&apos; : &apos;]&apos;,</span><br><span class="line">                \ &apos;(&apos; : &apos;)&apos;,</span><br><span class="line">                \ &apos;&lt;&apos; : &apos;&gt;&apos;</span><br><span class="line">                \&#125;</span><br><span class="line">    if line(&apos;$&apos;)&gt;2000</span><br><span class="line">        let line = getline(&apos;.&apos;)</span><br><span class="line"></span><br><span class="line">        let txt = strpart(line, col(&apos;.&apos;)-1)</span><br><span class="line">    else</span><br><span class="line">        let lines = getline(1,line(&apos;$&apos;))</span><br><span class="line">        let line=&quot;&quot;</span><br><span class="line">        for str in lines</span><br><span class="line">            let line = line . str . &quot;\n&quot;</span><br><span class="line">        endfor</span><br><span class="line"></span><br><span class="line">        let blines = getline(line(&apos;.&apos;)-1, line(&quot;$&quot;))</span><br><span class="line">        let txt = strpart(getline(&quot;.&quot;), col(&apos;.&apos;)-1)</span><br><span class="line">        for str in blines</span><br><span class="line">            let txt = txt . str . &quot;\n&quot;</span><br><span class="line">        endfor</span><br><span class="line">    endif</span><br><span class="line">    let oL = len(split(line, a:char, 1))-1</span><br><span class="line">    let cL = len(split(line, PAIRs[a:char], 1))-1</span><br><span class="line"></span><br><span class="line">    let ol = len(split(txt, a:char, 1))-1</span><br><span class="line">    let cl = len(split(txt, PAIRs[a:char], 1))-1</span><br><span class="line"></span><br><span class="line">    if oL&gt;=cL || (oL&lt;cL &amp;&amp; ol&gt;=cl)</span><br><span class="line">        return a:char . PAIRs[a:char] . &quot;\&lt;Left&gt;&quot;</span><br><span class="line">    else</span><br><span class="line">        return a:char</span><br><span class="line">    endif</span><br><span class="line">endfunction</span><br><span class="line">function! ClosePair(char)</span><br><span class="line">    if getline(&apos;.&apos;)[col(&apos;.&apos;)-1] == a:char</span><br><span class="line">        return &quot;\&lt;Right&gt;&quot;</span><br><span class="line">    else</span><br><span class="line">        return a:char</span><br><span class="line">    endif</span><br><span class="line">endf</span><br></pre></td></tr></table></figure>
+
+<h3 id="实用设置"><a href="#实用设置" class="headerlink" title="实用设置"></a>实用设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot;&quot;实用设置</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; 设置当文件被改动时自动载入</span><br><span class="line">set autoread</span><br><span class="line">&quot; quickfix模式</span><br><span class="line">autocmd FileType c,cpp map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;</span><br><span class="line">&quot;代码补全 </span><br><span class="line">set completeopt=preview,menu </span><br><span class="line">&quot;允许插件  </span><br><span class="line">filetype plugin on</span><br><span class="line">&quot;共享剪贴板  </span><br><span class="line">set clipboard+=unnamed </span><br><span class="line">&quot;从不备份  </span><br><span class="line">set nobackup</span><br><span class="line">&quot;make 运行</span><br><span class="line">:set makeprg=g++\ -Wall\ \ %</span><br><span class="line">&quot;自动保存</span><br><span class="line">set autowrite</span><br><span class="line">set ruler                   &quot; 打开状态栏标尺</span><br><span class="line">set cursorline              &quot; 突出显示当前行</span><br><span class="line">set magic                   &quot; 设置魔术</span><br><span class="line">set guioptions-=T           &quot; 隐藏工具栏</span><br><span class="line">set guioptions-=m           &quot; 隐藏菜单栏</span><br><span class="line">&quot;set statusline=\ %&lt;%F[%1*%M%*%n%R%H]%=\ %y\ %0(%&#123;&amp;fileformat&#125;\ %&#123;&amp;encoding&#125;\ %c:%l/%L%)\</span><br><span class="line">&quot; 设置在状态行显示的信息</span><br><span class="line">set foldcolumn=0</span><br><span class="line">set foldmethod=indent </span><br><span class="line">set foldlevel=3 </span><br><span class="line">set foldenable              &quot; 开始折叠</span><br><span class="line">&quot; 不要使用vi的键盘模式，而是vim自己的</span><br><span class="line">set nocompatible</span><br><span class="line">&quot; 语法高亮</span><br><span class="line">set syntax=on</span><br><span class="line">&quot; 去掉输入错误的提示声音</span><br><span class="line">set noeb</span><br><span class="line">&quot; 在处理未保存或只读文件的时候，弹出确认</span><br><span class="line">set confirm</span><br><span class="line">&quot; 自动缩进</span><br><span class="line">set autoindent</span><br><span class="line">set cindent</span><br><span class="line">&quot; Tab键的宽度</span><br><span class="line">set tabstop=4</span><br><span class="line">&quot; 统一缩进为4</span><br><span class="line">set softtabstop=4</span><br><span class="line">set shiftwidth=4</span><br><span class="line">&quot; 不要用空格代替制表符</span><br><span class="line">set noexpandtab</span><br><span class="line">&quot; 在行和段开始处使用制表符</span><br><span class="line">set smarttab</span><br><span class="line">&quot; 显示行号</span><br><span class="line">set number</span><br><span class="line">&quot; 历史记录数</span><br><span class="line">set history=1000</span><br><span class="line">&quot;禁止生成临时文件</span><br><span class="line">set nobackup</span><br><span class="line">set noswapfile</span><br><span class="line">&quot;搜索忽略大小写</span><br><span class="line">set ignorecase</span><br><span class="line">&quot;搜索逐字符高亮</span><br><span class="line">set hlsearch</span><br><span class="line">set incsearch</span><br><span class="line">&quot;行内替换</span><br><span class="line">set gdefault</span><br><span class="line">&quot;编码设置</span><br><span class="line">set enc=utf-8</span><br><span class="line">set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936</span><br><span class="line">&quot;语言设置</span><br><span class="line">set langmenu=zh_CN.UTF-8</span><br><span class="line">set helplang=cn</span><br><span class="line">&quot; 我的状态行显示的内容（包括文件类型和解码）</span><br><span class="line">&quot;set statusline=%F%m%r%h%w\ [FORMAT=%&#123;&amp;ff&#125;]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %&#123;strftime(\&quot;%d/%m/%y\ -\ %H:%M\&quot;)&#125;</span><br><span class="line">&quot;set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]</span><br><span class="line">&quot; 总是显示状态行</span><br><span class="line">set laststatus=2</span><br><span class="line">&quot; 命令行（在状态行下）的高度，默认为1，这里是2</span><br><span class="line">set cmdheight=2</span><br><span class="line">&quot; 侦测文件类型</span><br><span class="line">filetype on</span><br><span class="line">&quot; 载入文件类型插件</span><br><span class="line">filetype plugin on</span><br><span class="line">&quot; 为特定文件类型载入相关缩进文件</span><br><span class="line">filetype indent on</span><br><span class="line">&quot; 保存全局变量</span><br><span class="line">set viminfo+=!</span><br><span class="line">&quot; 带有如下符号的单词不要被换行分割</span><br><span class="line">set iskeyword+=_,$,@,%,#,-</span><br><span class="line">&quot; 字符间插入的像素行数目</span><br><span class="line">set linespace=0</span><br><span class="line">&quot; 增强模式中的命令行自动完成操作</span><br><span class="line">set wildmenu</span><br><span class="line">&quot; 使回格键（backspace）正常处理indent, eol, start等</span><br><span class="line">set backspace=2</span><br><span class="line">&quot; 允许backspace和光标键跨越行边界</span><br><span class="line">set whichwrap+=&lt;,&gt;,h,l</span><br><span class="line">&quot; 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）</span><br><span class="line">set mouse=a</span><br><span class="line">set selection=exclusive</span><br><span class="line">set selectmode=mouse,key</span><br><span class="line">&quot; 通过使用: commands命令，告诉我们文件的哪一行被改变过</span><br><span class="line">set report=0</span><br><span class="line">&quot; 在被分割的窗口间显示空白，便于阅读</span><br><span class="line">set fillchars=vert:\ ,stl:\ ,stlnc:\</span><br><span class="line">&quot; 高亮显示匹配的括号</span><br><span class="line">set showmatch</span><br><span class="line">&quot; 匹配括号高亮的时间（单位是十分之一秒）</span><br><span class="line">set matchtime=1</span><br><span class="line">&quot; 光标移动到buffer的顶部和底部时保持3行距离</span><br><span class="line">set scrolloff=3</span><br><span class="line">&quot; 为C程序提供自动缩进</span><br><span class="line">set smartindent</span><br><span class="line">&quot; 高亮显示普通txt文件（需要txt.vim脚本）</span><br><span class="line">au BufRead,BufNewFile *  setfiletype txt</span><br><span class="line">&quot;自动补全</span><br><span class="line">:inoremap ( ()&lt;ESC&gt;i</span><br><span class="line">:inoremap ) &lt;c-r&gt;=ClosePair(&apos;)&apos;)&lt;CR&gt;</span><br><span class="line">:inoremap &#123; &#123;&lt;CR&gt;&#125;&lt;ESC&gt;O</span><br><span class="line">:inoremap &#125; &lt;c-r&gt;=ClosePair(&apos;&#125;&apos;)&lt;CR&gt;</span><br><span class="line">:inoremap [ []&lt;ESC&gt;i</span><br><span class="line">:inoremap ] &lt;c-r&gt;=ClosePair(&apos;]&apos;)&lt;CR&gt;</span><br><span class="line">:inoremap &quot; &quot;&quot;&lt;ESC&gt;i</span><br><span class="line">:inoremap &apos; &apos;&apos;&lt;ESC&gt;i</span><br><span class="line">function! ClosePair(char)</span><br><span class="line">    if getline(&apos;.&apos;)[col(&apos;.&apos;) - 1] == a:char</span><br><span class="line">        return &quot;\&lt;Right&gt;&quot;</span><br><span class="line">    else</span><br><span class="line">        return a:char</span><br><span class="line">    endif</span><br><span class="line">endfunction</span><br><span class="line">filetype plugin indent on </span><br><span class="line">&quot;打开文件类型检测, 加了这句才可以用智能补全</span><br><span class="line">set completeopt=longest,menu</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Linux常用指令/" rel="next" title="Linux常用指令">
+                <i class="fa fa-chevron-left"></i> Linux常用指令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript基础-01类型转换、原型/" rel="prev" title="JavaScript基础-01 类型转换和原型">
+                JavaScript基础-01 类型转换和原型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-进入编辑模式（esc退出）"><span class="nav-number">1.</span> <span class="nav-text">1.进入编辑模式（esc退出）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-尾行模式的操作-esc或两次esc"><span class="nav-number">2.</span> <span class="nav-text">2.尾行模式的操作(esc或两次esc)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字符串替换cont1被替换为coont2"><span class="nav-number">3.</span> <span class="nav-text">3. 字符串替换cont1被替换为coont2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-命令模式操作"><span class="nav-number">4.</span> <span class="nav-text">3.命令模式操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-光标的移动"><span class="nav-number">4.1.</span> <span class="nav-text">1) 光标的移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-内容的删除"><span class="nav-number">4.2.</span> <span class="nav-text">2) 内容的删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-内容的复制"><span class="nav-number">4.3.</span> <span class="nav-text">3) 内容的复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-相关快键键操作"><span class="nav-number">4.4.</span> <span class="nav-text">4) 相关快键键操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi-vim编辑器配置"><span class="nav-number">5.</span> <span class="nav-text">vi/vim编辑器配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在线配置"><span class="nav-number">5.1.</span> <span class="nav-text">在线配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单配置："><span class="nav-number">5.2.</span> <span class="nav-text">简单配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实用设置"><span class="nav-number">5.3.</span> <span class="nav-text">实用设置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

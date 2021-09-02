@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="javascript总结：javascript 主要包括三个部分：1.DOM; 2.BOM; 3.ECMAscript(ES5,ES6,ES7,ES8)">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的DOM和BOM操作总结">
+<meta property="og:url" content="https://www.xin666.cc/JavaScript中的DOM和BOM操作总结/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="javascript总结：javascript 主要包括三个部分：1.DOM; 2.BOM; 3.ECMAscript(ES5,ES6,ES7,ES8)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-11T07:17:58.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中的DOM和BOM操作总结">
+<meta name="twitter:description" content="javascript总结：javascript 主要包括三个部分：1.DOM; 2.BOM; 3.ECMAscript(ES5,ES6,ES7,ES8)">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/JavaScript中的DOM和BOM操作总结/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript中的DOM和BOM操作总结 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/JavaScript中的DOM和BOM操作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript中的DOM和BOM操作总结
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-10 10:03:00" itemprop="dateCreated datePublished" datetime="2017-08-10T10:03:00+08:00">2017-08-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:58" itemprop="dateModified" datetime="2021-08-11T15:17:58+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">23k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">21 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>javascript总结：<br>javascript 主要包括三个部分：1.DOM; 2.BOM; 3.ECMAscript(ES5,ES6,ES7,ES8)</p>
+<a id="more"></a>
+<h2 id="一-DOM（对象文档模型）"><a href="#一-DOM（对象文档模型）" class="headerlink" title="一.DOM（对象文档模型）"></a>一.DOM（对象文档模型）</h2><h3 id="1-几个重要概念："><a href="#1-几个重要概念：" class="headerlink" title="1.几个重要概念："></a>1.几个重要概念：</h3><p>1）dom节点：元素，属性，文本，注释<br>2）dom节点树；document —&gt; html(root) —&gt; head —&gt; title…</p>
+<h3 id="2-获取dom节点方法"><a href="#2-获取dom节点方法" class="headerlink" title="2.获取dom节点方法"></a>2.获取dom节点方法</h3><p>1） 获取dom元素节点方法<br>a. document.getElementById(‘id名称’);<br>b. document.getElementsByTagName(‘元素名称’);    //返回对象集合<br>c. document.getElementsByClassName(‘class名称’); //返回对象集合<br>d. document.getElementsByName(‘name名称’);    //返回对象集合<br>e. document.querySelector(‘#id 或 .类名 或 元素名’) //返回文档中匹配指定的CSS选择器的第一元素 ie8+支持<br>f. document.querySelectorAll()    //返回匹配指定 CSS 选择器元素的所有子元素节点列表<br>2） 获取dom属性节点方法<br>a. element.getAttributeNode(‘属性名’)    //返回指定属性 节点<br>b. element.getAttribute(‘属性名’)    //返回指定属性 值<br>c. element.setAttribute(‘属性名’,’值’)    //设置或者改变指定属性并指定值<br>d. element.setAttributeNode(‘属性节点’)    //设置或者改变指定属性节点<br>e. element.attributes    //返回一个元素的属性数组</p>
+<p>3） 获取dom文本节点<br>a. element.textContent    //设置或返回一个节点和它的文本内容<br>b. element.innerHTML = ‘设置的内容’    //设置或者返回元素的内容</p>
+<h3 id="3-dom的遍历"><a href="#3-dom的遍历" class="headerlink" title="3.dom的遍历"></a>3.dom的遍历</h3><p>1） dom的元素遍历<br>a. element.childNodes    //返回某个元素的一个子节点的数组<br>b. element.parentNode    //返回某个元素的父节点<br>c. element.firstChild    //返回某个元素的第一个子节点<br>d. element.lastChild    //返回某个元素的最后一个子节点<br>e. element.previousSibling    //返回某个元素的上一个元素节点<br>f. element.nextSibling    //返回某个元素的下一个元素节点<br>g. element.ownerDocument    //返回元素的根元素（文档对象）</p>
+<h3 id="4-dom的-增-删-改-查-复制-替换"><a href="#4-dom的-增-删-改-查-复制-替换" class="headerlink" title="4.dom的 增 删 改 查 复制 替换"></a>4.dom的 增 删 改 查 复制 替换</h3><p>1） dom元素的操作<br>a. document.createElement(‘div(元素名)’)    //创建一个元素节点<br>b. element.appendChild(‘div(元素节点)’)    //为元素添加一个新的子元素<br>c. element.insertBefore(‘新节点’,’子节点’)    //现有的子元素之前插入一个新的子元素<br>d. element.removeChild(‘元素节点’)    //删除一个子元素 element删除节点的父节点 元素节点.parendNode;<br>e. element.replaceChild(‘新节点’,’替换的节点’)    //替换一个子元素 element替换节点的父节点 新节点.parendNode;<br>f. element.cloneNode(true)    //克隆某个元素 element 是克隆的元素 true递归克隆</p>
+<p>2） dom属性的操作<br>a. document.createAttribute(‘属性名’)    //创建一个属性节点<br>b. element.removeAttributeNode(‘属性节点’)    //删除指定属性节点并 返回移除后的节点<br>c. element.removeAttribute(‘属性名’)    //从元素中删除指定的属性<br>d. element.getAttributeNode(‘属性名’)    //返回指定属性 节点<br>e. element.getAttribute(‘属性名’)    //返回指定元素的属性 值<br>f. element.setAttributeNode(‘属性节点’)    //设置或者改变指定属性节点。<br>g. element.setAttribute(‘属性名’,’值’)    //设置或者改变指定属性并指定值<br>h. element.attributes    //返回一个元素的属性数组<br>3） dom文本的操作<br>a. document.createTextNode()    //创建一个文本节点<br>b. element.innerHTML=’文本内容’    //设置或者返回元素的内容</p>
+<h3 id="5-dom-样式操作"><a href="#5-dom-样式操作" class="headerlink" title="5.dom 样式操作"></a>5.dom 样式操作</h3><p>1) element.style.height(backgroundColor…) = ‘css值’ //设置或返回某个元素的css属性<br>2) element.style.cssText = ‘’<br>3) element.style.setProperty(“width”,”200px”,””) //设置属性，第三个值为important优先值，可不写<br>4) element.style.removeProperty(“width”)    //删除并返回css样式<br>5) element.style.length    //返回css长度</p>
+<p>6) element.classList.add(‘class1 class2 class3’) //添加样式<br>7) element.classList.remove(‘class1 class2 …’)    //删除样式</p>
+<h3 id="6-其它dom操作"><a href="#6-其它dom操作" class="headerlink" title="6.其它dom操作"></a>6.其它dom操作</h3><p>1) dom的判断<br>element.addEventListener(‘click’,function(){},true)    //向指定元素添加事件句柄<br>true表示指定事件是否在捕获或冒泡阶段执行。<br>removeEventListener()<br>element.hasAttribute(‘属性名’)    //如果元素中存在指定的属性返回 true，否则返回false<br>element.hasAttributes()    //如果元素有任何属性返回true，否则返回false。<br>element.hasChildNodes()    //返回一个元素是否具有任何子元素<br>element.hasfocus()    //返回布尔值，检测文档或元素是否获取焦点<br>element.id=’值’    //设置或者返回元素的 id<br>element1.isEqualNode(element2)    //检查两个元素是否相等 e1 ?= e2;<br>element.isSupported()    //如果在元素中支持指定特征返回 true<br>element.toString()    //一个元素转换成字符串</p>
+<p>2）获取节点类型<br>element.nodeName    //返回元素的标记名（大写）<br>element.nodeType    //返回节点类型 1：元素，2：属性，3：文本,8：注释，9：整个文档<br>element.nodeValue    //返回元素的节点值</p>
+<p>document.forms    //返回对文档中所有 Form 对象引用<br>document.body    //返回文档的body元素<br>document.documentElement    //返回文档的根节点<br>document.images    //返回对文档中所有 Image 对象引用<br>document.open()<br>document.close()<br>document.cookie()    //设置或返回与当前文档有关的所有 cookie</p>
+<p>4） 获取dom中的高和宽<br>element.clientHeight //返回内容的可视高度（不包括边框，边距或滚动条）<br>element.clientWidth    //返回内容的可视宽度（不包括边框，边距或滚动条）</p>
+<p>element.offsetHeight //返回，任何一个元素的高度包括边框和填充，但不是边距<br>element.offsetWidth //返回元素的宽度，包括边框和填充，但不是边距<br>element.offsetLeft    //返回当前元素的相对水平偏移位置的偏移容器<br>element.offsetTop    //返回当前元素的相对垂直偏移位置的偏移容器<br>element.offsetParent    //返回元素的偏移容器</p>
+<p>element.scrollHeight    //返回整个元素的高度（包括带滚动条的隐蔽的地方）<br>element.scrollLeft    //返回当前视图中的实际元素的左边缘和左边缘之间的距离<br>element.scrollTop    //返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离<br>element.scrollWidth    //返回元素的整个宽度（包括带滚动条的隐蔽的地方）</p>
+<p>nodelist.item(0) == nodelist[0] //返回某个元素基于文档树的索引<br>nodelist.length    //返回节点列表的节点数目</p>
+<h3 id="7-常用dom事件："><a href="#7-常用dom事件：" class="headerlink" title="7.常用dom事件："></a>7.常用dom事件：</h3><p>1) 鼠标事件<br>onlick // 点击<br>ondbclick // 双击<br>onmousedown // 按下<br>onmouseup    // 松开<br>onmouseenter // 移动到元素上时触发<br>onmouseleave // 移出元素时触发<br>onmousemove // 鼠标被移动<br>onmouseover // 鼠标移到某元素之上<br>onmouseout // 鼠标从某元素移开<br>2) 常用 键盘事件<br>onkeydown // 按下<br>onkeyup    // 松开<br>onkeypress // 按下并松开<br>3) 框架/对象事件<br>onload,onresize,onscroll,<br>4) 表单事件<br>onchange // 表单元素的内容改变时触发( <code>&lt;input&gt;, &lt;keygen&gt;, &lt;select&gt;, 和 &lt;textarea&gt;</code>)<br>onfocus // 元素获取焦点时触发<br>onblur // 元素失去焦点时触发<br>oninput //元素获取用户输入时触发<br>onselect // 用户选取文本时触发 ( <code>&lt;input&gt; 和 &lt;textarea&gt;</code>)<br>onsearch //用户向搜索域输入文本时触发 ( <code>&lt;input=&quot;search&quot;&gt;</code>)<br>onreset // 表单重置时触发<br>onsubmit // 表单提交时触发</p>
+<p>5) 剪贴板事件<br>oncopy // 用户拷贝元素内容时触发<br>oncut // 用户剪切元素内容时触发<br>onpaste // 该事件在用户粘贴元素内容时触发<br>6) 拖动事件<br>ondrag    //该事件在元素正在拖动时触发<br>ondragend    //该事件在用户完成元素的拖动时触发<br>ondragenter    //该事件在拖动的元素进入放置目标时触发<br>ondragleave    //该事件在拖动元素离开放置目标时触发<br>ondragover    //该事件在拖动元素在放置目标上时触发<br>ondragstart    //该事件在用户开始拖动元素时触发<br>ondrop    //该事件在拖动元素放置在目标区域时触发</p>
+<p>7) 鼠标/键盘事件对象<br>clientX    //返回当事件被触发时，鼠标指针的水平坐标。<br>clientY    //返回当事件被触发时，鼠标指针的垂直坐标。<br>keyCode    //返回onkeypress事件触发的键的值的字符代码</p>
+<p>8) 动画事件<br>animationend    // 该事件在 CSS 动画结束播放时触发<br>animationiteration    // 该事件在 CSS 动画重复播放时触发<br>animationstart    // 该事件在 CSS 动画开始播放时触发<br>transitionend    // 该事件在 CSS 完成过渡后触发。</p>
+<p>9) 事件对象</p>
+<p>属性：<br>bubbles    // 返回布尔值，指示事件是否是起泡事件类型。    2<br>cancelable    // 返回布尔值，指示事件是否可拥可取消的默认动作。    2<br>currentTarget    // 返回其事件监听器触发该事件的元素。    2<br>eventPhase    // 返回事件传播的当前阶段。    2<br>target    // 返回触发此事件的元素（事件的目标节点）。    2<br>timeStamp    // 返回事件生成的日期和时间。    2<br>type    // 返回当前 Event 对象表示的事件的名称。</p>
+<p>方法：<br>initEvent()    // 初始化新创建的 Event 对象的属性。    2<br>preventDefault()    // 通知浏览器不要执行与事件关联的默认动作。    2<br>stopPropagation()    // 不再派发事件。</p>
+<p>目标事件方法：<br>addEventListener()    // 允许在目标事件中注册监听事件(IE8 = attachEvent())    2<br>dispatchEvent()    // 允许发送事件到监听器上 (IE8 = fireEvent())    2<br>removeEventListener()    // 运行一次注册在事件目标上的监听事件(IE8 = detachEvent())</p>
+<h2 id="二-BOM（浏览器对象模型）"><a href="#二-BOM（浏览器对象模型）" class="headerlink" title="二.BOM（浏览器对象模型）"></a>二.BOM（浏览器对象模型）</h2><h3 id="1-window-对象"><a href="#1-window-对象" class="headerlink" title="1.window 对象"></a>1.window 对象</h3><p>1) window 对象属性</p>
+<p>2) window 对象方法<br>alert()    //显示带有一段消息和一个确认按钮的警告框<br>prompt()    //显示可提示用户输入的对话框<br>setInterval()    //按照指定的周期（以毫秒计）来调用函数或计算表达式<br>setTimeout()    //在指定的毫秒数后调用函数或计算表达式<br>clearInterval() //取消由 setInterval() 设置的 timeout<br>clearTimeout()    //取消由 setTimeout() 方法设置的 timeout<br>moveBy()    //可相对窗口的当前坐标把它移动指定的像素<br>moveTo()    //把窗口的左上角移动到一个指定的坐标<br>resizeBy()    //按照指定的像素调整窗口的大小<br>resizeTo()    //把窗口的大小调整到指定的宽度和高度<br>scrollBy()    //按照指定的像素值来滚动内容<br>scrollTo()    //把内容滚动到指定的坐标<br>close()    //关闭浏览器窗口<br>open()    //打开一个新的浏览器窗口或查找一个已命名的窗口<br>print()    //打印当前窗口的内容</p>
+<h3 id="2-Navigator-对象-有关浏览器的信息。"><a href="#2-Navigator-对象-有关浏览器的信息。" class="headerlink" title="2.Navigator 对象 有关浏览器的信息。"></a>2.Navigator 对象 有关浏览器的信息。</h3><h3 id="3-Screen-对象-有关客户端显示屏幕的信息"><a href="#3-Screen-对象-有关客户端显示屏幕的信息" class="headerlink" title="3.Screen 对象 有关客户端显示屏幕的信息"></a>3.Screen 对象 有关客户端显示屏幕的信息</h3><p>screen.width    //返回屏幕的总宽度<br>screen.height    //返回屏幕的总高度<br>screen.availHeight    //返回屏幕的高度（不包括Windows任务栏）<br>screen.availWidth    //返回屏幕的宽度（不包括Windows任务栏）<br>screen.pixelDepth    //返回屏幕的颜色分辨率（每象素的位数）<br>screen.colorDepth    //返回目标设备或缓冲器上的调色板的比特深度</p>
+<h3 id="4-History-对象"><a href="#4-History-对象" class="headerlink" title="4.History 对象"></a>4.History 对象</h3><p>history.length    //返回在历史列表中的网址数量<br>window.history.back()    //加载 history 列表中的前一个 URL<br>window.history.forward()//加载 history 列表中的下一个 URL<br>window.history.go(-2)    //加载 history 列表中的某个具体页面</p>
+<h3 id="5-Location-对象"><a href="#5-Location-对象" class="headerlink" title="5.Location 对象"></a>5.Location 对象</h3><p>location.href=’<a href="http://www.baidu.com&#39;" target="_blank" rel="noopener">http://www.baidu.com&#39;</a> //返回完整的URL或设置url</p>
+<h3 id="浏览器对象模型BOM小结"><a href="#浏览器对象模型BOM小结" class="headerlink" title="浏览器对象模型BOM小结"></a>浏览器对象模型BOM小结</h3><ol>
+<li><p>概念<br>BOM (Browser Object Model) 浏览器对象模型<br>BOM提供了独立于内容而与浏览器窗口进行交互的对象<br>BOM主要用于管理窗口与窗口之间的通讯，因此其核心对象是window<br>BOM缺乏标准，JavaScript语法的标准化组织是ECMA，DOM的标准化组织是W3C,<br>BOM最初是Netscape浏览器标准的一部分；<br>window对象 是浏览器中的Global对象<br>窗口设置 (打开、大小、位置)<br>间歇调用与超时调用<br>对话框 (提示框、确认框、输入框)<br>location对象 (位置对象包含各种属性和方法)<br>navigator对象 用于提供用户浏览器的相关信息<br>screen对象 包含有关用户屏幕的信息<br>history对象 包含有关用户的访问历史记录打开新窗口<br>window.open(URL,name,specs);<br>URL：打开页面的URL，没有指定URL将打开新的空白窗口<br>name：</p>
+<p>  _blank 新窗口打开，默认<br>  _self 当前页面打开<br>  name 窗口名称 </p>
+</li>
+</ol>
+<p>2.window.close()  </p>
+<p>specs：一个逗号分隔的项目列表。支持以下值：<br>height=pixels 窗口的高度，最小值为100<br>width=pixels 窗口的宽度，最小值为100<br>left=pixels top=pixels ……<br>示例 window.open(‘’,’’,’width=200,height=200’);</p>
+<p>3.关闭窗口  </p>
+<p>window.close() 方法用于关闭浏览器窗口(DOM window对象的方法)<br>close() 方法将关闭有 window 指定的顶层浏览器窗口。<br>某个窗口可以通过调用 self.close() 或只调用 close() 来关闭其自身。<br>只有通过 JavaScript 代码打开的窗口才能够由 JavaScript 代码关闭。<br>这阻止了恶意的脚本终止用户的浏览器。<br>窗口大小<br>调整窗口大小 window.resizeTo(width,height);<br>调整窗口大小 window.resizeBy(width,height);</p>
+<p>4.窗口位置  </p>
+<p>window.screenLeft属性返回窗口相对于屏幕的X坐标<br>window.screenTop属性返回窗口相对于屏幕的Y坐标<br>window.screenX属性返回窗口相对于屏幕的X坐标<br>window.screenY属性返回窗口相对于屏幕的Y坐标</p>
+<p>5.窗口可视区尺寸  </p>
+<p>document.documentElement.clientWidth //offset 获取的是整个文档的高度<br>document.body.clientWidth<br>document.documentElement.clientHeight<br>document.body.clientHeight</p>
+<p>6.窗口垂直滚动条  </p>
+<p>document.body.scrollTop<br>document.documentElement.scrollTop</p>
+<p>7.间歇调用  </p>
+<p>setInterval ( 函数/名称 , 毫秒数 )<br>表示每经过一定的毫秒后，执行一次相应的函数(重复)</p>
+<p>8.超时调用  </p>
+<p>setTimeout ( 函数/名称 , 毫秒数 )<br>表示经过一定的毫秒后，只执行一次相应的函数(不重复)<br>清除计时器：clearInterval( ); clearTimeout( );</p>
+<p>9.提示框   </p>
+<p>alert (“ ”);<br>用户必须先关闭该消息框然后才能继续进行操作<br>确认框 confirm(“ ”);<br>confirm(“需要确认的内容”);<br>选择“确定”返回true 选择“取消”返回false<br>输入框 prompt(“ ”,“ ”);<br>prompt(“对话框中显示的文本”,”默认的输入文本”);<br>单击取消按钮，则返回 null 单击确认按钮，则返回输入的文本<br>location对象 包含有关当前页面的URL信息</p>
+<p>属性：</p>
+<pre><code>host 设置或返回主机名和当前 URL 的端口号。
+
+port 设置或返回当前 URL 的端口号。
+
+href 设置或返回完整的 URL。 ……</code></pre><p>方法：</p>
+<pre><code>assign() 加载新的文档。
+
+reload() 重新加载当前文档。
+
+replace() 用新的文档替换当前文档。</code></pre><p>navigator对象部分属性<br>appCodeName 返回浏览器的代码名。<br>appName 返回浏览器的名称。<br>cookieEnabled 返回指明浏览器中是否启用cookie的布尔值。<br>platform 返回运行浏览器的操作系统平台。<br>appVersion 返回浏览器的平台和版本信息。<br>userAgent 返回由客户机发送服务器的user-agent头部的值。<br>用户浏览器识别码<br>var str=window.navigator.userAgent;<br>var str=window.navigator.appVersion;<br>大小写转换<br>str.toLowerLocalCase( ); 转换成小写<br>str.toUpperLocalCase( ); 转换成大写<br>indexOf( )方法<br>可返回某个指定的字符串值在字符串中首次出现的位置<br>语法：string.indexOf(str,index);<br>参数：str——-规定需检索的字符串值<br>index—-规定在字符串中开始检索的位置<br>注意：indexOf( ) 方法对大小写敏感 如果要检索的字符串值没有出现，则该方法返回 -1<br>screen 对象包含有关客户端显示屏幕的信息<br>width 返回显示器屏幕的宽度。<br>height 返回显示器屏幕的高度。<br>availHeight 返回显示屏幕的高度 (除 Windows 任务栏之外)。<br>availWidth 返回显示屏幕的宽度 (除 Windows 任务栏之外)。<br>history 对象包含用户在浏览器中访问过的URL<br>length 返回浏览器历史列表中的 URL 数量。<br>back() 加载 history 列表中的前一个 URL。<br>forward() 加载 history 列表中的下一个 URL。<br>go() 加载 history 列表中的某个具体页面。<br>history.go(-1) 后退一页<br>history.go(1) 前进一页<br><a href="http://www.cnblogs.com/paulirish/" target="_blank" rel="noopener">http://www.cnblogs.com/paulirish/</a> 大家可以去这个博客看一下，里面有操作代码</p>
+<h2 id="三-ECMAscript（javascript核心）"><a href="#三-ECMAscript（javascript核心）" class="headerlink" title="三.ECMAscript（javascript核心）"></a>三.ECMAscript（javascript核心）</h2><h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h3><pre><code>1) 6种数据类型：
+    a.原始类型:number,string,boolean,null,undefined
+    b.引用类型:object,function,array 
+2) 运算符
+    a.算术运算符: +, -, *, /, %, ++, --
+    b.赋值运算符: =, +=, -=, *=, /=, %=
+    c.比较运算符: ==, ===, !=, !==, &gt;, &lt;, &gt;=, &lt;=
+    d.逻辑运算符: &amp;&amp;, ||, !//&apos;||&apos;如果左边为真，右边不执行，&apos;&amp;&amp;&apos;如果左边为假，右边不执行
+    e.条件运算符: 三元运算variablename=(condition)?value1:value2 
+3) 条件语句
+    a.if...else语句
+    b.if...else if...else语句
+    c.switch...case语句
+    d.try..catch(e){}
+4) 循环语句
+    a.for(){}语句
+    b.while(){}语句
+    c.do...while()语句
+    d.array.forEach(callback[, thisObject]) //callback中三个参数1:当前项,2:当前索引，3:数组本身
+    f.for(x in array) //x代表索引，array代表数组
+5) break和continue语句</code></pre><h3 id="2-javascript类型转换"><a href="#2-javascript类型转换" class="headerlink" title="2.javascript类型转换"></a>2.javascript类型转换</h3><pre><code>1) 转换函数(显示转换)
+    a.parseInt(&apos;字符串&apos;,基模式),parseFloat(&apos;字符串&apos;)    //从位置0开始查看每个字符，直到找到第一个非有效的字符为止
+                                                        //只有对String类型调用这些方法，这两个函数才能正确运行；
+                                                        //对其他类型返回的都是NaN,parseFloat()必须以十进制形式表示浮点数，无基模式
+    b.toString(基模式)            //在默认模式中，无论最初采用什么表示法声明数字，
+                                //Number 类型的 toString() 方法返回的都是数字的十进制表示
+                                //采用 Number 类型的 toString() 方法的基模式，可以用不同的基输出数字
+2) 强制转换(显示转换)
+    a.Number(value)                //把给定的值转换成数字（可以是整数或浮点数） 转换的是整个值，而不是部分值
+
+    b.String(value)                //把给定的值转换成字符串
+                                //对 null 和 undefined 值强制类型转换可以生成字符串而不引发错误：
+
+    c.Boolean(value)            //把给定的值转换成Boolean型
+                                //当要转换的值是至少有一个字符的字符串、非 0 数字或对象时，Boolean() 函数将返回 
+                                //true。如果该值是空字符串、数字 0、undefined 或 null，它将返回 false。
+    注意:
+    Number,String,Boolean,强制类型转换
+    Number() 当转换一个 对象 时，先调用 valueOf()方法，如果返回对象，则调用 toString()方法
+    String() 当转换一个 对象 时，先调用 toString()方法，如果返回对象，则调用 valueOf()方法
+3) 隐式转换
+    a.转换数值：var a = &apos;123&apos;; a=a++
+    b.转换成布尔值:var a;if(a){};
+    c.转换成字符串：var o = function(){}; var s = &apos; &apos;+o;//把函数o转换成字符串</code></pre><h3 id="3-JavaScript-对象中的方法和属性"><a href="#3-JavaScript-对象中的方法和属性" class="headerlink" title="3.JavaScript 对象中的方法和属性"></a>3.JavaScript 对象中的方法和属性</h3><pre><code>1) JavaScript Array对象
+    a.push(arr)            //向数组的末尾添加一个或更多元素，并返回新的长度
+    b.pop()                //删除并返回数组的最后一个元素
+    c.unshift(arr)        //向数组的开头添加一个或更多元素，并返回新的长度
+    d.shift()            //删除并返回数组的第一个元素
+    e.indexOf(&apos;数组元素&apos;,&apos;开始位置&apos;)    //搜索数组中的元素，并返回它所在的位置
+    f.lastindexOf(&apos;数组元素&apos;,&apos;开始位置&apos;)        //返回一个指定的字符串值最后出现的位置，
+                                                //在一个字符串中的指定位置从后向前搜索
+    g.slice(star,end)    //选取数组的的一部分，并返回一个新数组
+    h.splice(开始位置,删除的个数,添加数组元素)     //从数组中添加或删除元素 返回删除组成的数组
+    i.reverse()            //反转数组的元素顺序
+    j.sort(function(){})//对数组的元素进行排序
+    k.toString()        //把数组转换为字符串，并返回结果
+    l.valueOf()            //返回数组对象的原始值
+    m.join()            //把数组的所有元素 按指定分隔符 放入一个字符串
+    n.Array.length=&apos;num&apos;//设置 或 返回数组的长度        
+
+2) JavaScript String对象
+    a.charAt(num)         //返回在指定位置的字符
+    b.slice(star,end)    //提取字符串的片断，并在新的字符串中返回被提取的部分
+    c.substr(star,num)  //从起始索引号提取字符串中指定数目的字符
+    d.substring(star,end)//提取字符串中两个指定的索引号之间的字符 star,end必须是非负数
+    e.indexOf(&apos;字符串&apos;,&apos;开始位置&apos;)        //返回某个指定的字符串值在字符串中首次出现的位置
+    f.lastindexOf(&apos;字符串&apos;,&apos;开始位置&apos;)    //从后向前搜索字符串。
+    g.trim()            //去除字符串两端空格
+    h.toLowerCase()        //把字符串转换为小写
+    i.toUpperCase()        //把字符传转换为大写
+3) JavaScript Math对象
+    方法    描述
+    Math.abs(x)                //返回 x 的绝对值
+    Math.acos(x)            //返回 x 的反余弦值
+    Math.asin(x)            //返回 x 的反正弦值
+    Math.atan(x)            //以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值
+    Math.atan2(y,x)            //返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）
+    Math.ceil(x)            //对数进行上舍入
+    Math.cos(x)                //返回数的余弦
+    Math.exp(x)                //返回 Ex 的指数
+    Math.floor(x)            //对 x 进行下舍入
+    Math.log(x)                //返回数的自然对数（底为e）
+    Math.max(x,y,z,...,n)    //返回 x,y,z,...,n 中的最高值
+    Math.min(x,y,z,...,n)    //返回 x,y,z,...,n中的最低值
+    Math.pow(x,y)            //返回 x 的 y 次幂
+    Math.random()            //返回 0 ~ 1 之间的随机数
+    Math.round(x)            //把数四舍五入为最接近的整数
+    Math.sin(x)                //返回数的正弦
+    Math.sqrt(x)            //返回数的平方根
+    Math.tan(x)                //返回角的正切
+    Math.PI                 //返回圆周率
+
+4) JavaScript Date对象
+
+    getDate()            //从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+    getDay()            //从 Date 对象返回一周中的某一天 (0 ~ 6)。
+    getFullYear()        //从 Date 对象以四位数字返回年份。
+    getHours()            //返回 Date 对象的小时 (0 ~ 23)。
+    getMilliseconds()    //返回 Date 对象的毫秒(0 ~ 999)。
+    getMinutes()        //返回 Date 对象的分钟 (0 ~ 59)。
+    getMonth()            //从 Date 对象返回月份 (0 ~ 11)。
+    getSeconds()        //返回 Date 对象的秒数 (0 ~ 59)。
+    getTime()            //返回 1970 年 1 月 1 日至今的毫秒数。
+    getTimezoneOffset()    //返回本地时间与格林威治标准时间 (GMT) 的分钟差。
+    getUTCDate()        //根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。
+    getUTCDay()            //根据世界时从 Date 对象返回周中的一天 (0 ~ 6)。
+    getUTCFullYear()    //根据世界时从 Date 对象返回四位数的年份。
+    getUTCHours()        //根据世界时返回 Date 对象的小时 (0 ~ 23)。
+    getUTCMilliseconds()//根据世界时返回 Date 对象的毫秒(0 ~ 999)。
+    getUTCMinutes()        //根据世界时返回 Date 对象的分钟 (0 ~ 59)。
+    getUTCMonth()        //根据世界时从 Date 对象返回月份 (0 ~ 11)。
+    getUTCSeconds()        //根据世界时返回 Date 对象的秒钟 (0 ~ 59)。
+    getYear()            //已废弃。 请使用 getFullYear() 方法代替。
+    parse()                //返回1970年1月1日午夜到指定日期（字符串）的毫秒数。
+    setDate()            //设置 Date 对象中月的某一天 (1 ~ 31)。
+    setFullYear()        //设置 Date 对象中的年份（四位数字）。
+    setHours()            //设置 Date 对象中的小时 (0 ~ 23)。
+    setMilliseconds()    //设置 Date 对象中的毫秒 (0 ~ 999)。
+    setMinutes()        //设置 Date 对象中的分钟 (0 ~ 59)。
+    setMonth()            //设置 Date 对象中月份 (0 ~ 11)。
+    setSeconds()        //设置 Date 对象中的秒钟 (0 ~ 59)。
+    setTime()            //方法以毫秒设置 Date 对象。
+    setUTCDate()        //根据世界时设置 Date 对象中月份的一天 (1 ~ 31)。
+    setUTCFullYear()    //根据世界时设置 Date 对象中的年份（四位数字）。
+    setUTCHours()        //根据世界时设置 Date 对象中的小时 (0 ~ 23)。
+    setUTCMilliseconds()//根据世界时设置 Date 对象中的毫秒 (0 ~ 999)。
+    setUTCMinutes()        //根据世界时设置 Date 对象中的分钟 (0 ~ 59)。
+    setUTCMonth()        //根据世界时设置 Date 对象中的月份 (0 ~ 11)。
+    setUTCSeconds()        //方法用于根据世界时 (UTC) 设置指定时间的秒字段。
+    setYear()            //已废弃。请使用 setFullYear() 方法代替。
+    toDateString()        //把 Date 对象的日期部分转换为字符串。
+    toGMTString()        //已废弃。请使用 toUTCString() 方法代替。
+    toISOString()        //使用 ISO 标准返回字符串的日期格式。
+    toJSON()            //以 JSON 数据格式返回日期字符串。
+    toLocaleDateString()    //根据本地时间格式，把 Date 对象的日期部分转换为字符串。
+    toLocaleTimeString()    //根据本地时间格式，把 Date 对象的时间部分转换为字符串。
+    toLocaleString()    //据本地时间格式，把 Date 对象转换为字符串。
+    toString()    把 Date //对象转换为字符串。
+    toTimeString()        //把 Date 对象的时间部分转换为字符串。
+    toUTCString()        //根据世界时，把 Date 对象转换为字符串。
+    UTC()                //根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数。
+    valueOf()            //返回 Date 对象的原始值。
+5) JavaScript Number对象
+    toFixed(x)             //把数字转换为字符串，结果的小数点后有指定位数的数字
+    toString(10)        //把数值转换成字符串，使用指定基数
+    isNaN()
+
+6) JavaScript Boolean对象
+    toString()            //把布尔值转换为字符串，并返回结果
+7) JavaScript RegExt对象
+    compile()            //编译正则表达式    
+    exec()                //检索字符串中指定的值。返回找到的值，并确定其位置
+    test()                //检索字符串中指定的值。返回 true 或 false
+    search()            //检索与正则表达式相匹配的值
+    match()                //找到一个或多个正则表达式的匹配
+    replace()            //替换与正则表达式匹配的子串
+    split()                //把字符串分割为字符串数组
+
+8) JavaScript 全局属性/函数
+    Infinity            //代表正的无穷大的数值
+    NaN                    //指示某个值是不是数字值
+    undefined            //指示未定义的值
+
+    decodeURI()            //解码某个编码的 URI
+    decodeURIComponent()    //解码一个编码的 URI 组件
+    encodeURI()            //把字符串编码为 URI
+    encodeURIComponent()    //把字符串编码为 URI 组件
+    escape()            //对字符串进行编码
+    eval()                //计算 JavaScript 字符串，并把它作为脚本代码来执行
+    unescape()            //对由 escape() 编码的字符串进行解码
+    isFinite()            //检查某个值是否为有穷大的数
+    isNaN()                //检查某个值是否是数字
+    Number()            //把对象的值转换为数字
+    parseFloat()        //解析一个字符串并返回一个浮点数
+    parseInt()            //解析一个字符串并返回一个整数
+    String()            //把对象的值转换为字符串
+
+4.JavaScript 5个迭代方法   
+    //回调函数接受3个参数 ： 组项的值、该项在数组的位置、数组对象本身
+    1) every(callback)         //对数组中每一项运行给定的函数,如果该函数对每一项都返回true则返回true
+    5) some(callback)        //对数组中每一项运行给定的函数,如果该函数对任意一项返回true则返回true
+    2) filter(callback)        //对数组中每一项运行给定的函数,返回该函数会返回true的项组成的数组
+    3) forEach(callback)    //对数组中每一项运行给定的函数,这个方法没有返回值
+    4) map(callback)        //对数组中每一项运行给定的函数,返回每次函数调用的结果组成的数组
+
+callback(currentValue, index, array)函数有3个参数:
+- currentValue当前数组每一项的值
+- index当前数组的索引
+- array 当前数组对象
+- jQuery 中的 each(index, currentValue, array)和$.each()中参数位置不同</code></pre><h2 id="推荐文章"><a href="#推荐文章" class="headerlink" title="推荐文章"></a>推荐文章</h2><ul>
+<li><a href="http://www.cnblogs.com/paulirish/p/dom.html" target="_blank" rel="noopener">JavaScript学习笔记7 之DOM文档对象模型</a> </li>
+<li><a href="http://www.cnblogs.com/paulirish/p/BOM1.html" target="_blank" rel="noopener">笔记8之 BOM-浏览器对象模型</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/p/event1.html" target="_blank" rel="noopener">笔记9之event事件及其他事件</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/p/Math1.html" target="_blank" rel="noopener">笔记10之Math对象</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/p/zhengze.html" target="_blank" rel="noopener">笔记11之正则表达式</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/p/bubbleandpropagation.html" target="_blank" rel="noopener">笔记12事件冒泡和捕获–事件监听–阻止事件传播</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/p/date.html" target="_blank" rel="noopener">笔记13之Date对象</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/default.html?page=1" target="_blank" rel="noopener">笔记14之事件委托</a></li>
+<li><a href="http://www.cnblogs.com/paulirish/p/cookie.html" target="_blank" rel="noopener">笔记15之客户端存储cookie</a></li>
+<li><a href="http://www.runoob.com/jsref/jsref-tutorial.html" target="_blank" rel="noopener">JavaScript 参考手册</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/git使用笔记/" rel="next" title="git 常用笔记">
+                <i class="fa fa-chevron-left"></i> git 常用笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jQuery常用操作/" rel="prev" title="jQuery常用操作">
+                jQuery常用操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-DOM（对象文档模型）"><span class="nav-number">1.</span> <span class="nav-text">一.DOM（对象文档模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-几个重要概念："><span class="nav-number">1.1.</span> <span class="nav-text">1.几个重要概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-获取dom节点方法"><span class="nav-number">1.2.</span> <span class="nav-text">2.获取dom节点方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-dom的遍历"><span class="nav-number">1.3.</span> <span class="nav-text">3.dom的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-dom的-增-删-改-查-复制-替换"><span class="nav-number">1.4.</span> <span class="nav-text">4.dom的 增 删 改 查 复制 替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-dom-样式操作"><span class="nav-number">1.5.</span> <span class="nav-text">5.dom 样式操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-其它dom操作"><span class="nav-number">1.6.</span> <span class="nav-text">6.其它dom操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-常用dom事件："><span class="nav-number">1.7.</span> <span class="nav-text">7.常用dom事件：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-BOM（浏览器对象模型）"><span class="nav-number">2.</span> <span class="nav-text">二.BOM（浏览器对象模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-window-对象"><span class="nav-number">2.1.</span> <span class="nav-text">1.window 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Navigator-对象-有关浏览器的信息。"><span class="nav-number">2.2.</span> <span class="nav-text">2.Navigator 对象 有关浏览器的信息。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Screen-对象-有关客户端显示屏幕的信息"><span class="nav-number">2.3.</span> <span class="nav-text">3.Screen 对象 有关客户端显示屏幕的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-History-对象"><span class="nav-number">2.4.</span> <span class="nav-text">4.History 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Location-对象"><span class="nav-number">2.5.</span> <span class="nav-text">5.Location 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器对象模型BOM小结"><span class="nav-number">2.6.</span> <span class="nav-text">浏览器对象模型BOM小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-ECMAscript（javascript核心）"><span class="nav-number">3.</span> <span class="nav-text">三.ECMAscript（javascript核心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-javascript类型转换"><span class="nav-number">3.2.</span> <span class="nav-text">2.javascript类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-JavaScript-对象中的方法和属性"><span class="nav-number">3.3.</span> <span class="nav-text">3.JavaScript 对象中的方法和属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐文章"><span class="nav-number">4.</span> <span class="nav-text">推荐文章</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

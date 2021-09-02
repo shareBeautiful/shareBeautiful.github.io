@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简要PHP 继承自一个老的工程，名叫 PHP/FI。PHP/FI 在 1995 年由 Rasmus Lerdorf 创建，最初只是一套简单的 Perl 脚本，用来跟踪访问他主页的人们的信息。它给这一套脚本取名为“Personal Home Page Tools”。随着更多功能需求的增加，Rasmus 写了一个更大的 C 语言的实现，它可以访问数据库，可以让用户开发简单的动态 Web 程序。Rasm">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php基础笔记清单">
+<meta property="og:url" content="https://www.xin666.cc/php基础笔记清单/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="简要PHP 继承自一个老的工程，名叫 PHP/FI。PHP/FI 在 1995 年由 Rasmus Lerdorf 创建，最初只是一套简单的 Perl 脚本，用来跟踪访问他主页的人们的信息。它给这一套脚本取名为“Personal Home Page Tools”。随着更多功能需求的增加，Rasmus 写了一个更大的 C 语言的实现，它可以访问数据库，可以让用户开发简单的动态 Web 程序。Rasm">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-11T07:17:59.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php基础笔记清单">
+<meta name="twitter:description" content="简要PHP 继承自一个老的工程，名叫 PHP/FI。PHP/FI 在 1995 年由 Rasmus Lerdorf 创建，最初只是一套简单的 Perl 脚本，用来跟踪访问他主页的人们的信息。它给这一套脚本取名为“Personal Home Page Tools”。随着更多功能需求的增加，Rasmus 写了一个更大的 C 语言的实现，它可以访问数据库，可以让用户开发简单的动态 Web 程序。Rasm">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xin" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xin666.cc/php基础笔记清单/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>php基础笔记清单 | xin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">努力！坚持！厚德！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/about/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-user&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-tags&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-th&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-calendar&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-heartbeat&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-runoob">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/pages/runoob/" rel="section">&lt;i class=&quot;menu-item-icon fa fa-fw fa-question-circle&quot;&gt;&lt;&#x2F;i&gt; &lt;br&#x2F;&gt;runoob</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xin666.cc/php基础笔记清单/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhixin">
+      <meta itemprop="description" content="个人博客，写出人生！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">php基础笔记清单
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-31 11:22:00" itemprop="dateCreated datePublished" datetime="2017-08-31T11:22:00+08:00">2017-08-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-11 15:17:59" itemprop="dateModified" datetime="2021-08-11T15:17:59+08:00">2021-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">31k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">28 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简要"><a href="#简要" class="headerlink" title="简要"></a>简要</h2><p>PHP 继承自一个老的工程，名叫 PHP/FI。PHP/FI 在 1995 年由 Rasmus Lerdorf 创建，最初只是一套简单的 Perl 脚本，用来跟踪访问他主页的人们的信息。它给这一套脚本取名为“Personal Home Page Tools”。随着更多功能需求的增加，Rasmus 写了一个更大的 C 语言的实现，它可以访问数据库，可以让用户开发简单的动态 Web 程序。Rasmus » 发布了 PHP/FI 的源代码，以便每个人都可以使用它，同时大家也可以修正它的 Bug 并且改进它的源代码。</p>
+<p>PHP/FI，一个专为个人主页／表单提供解释程序的程序，已经包含了今天 PHP 的一些基本功能。它有着 Perl 样式的变量，自动解释表单变量，并可以嵌入 HTML。语法本身与 Perl 很相似，但是它很有限，很简单，还稍微有些不协调。</p>
+<a id="more"></a>
+
+<p>到1997年，PHP/FI 2.0，也就是它的 C 语言实现的第二版在全世界已经有几千个用户（估计）和大约 50,000 个域名安装，大约是 Internet 所有域名的 1%。但是那时只有几个人在为该工程撰写少量当代码，它仍然只是一个人的工程。</p>
+<p>PHP/FI 2.0 在经历了数个 beta 版本的发布后于 1997 年 11 月发布了官方正式版本。不久，PHP 3.0 的第一个 alpha 版本的发布，PHP 从此走向了成功。</p>
+<p>1998 年的冬天，PHP 3.0 官方发布不久，Andi Gutmans 和 Zeev Suraski 开始重新编写 PHP 代码。设计目标是增强复杂程序运行时的性能和 PHP 自身代码的模块性。PHP 3.0 的新功能和广泛的第三方数据库、API的支持使得这样程序的编写成为可能，但是 PHP 3.0 没有高效处理如此复杂程序的能力。</p>
+<p>PHP 5 在长时间的开发及多个预发布版本后，于 2004 年 7 月发布正式版本。它的核心是 Zend 引擎 2 代，引入了新的对象模型和大量新功能。</p>
+<h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="1-变量命名及规范："><a href="#1-变量命名及规范：" class="headerlink" title="1.变量命名及规范："></a>1.变量命名及规范：</h3><p>一个变量包括两方面：变量名和变量值。</p>
+<ul>
+<li>变量名的第一个字符必须是$。</li>
+<li>$后的第一字符必须是 字母 或 下划线。</li>
+<li>php命名区分大小写，最好统一小写。</li>
+</ul>
+<h3 id="2-创建变量："><a href="#2-创建变量：" class="headerlink" title="2.创建变量："></a>2.创建变量：</h3><blockquote>
+<p>在php中创建变量就是变量的声明</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$a = <span class="string">'hello world!'</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二-数据类型"><a href="#二-数据类型" class="headerlink" title="二.数据类型"></a>二.数据类型</h2><h3 id="1-基本数据类型-标量数据类型"><a href="#1-基本数据类型-标量数据类型" class="headerlink" title="1.基本数据类型(标量数据类型)"></a>1.基本数据类型(标量数据类型)</h3><ul>
+<li>Integer    整数</li>
+<li>Float        浮点数</li>
+<li>String     字符串</li>
+<li>Boolean     布尔型</li>
+</ul>
+<h3 id="2-组合数据类型"><a href="#2-组合数据类型" class="headerlink" title="2.组合数据类型"></a>2.组合数据类型</h3><ul>
+<li>Array     数组</li>
+<li>Object     对象</li>
+</ul>
+<h3 id="3-特殊数据类型"><a href="#3-特殊数据类型" class="headerlink" title="3.特殊数据类型"></a>3.特殊数据类型</h3><ul>
+<li>Resourse     资源类型</li>
+<li>Null        Null类型</li>
+</ul>
+<h3 id="4-松散类型"><a href="#4-松散类型" class="headerlink" title="4.松散类型"></a>4.松散类型</h3><blockquote>
+<p>php属于松散类型的语言，可以自动转换变量的数据类型</p>
+</blockquote>
+<h3 id="5-测试变量的类型-gettype"><a href="#5-测试变量的类型-gettype" class="headerlink" title="5.测试变量的类型 gettype();"></a>5.测试变量的类型 gettype();</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a;</span><br><span class="line"><span class="keyword">echo</span> gettype($a); <span class="comment">//NULL</span></span><br><span class="line">$a = <span class="string">'hello'</span>;</span><br><span class="line"><span class="keyword">echo</span> gettype($a); <span class="comment">//string</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<p>is_int(val),is_float(val),is_string(val);<br>is_bool(val),is_array(val),is_object(val);<br>is_resource(val),is_null(val); //返回true或false</p>
+<h3 id="6-改变变量的数据类型"><a href="#6-改变变量的数据类型" class="headerlink" title="6.改变变量的数据类型"></a>6.改变变量的数据类型</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$a = <span class="number">8.23</span>;</span><br><span class="line">settype($a,string); 	<span class="comment">//"8.23"</span></span><br><span class="line">settype($a,integer) 	<span class="comment">//8</span></span><br><span class="line">settype($a,boolean)		<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-强制类型转换"><a href="#7-强制类型转换" class="headerlink" title="7.强制类型转换"></a>7.强制类型转换</h3><blockquote>
+<p>变量本身的类型    并没有发生变化</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$a = <span class="number">23.22</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>(string) $a;(int) $a;(float) $a;(boolean) $a;<br>函数转换：intval(val),floatval(val),strval(val);<br>intval()还有第二个参数为转换的基数。</p>
+</blockquote>
+<h2 id="三-运算符与表达式"><a href="#三-运算符与表达式" class="headerlink" title="三.运算符与表达式"></a>三.运算符与表达式</h2><h3 id="1-运算符类型"><a href="#1-运算符类型" class="headerlink" title="1.运算符类型"></a>1.运算符类型</h3><blockquote>
+</blockquote>
+<ol>
+<li>算数运算符         +,-,*,/,%</li>
+<li>赋值运算符        =,+=,-=,*=,/=</li>
+<li>位运算            &amp;,|,^,~,&lt;&lt;,&gt;&gt;</li>
+<li>比较运算符        &gt;,&lt;,&gt;=,&lt;=,==,===,!=,!==</li>
+<li>错误控制</li>
+<li>增量、减量运算符    ++,– </li>
+<li>逻辑运算符        &amp;&amp;(and),||(or),xor,!</li>
+<li>字符串运算符     .,.=</li>
+</ol>
+<h3 id="2-运算符的优先级"><a href="#2-运算符的优先级" class="headerlink" title="2.运算符的优先级"></a>2.运算符的优先级</h3><blockquote>
+</blockquote>
+<ol>
+<li>算数运算符: ‘*’, ‘/‘, ‘%’, ‘+’, ‘-‘</li>
+<li>比较运算符: ‘&lt;’, ‘&lt;=’, ‘&gt;’, ‘&gt;=’, ‘&lt;&gt;’, ‘==’, ‘!=’, ‘===’, ‘!==’</li>
+<li>赋值运算符: ‘=’, ‘+=’, ‘-=’, ‘*=’, ‘/=’, ‘.=’, ‘%=’</li>
+</ol>
+<h3 id="3-常量-define"><a href="#3-常量-define" class="headerlink" title="3.常量 define();"></a>3.常量 define();</h3><blockquote>
+</blockquote>
+<p>php中常量不同于变量，常量名不需要以 $ 开头，最好以大写命名<br>define(MY_COUNT,22);</p>
+<h2 id="四-选择与循环"><a href="#四-选择与循环" class="headerlink" title="四.选择与循环"></a>四.选择与循环</h2><h3 id="1-选择语句"><a href="#1-选择语句" class="headerlink" title="1.选择语句"></a>1.选择语句</h3><blockquote>
+</blockquote>
+<ul>
+<li>if语句</li>
+<li>if…else语句</li>
+<li>if…elseif…语句</li>
+<li>switch…case语句</li>
+<li>三目运算符 (exp) ? exp1 : exp2;</li>
+</ul>
+<h3 id="2-循环语句"><a href="#2-循环语句" class="headerlink" title="2.循环语句"></a>2.循环语句</h3><blockquote>
+</blockquote>
+<ul>
+<li>while循环</li>
+<li>do…while循环 //先执行循环体再判断</li>
+<li>for…循环</li>
+<li>foreach()循环</li>
+</ul>
+<h3 id="3-break语句退出循环"><a href="#3-break语句退出循环" class="headerlink" title="3.break语句退出循环"></a>3.break语句退出循环</h3><h3 id="4-continue语句跳过本次循环"><a href="#4-continue语句跳过本次循环" class="headerlink" title="4.continue语句跳过本次循环"></a>4.continue语句跳过本次循环</h3><h3 id="5-goto语句"><a href="#5-goto语句" class="headerlink" title="5.goto语句"></a>5.goto语句</h3><h2 id="五-函数"><a href="#五-函数" class="headerlink" title="五.函数"></a>五.函数</h2><p><code>function name(arg1,arg2){...};</code></p>
+<blockquote>
+</blockquote>
+<ol>
+<li>形参和实参</li>
+<li>按值传递  ：传递的是值得副本</li>
+<li>按引用传递 &amp; ： 传递的是值的引用</li>
+<li>函数返回 return： 返回变量、常量、表达式或引用</li>
+<li>全局变量和局部变量 global和GLOBALS[‘’]; 函数内部变量为局部变量</li>
+<li>静态变量 static ： 也是局部变量，但会把值一直保存在内存中</li>
+</ol>
+<h2 id="六-对象"><a href="#六-对象" class="headerlink" title="六.对象"></a>六.对象</h2><blockquote>
+<p>栈空间段， 堆空间段，代码段， 初使化静态段，</p>
+</blockquote>
+<h3 id="1-面向对象设计的优点：代码与需求易融合、可重用性、模块特性"><a href="#1-面向对象设计的优点：代码与需求易融合、可重用性、模块特性" class="headerlink" title="1.面向对象设计的优点：代码与需求易融合、可重用性、模块特性"></a>1.面向对象设计的优点：代码与需求易融合、可重用性、模块特性</h3><h3 id="2-面向对象设计的基础"><a href="#2-面向对象设计的基础" class="headerlink" title="2.面向对象设计的基础"></a>2.面向对象设计的基础</h3><h4 id="2-1-类-：-对一类事物的统称"><a href="#2-1-类-：-对一类事物的统称" class="headerlink" title="2.1 类 ： 对一类事物的统称"></a>2.1 类 ： 对一类事物的统称</h4><h4 id="2-2-对象-：-对象是类的实例"><a href="#2-2-对象-：-对象是类的实例" class="headerlink" title="2.2 对象  ： 对象是类的实例"></a>2.2 对象  ： 对象是类的实例</h4><h4 id="2-3-属性-：-类的对象的特性"><a href="#2-3-属性-：-类的对象的特性" class="headerlink" title="2.3 属性  ： 类的对象的特性"></a>2.3 属性  ： 类的对象的特性</h4><h4 id="2-4-方法-：-类的行为-类的方法和属性统称为类的-成员"><a href="#2-4-方法-：-类的行为-类的方法和属性统称为类的-成员" class="headerlink" title="2.4 方法  ： 类的行为 (类的方法和属性统称为类的 成员)"></a>2.4 方法  ： 类的行为 (类的方法和属性统称为类的 成员)</h4><h3 id="3-PHP中创建类和对象"><a href="#3-PHP中创建类和对象" class="headerlink" title="3.PHP中创建类和对象"></a>3.PHP中创建类和对象</h3><blockquote>
+</blockquote>
+<p>对象总是按引用的方式赋值的<br>class Car{};//创建Car类<br>$car1 = new Car();//创建一个Car类的实例 把一个对象的引用赋值给 $car1</p>
+<h3 id="4-创建和使用属性"><a href="#4-创建和使用属性" class="headerlink" title="4.创建和使用属性"></a>4.创建和使用属性</h3><h4 id="4-1-属性的可见性-公有-public-var-、保护-protected、私有-private"><a href="#4-1-属性的可见性-公有-public-var-、保护-protected、私有-private" class="headerlink" title="4.1 属性的可见性 公有:public(var)、保护:protected、私有:private"></a>4.1 属性的可见性 公有:public(var)、保护:protected、私有:private</h4><blockquote>
+</blockquote>
+<p>public公有属性 可被任何代码访问<br>protected保护属性 可被本类和子类访问，不被本类和类的子类外部访问<br>private私有属性 不被类的子类和类的外部访问，只能本类访问</p>
+<h4 id="4-2-申明属性并访问属性"><a href="#4-2-申明属性并访问属性" class="headerlink" title="4.2 申明属性并访问属性"></a>4.2 申明属性并访问属性</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> $attr1 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">private</span> $attr2;</span><br><span class="line">  <span class="keyword">protected</span> $attr3;</span><br><span class="line">&#125;</span><br><span class="line">$c1 = <span class="keyword">new</span> Myclass();</span><br><span class="line"><span class="keyword">echo</span> $c1-&gt;attr1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-静态属性-static-可以看成类的全局变量"><a href="#4-3-静态属性-static-可以看成类的全局变量" class="headerlink" title="4.3 静态属性 static 可以看成类的全局变量"></a>4.3 静态属性 static 可以看成类的全局变量</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">public</span> $attr1 = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">$c1 = <span class="keyword">new</span> Myclass();</span><br><span class="line"><span class="comment">//不能使用对象来访问只能类</span></span><br><span class="line"><span class="keyword">echo</span> Myclass::$attr1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-类常量-const"><a href="#4-4-类常量-const" class="headerlink" title="4.4 类常量 const"></a>4.4 类常量 const</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> ATTR = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">$c1 = <span class="keyword">new</span> Myclass();</span><br><span class="line"><span class="comment">//同静态变量一样</span></span><br><span class="line"><span class="keyword">echo</span> Myclass::ATTR;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-反射-对象-ReflectionMethod-对象-方法-invokeArgs-对象，数组参数"><a href="#4-5-反射-对象-ReflectionMethod-对象-方法-invokeArgs-对象，数组参数" class="headerlink" title="4.5 反射 对象 ReflectionMethod(对象,方法) invokeArgs(对象，数组参数)"></a>4.5 反射 对象 ReflectionMethod(对象,方法) invokeArgs(对象，数组参数)</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'我叫小明'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">($name)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'我叫'</span>.$name.<span class="string">'我跑了20000公里'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">$xiaoming = <span class="keyword">new</span> Myclass();</span><br><span class="line">$str = <span class="keyword">new</span> ReflectionMethod($xiaoming,<span class="string">"say"</span>);</span><br><span class="line"><span class="keyword">echo</span> $str-&gt; invoke($xiaoming); <span class="comment">//我叫小明</span></span><br><span class="line">$str2 = <span class="keyword">new</span> ReflectionMethod($xiaoming,<span class="string">'run'</span>);</span><br><span class="line"><span class="keyword">echo</span> $str2-&gt; invokeArgs($xiaoming,<span class="keyword">Array</span>(<span class="string">'小明'</span>));<span class="comment">//我叫小明我跑了20000公里</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-方法"><a href="#5-方法" class="headerlink" title="5.方法"></a>5.方法</h4><blockquote>
+</blockquote>
+<p>方法的可见性(public,private,protected)、方法的创建、方法的调用、方法的参数和返回值</p>
+<h4 id="5-1-方法中访问对象和属性-自包含性"><a href="#5-1-方法中访问对象和属性-自包含性" class="headerlink" title="5.1 方法中访问对象和属性(自包含性)"></a>5.1 方法中访问对象和属性(自包含性)</h4><blockquote>
+<p>在对象的方法中访问同一个对象的属性，使用$this<br>$this分别代表对象$p1、$p2、$p3<br>$this-&gt;attr;</p>
+</blockquote>
+<h4 id="5-2-静态方法-static"><a href="#5-2-静态方法-static" class="headerlink" title="5.2 静态方法 static"></a>5.2 静态方法 static</h4><blockquote>
+</blockquote>
+<p>在静态方法中只能访问静态变量，不能访问普通变量<br>static的成员是属于类的，是不属于任何对象实例<br>类里面的静态方法只能访问类的静态的属性 self::<br>非静态方法里可以访问静态成员不能使用$this,使用self::</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> $name = <span class="string">'nice'</span>;</span><br><span class="line">	<span class="keyword">const</span> AGE = <span class="number">22</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">self</span>::$name; <span class="comment">//访问$name</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">self</span>:AGE;	<span class="comment">//访问age</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">Car::run() <span class="comment">//调用静态方法</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-类型提示检测方法的参数"><a href="#5-3-类型提示检测方法的参数" class="headerlink" title="5.3 类型提示检测方法的参数"></a>5.3 类型提示检测方法的参数</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> $color;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gar</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">paint</span><span class="params">(Car $car,$color)</span></span>&#123;</span><br><span class="line">		$car-&gt;color=$color;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">$car = <span class="keyword">new</span> Car();</span><br><span class="line">$gar = <span class="keyword">new</span> Gar();</span><br><span class="line">$car-&gt;color = <span class="string">'red'</span>;</span><br><span class="line">$gar-&gt;paint($car,<span class="string">'blue'</span>);</span><br><span class="line"><span class="keyword">echo</span> $car-&gt;color; <span class="comment">//blue</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="5-4-封装实现独立性-private"><a href="#5-4-封装实现独立性-private" class="headerlink" title="5.4 封装实现独立性 private"></a>5.4 封装实现独立性 private</h4><h4 id="5-5-构造函数和析构函数construct-destruct"><a href="#5-5-构造函数和析构函数construct-destruct" class="headerlink" title="5.5 构造函数和析构函数construct(),destruct()"></a>5.5 构造函数和析构函数<strong>construct(),</strong>destruct()</h4><blockquote>
+<p>调用基类的构造函数 parent::__construct();</p>
+</blockquote>
+<h4 id="5-5-get-set-和-call-重载对象"><a href="#5-5-get-set-和-call-重载对象" class="headerlink" title="5.5 get(),set()和__call()重载对象"></a>5.5 <strong>get(),</strong>set()和__call()重载对象</h4><blockquote>
+</blockquote>
+<p><strong>get()和</strong>set();<br>使对象能够对不可见的属性的访问和修改</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> $color = <span class="string">'red'</span>;</span><br><span class="line">	<span class="comment">//__get()方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;color))&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;color;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//__set()方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span><span class="params">($val)</span></span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;color = $val</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方法重载：<br>子类写和父类方法一样的名字覆盖父类方法的形式</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">One</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'One'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Two</span> <span class="keyword">extends</span> <span class="title">One</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::say();</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'Two'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="5-6-final关键字-类和方法阻止-继承-和-重载"><a href="#5-6-final关键字-类和方法阻止-继承-和-重载" class="headerlink" title="5.6 final关键字 类和方法阻止 继承 和 重载"></a>5.6 final关键字 类和方法阻止 继承 和 重载</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-7-clone-克隆-clone-克隆时执行的方法"><a href="#5-7-clone-克隆-clone-克隆时执行的方法" class="headerlink" title="5.7 clone 克隆 __clone();//克隆时执行的方法"></a>5.7 clone 克隆 __clone();//克隆时执行的方法</h4><blockquote>
+<p>$p2 = clone $p1;</p>
+</blockquote>
+<h4 id="5-8-抽象方法和抽象类-abstract"><a href="#5-8-抽象方法和抽象类-abstract" class="headerlink" title="5.8 抽象方法和抽象类 abstract"></a>5.8 抽象方法和抽象类 abstract</h4><blockquote>
+<p>抽象类不能产生实例对象</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">fun1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">fun2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Text</span> <span class="keyword">extends</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<p>子类必须把父类中的抽象方法全部都实现，否则子类中还存在抽象方法，<br>那么子类还是抽象类，还是不能实例化类</p>
+<h4 id="5-9-接口-interface"><a href="#5-9-接口-interface" class="headerlink" title="5.9 接口 interface"></a>5.9 接口 interface</h4><blockquote>
+</blockquote>
+<p>接口的思想是指定了一个实现了该接口的类必须实现的一系列方法<br>接口是一种特殊的抽象类，抽象类又是一种特殊的类，所以接口也是一种特殊的类，<br>接口里面所有的方法必须 都是声明为抽象方法,另外接口里面不能声明变量(但可声明常量constant)<br>而且接口里面所有的成员都是public权限的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">One</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> constant = <span class="string">'constant value'</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fun1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fun2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Two</span> <span class="keyword">extends</span> <span class="title">One</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun3</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun4</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">继承使用 implements 关键字</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Three</span> <span class="keyword">implements</span> <span class="title">One</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 实现了全部方法，我们去可以使用子类去实例化对象了</span></span><br><span class="line">$three = <span class="keyword">new</span> Three();</span><br><span class="line"><span class="comment">// 使用implements实现多个接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Four</span> <span class="title">implemtns</span> 接口一, 接口二, ... </span>&#123;</span><br><span class="line">    <span class="comment">// 必须把所有接口中的方法都要实现才可以实例化对象。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<p>PHP中不仅一个类可以实现多个接口，也可以在继承一个类的同时实现多个接口,<br>一定要先继承类再去实现接口；</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 使用extends继承一个类，使用implements实现多个接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Four</span> <span class="keyword">extends</span> 类名一 <span class="title">implemtns</span> 接口一, 接口二, ... </span>&#123;</span><br><span class="line">    <span class="comment">// 所有接口中的方法都要实现才可以实例化对象</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-多态"><a href="#6-多态" class="headerlink" title="6. 多态"></a>6. 多态</h3><blockquote>
+</blockquote>
+<p>多态就是把子类对象赋值给父类引用，然后调用父类的方法，去执行子类覆盖父类的那个方法，<br>但在PHP里是弱类型的，对象引用都是一样的不分父类引用，还是子类引用。</p>
+<h3 id="7-串行化serialize-方法，sleep-wakeup"><a href="#7-串行化serialize-方法，sleep-wakeup" class="headerlink" title="7.串行化serialize()方法，sleep(),wakeup()"></a>7.串行化serialize()方法，<strong>sleep(),</strong>wakeup()</h3><blockquote>
+</blockquote>
+<p>serialize()前调用<strong>sleep()方法限制串行化的内容，<br>unserialize()后调用</strong>wakeup()方法反序列化后的结果</p>
+<h3 id="8-自动加载类-autoload"><a href="#8-自动加载类-autoload" class="headerlink" title="8.自动加载类 __autoload();"></a>8.自动加载类 __autoload();</h3><h3 id="9-魔术方法-get-set-clone-sleep-wakeup-…"><a href="#9-魔术方法-get-set-clone-sleep-wakeup-…" class="headerlink" title="9.魔术方法 get(),set(),clone,sleep(),__wakeup()…"></a>9.魔术方法 <strong>get(),</strong>set(),<strong>clone,</strong>sleep(),__wakeup()…</h3><h3 id="10-命名空间-namespace"><a href="#10-命名空间-namespace" class="headerlink" title="10.命名空间 namespace"></a>10.命名空间 namespace</h3><p>*<span style="color:red">参考</span>*</p>
+<ul>
+<li><a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/09/10/1823042.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/09/10/1823042.html</a></li>
+<li>&lt;&lt; php入门经典 &gt;&gt;</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JavaScript基础-02变量、闭包、this、作用域/" rel="next" title="JavaScript基础-02 变量、闭包、this、作用域">
+                <i class="fa fa-chevron-left"></i> JavaScript基础-02 变量、闭包、this、作用域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/npm基本使用/" rel="prev" title="npm基本使用">
+                npm基本使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="zhixin">
+            
+              <p class="site-author-name" itemprop="name">zhixin</p>
+              <div class="site-description motion-element" itemprop="description">个人博客，写出人生！</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简要"><span class="nav-number">1.</span> <span class="nav-text">简要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一-变量"><span class="nav-number">2.</span> <span class="nav-text">一.变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-变量命名及规范："><span class="nav-number">2.1.</span> <span class="nav-text">1.变量命名及规范：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建变量："><span class="nav-number">2.2.</span> <span class="nav-text">2.创建变量：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-数据类型"><span class="nav-number">3.</span> <span class="nav-text">二.数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基本数据类型-标量数据类型"><span class="nav-number">3.1.</span> <span class="nav-text">1.基本数据类型(标量数据类型)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-组合数据类型"><span class="nav-number">3.2.</span> <span class="nav-text">2.组合数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-特殊数据类型"><span class="nav-number">3.3.</span> <span class="nav-text">3.特殊数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-松散类型"><span class="nav-number">3.4.</span> <span class="nav-text">4.松散类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-测试变量的类型-gettype"><span class="nav-number">3.5.</span> <span class="nav-text">5.测试变量的类型 gettype();</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-改变变量的数据类型"><span class="nav-number">3.6.</span> <span class="nav-text">6.改变变量的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-强制类型转换"><span class="nav-number">3.7.</span> <span class="nav-text">7.强制类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-运算符与表达式"><span class="nav-number">4.</span> <span class="nav-text">三.运算符与表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-运算符类型"><span class="nav-number">4.1.</span> <span class="nav-text">1.运算符类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-运算符的优先级"><span class="nav-number">4.2.</span> <span class="nav-text">2.运算符的优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-常量-define"><span class="nav-number">4.3.</span> <span class="nav-text">3.常量 define();</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-选择与循环"><span class="nav-number">5.</span> <span class="nav-text">四.选择与循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-选择语句"><span class="nav-number">5.1.</span> <span class="nav-text">1.选择语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-循环语句"><span class="nav-number">5.2.</span> <span class="nav-text">2.循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-break语句退出循环"><span class="nav-number">5.3.</span> <span class="nav-text">3.break语句退出循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-continue语句跳过本次循环"><span class="nav-number">5.4.</span> <span class="nav-text">4.continue语句跳过本次循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-goto语句"><span class="nav-number">5.5.</span> <span class="nav-text">5.goto语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-函数"><span class="nav-number">6.</span> <span class="nav-text">五.函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-对象"><span class="nav-number">7.</span> <span class="nav-text">六.对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-面向对象设计的优点：代码与需求易融合、可重用性、模块特性"><span class="nav-number">7.1.</span> <span class="nav-text">1.面向对象设计的优点：代码与需求易融合、可重用性、模块特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-面向对象设计的基础"><span class="nav-number">7.2.</span> <span class="nav-text">2.面向对象设计的基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-类-：-对一类事物的统称"><span class="nav-number">7.2.1.</span> <span class="nav-text">2.1 类 ： 对一类事物的统称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-对象-：-对象是类的实例"><span class="nav-number">7.2.2.</span> <span class="nav-text">2.2 对象  ： 对象是类的实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-属性-：-类的对象的特性"><span class="nav-number">7.2.3.</span> <span class="nav-text">2.3 属性  ： 类的对象的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-方法-：-类的行为-类的方法和属性统称为类的-成员"><span class="nav-number">7.2.4.</span> <span class="nav-text">2.4 方法  ： 类的行为 (类的方法和属性统称为类的 成员)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-PHP中创建类和对象"><span class="nav-number">7.3.</span> <span class="nav-text">3.PHP中创建类和对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-创建和使用属性"><span class="nav-number">7.4.</span> <span class="nav-text">4.创建和使用属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-属性的可见性-公有-public-var-、保护-protected、私有-private"><span class="nav-number">7.4.1.</span> <span class="nav-text">4.1 属性的可见性 公有:public(var)、保护:protected、私有:private</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-申明属性并访问属性"><span class="nav-number">7.4.2.</span> <span class="nav-text">4.2 申明属性并访问属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-静态属性-static-可以看成类的全局变量"><span class="nav-number">7.4.3.</span> <span class="nav-text">4.3 静态属性 static 可以看成类的全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-类常量-const"><span class="nav-number">7.4.4.</span> <span class="nav-text">4.4 类常量 const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-反射-对象-ReflectionMethod-对象-方法-invokeArgs-对象，数组参数"><span class="nav-number">7.4.5.</span> <span class="nav-text">4.5 反射 对象 ReflectionMethod(对象,方法) invokeArgs(对象，数组参数)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-方法"><span class="nav-number">7.4.6.</span> <span class="nav-text">5.方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-方法中访问对象和属性-自包含性"><span class="nav-number">7.4.7.</span> <span class="nav-text">5.1 方法中访问对象和属性(自包含性)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-静态方法-static"><span class="nav-number">7.4.8.</span> <span class="nav-text">5.2 静态方法 static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-类型提示检测方法的参数"><span class="nav-number">7.4.9.</span> <span class="nav-text">5.3 类型提示检测方法的参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-封装实现独立性-private"><span class="nav-number">7.4.10.</span> <span class="nav-text">5.4 封装实现独立性 private</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-5-构造函数和析构函数construct-destruct"><span class="nav-number">7.4.11.</span> <span class="nav-text">5.5 构造函数和析构函数construct(),destruct()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-5-get-set-和-call-重载对象"><span class="nav-number">7.4.12.</span> <span class="nav-text">5.5 get(),set()和__call()重载对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-6-final关键字-类和方法阻止-继承-和-重载"><span class="nav-number">7.4.13.</span> <span class="nav-text">5.6 final关键字 类和方法阻止 继承 和 重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-7-clone-克隆-clone-克隆时执行的方法"><span class="nav-number">7.4.14.</span> <span class="nav-text">5.7 clone 克隆 __clone();//克隆时执行的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-8-抽象方法和抽象类-abstract"><span class="nav-number">7.4.15.</span> <span class="nav-text">5.8 抽象方法和抽象类 abstract</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-9-接口-interface"><span class="nav-number">7.4.16.</span> <span class="nav-text">5.9 接口 interface</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-多态"><span class="nav-number">7.5.</span> <span class="nav-text">6. 多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-串行化serialize-方法，sleep-wakeup"><span class="nav-number">7.6.</span> <span class="nav-text">7.串行化serialize()方法，sleep(),wakeup()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-自动加载类-autoload"><span class="nav-number">7.7.</span> <span class="nav-text">8.自动加载类 __autoload();</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-魔术方法-get-set-clone-sleep-wakeup-…"><span class="nav-number">7.8.</span> <span class="nav-text">9.魔术方法 get(),set(),clone,sleep(),__wakeup()…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-命名空间-namespace"><span class="nav-number">7.9.</span> <span class="nav-text">10.命名空间 namespace</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; Tue Aug 08 2017 08:00:00 GMT+0800 (GMT+08:00) – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">432k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:33</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+</html>
