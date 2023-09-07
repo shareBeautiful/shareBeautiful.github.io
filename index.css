@@ -24,19 +24,20 @@ ol, ul {
 
 @font-face{
     font-family: mulan;
-    src: url("../font/Mulan/MuLan.woff");
+    src: url("font/Mulan/MuLan.woff");
 }
 @font-face{
     font-family: xiyuan;
-    src: url("../font/XiYuan/XiYuan.woff");
+    src: url("font/XiYuan/XiYuan.woff");
 }
 html {
     font-size: 18px;
     color: #000;
     line-height: 1.6;
     min-height: 100%;
-    font-family: "mulan";
+    font-family: "mulan",宋体;
     font-weight: bolder;
+    font-size: 18px;
 }
 html p {
     font-family: 'xiyuan';
@@ -78,7 +79,7 @@ body {
     padding-left: 20px;
 }
 .logo a:hover {
-    color: #527E2C;
+    color: #006DBB;
 }
 
 .menu-box {
@@ -108,8 +109,8 @@ body {
 
 
 .menu-box ul li .radio:checked +  a {
-    color: #527E2C;
-    border-bottom: 1px solid #527E2C;
+    color: #006DBB;
+    border-bottom: 1px solid #006DBB;
 }
 
 
@@ -117,8 +118,8 @@ body {
     padding: 15px 0;
 }
 .menu-box ul li.active a,.menu-box ul li a:hover {
-    color: #527E2C;
-    border-bottom: 1px solid #527E2C;
+    color: #006DBB;
+    border-bottom: 1px solid #006DBB;
 }
 
 
@@ -137,7 +138,7 @@ body {
 }
 
 .main-title {
-    margin-top: 85px;
+    margin-top: 65px;
     margin-bottom: 40px;
     padding: 15px;
     font-size: 32px;
@@ -179,7 +180,7 @@ body {
     width: 60%;
 }
 .container-box .item-box:hover {
-    background-color: #527E2C;
+    background-color: #006DBB;
     color: #fff;
     transform: translate(-10px, -10px);
     box-shadow: 10px 10px 3px #d8d8d8;
