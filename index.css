@@ -43,7 +43,7 @@ html p {
     font-family: 'xiyuan';
 }
 .w {
-    width: 1500px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -55,6 +55,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding-left: 3px;
+    flex-wrap: wrap;
 }
 .header-box {
     position: sticky;
@@ -68,6 +69,7 @@ body {
 #header .logo {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo img {
@@ -84,15 +86,15 @@ body {
 
 .menu-box {
     margin-left: 100px;
-    width: 70%;
     flex:1;
 }
 
 .menu-box ul {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .menu-box ul li {
@@ -156,7 +158,7 @@ body {
 
 .container-box .item-box {
     overflow: hidden;
-    flex-basis: 33.33%;
+    width: 33.33%;
     transition: all .3s;
     position: relative;
     background-color: #fff;
@@ -191,7 +193,7 @@ body {
 .container-box .item-box .item-pic {
     overflow: hidden;
     line-height: 1;
-    height: 280px;
+    aspect-ratio: 1 / 0.7;
 }
 
 .container-box .item-box .item-pic img {
@@ -253,4 +255,48 @@ body {
     font-size: 20px !important;
     color: brown;
     vertical-align: middle;
+}
+
+@media screen and (max-width: 750px) {
+    #main-box {
+        padding: 0 10px;
+    }
+    #header {
+        justify-content: center;
+    }
+    .container-box .item-box {
+        width: 50%;
+    }
+    .menu-box {
+        margin-left: 0;
+        width: 100%;
+        flex: none;
+    }
+    .container-box .item-box .item-pic {
+        aspect-ratio: 1 / 0.85;
+    }
+    .menu-box ul {
+        justify-content: center;
+    }
+    .menu-box ul li {
+        padding: 0 15px;
+    }
+    #header .logo {
+        flex-wrap: wrap;
+    }
+    .logo a {
+        font-size: 18px;
+    }
+    .main-title {
+        font-size: 22px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    .container-box .item-box .item-info .title {
+        font-size: 20px;
+    }
+    .container-box .item-box .item-info .info {
+        font-size: 18px;
+        height: 60px;
+    }
 }
