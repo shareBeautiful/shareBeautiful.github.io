@@ -1,285 +1,302 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description"
-          content="德思意科技有限公司是一家技术驱动型的创新公司。专注于智慧产业信息化建设，具有应用软件开发、企业应用程序开发及Web开发等实力，拥有多年精湛的技术积淀、强大的公关资源、丰富的营销实践。">
-    <meta name="keywords" content="德思意,互联网医院,产品与服务">
-    <link rel="stylesheet" href="index.css">
-    <!--    <link rel="stylesheet" href="./iconfont/iconfont.css">-->
-    <title>德思意科技(深圳)有限公司</title>
-</head>
-<style>
 
-    .container-box {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: #000;
+    text-decoration: none;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+/*@font-face{
+    font-family: mulan;
+    src: url("font/Mulan/MuLan.woff");
+}
+@font-face{
+    font-family: xiyuan;
+    src: url("font/XiYuan/XiYuan.woff");
+}*/
+html {
+    font-size: 18px;
+    color: #000;
+    line-height: 1.6;
+    min-height: 100%;
+    font-family: "mulan",宋体;
+    font-weight: bolder;
+    font-size: 18px;
+}
+html p {
+    font-family: 'xiyuan';
+}
+.w {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body {
+    min-height: 100%;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 3px;
+    flex-wrap: wrap;
+}
+.header-box {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px #ddd;
+}
+
+#header .logo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    width: 58px;
+    height: auto;
+}
+.logo a {
+    font-size: 26px;
+    padding-left: 20px;
+}
+.logo a:hover {
+    color: #006DBB;
+}
+
+.menu-box {
+    margin-left: 100px;
+    flex:1;
+}
+
+.menu-box ul {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menu-box ul li {
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+}
+
+.menu-box ul li .radio {
+    display: none;
+}
+
+
+.menu-box ul li .radio:checked +  a {
+    color: #006DBB;
+    border-bottom: 1px solid #006DBB;
+}
+
+
+.menu-box ul li a {
+    padding: 15px 0;
+}
+.menu-box ul li.active a,.menu-box ul li a:hover {
+    color: #006DBB;
+    border-bottom: 1px solid #006DBB;
+}
+
+
+#banner-box {
+    width: 100%;
+    min-width: 1200px;
+    margin-top: 30px;
+}
+
+#banner {
+    height: 350px;
+}
+#banner img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.main-title {
+    margin-top: 65px;
+    margin-bottom: 40px;
+    padding: 15px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+}
+
+.container-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.container-box .item-box {
+    overflow: hidden;
+    width: 33.33%;
+    transition: all .3s;
+    position: relative;
+    background-color: #fff;
+    z-index: 1;
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 0 0 5px #ddd;
+}
+.container-box.y-box .item-box {
+    flex-basis: 50%;
+    width: 50%;
+    display:flex;
+    padding: 10px;
+
+}
+.container-box.y-box .item-box .item-pic {
+    flex: 1;
+    padding-top: 20px;
+}
+.container-box.y-box .item-box .item-info {
+    width: 60%;
+}
+.container-box .item-box:hover {
+    background-color: #006DBB;
+    color: #fff;
+    transform: translate(-10px, -10px);
+    box-shadow: 10px 10px 3px #d8d8d8;
+
+}
+
+.container-box .item-box .item-pic {
+    overflow: hidden;
+    line-height: 1;
+    aspect-ratio: 1 / 0.7;
+}
+
+.container-box .item-box .item-pic img {
+    transform: scale(1);
+    transition: transform .5s;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+.container-box .item-box .item-pic img:hover {
+    transform: scale(1.3);
+    transition: transform .3s;
+}
+
+.container-box .item-box .item-info {
+    padding: 15px;
+}
+
+.container-box .item-box .item-info .title {
+    font-size: 28px;
+    padding-bottom: 15px;
+}
+
+.container-box .item-box .item-info .info {
+    height: 100px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+.desc p {
+    text-indent: 2em;
+    padding-bottom: 10px;
+}
+/*
+#banner .pic ul {
+    width: 100% !important;
+}
+
+.mF_fancy_banner * {
+    width: 100%;
+}*/
+
+
+#footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+#footer span {
+    font-size: 18px;
+    padding: 0 10px;
+}
+.iconfont {
+    font-size: 20px !important;
+    color: brown;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 750px) {
+    #main-box {
+        padding: 0 10px;
+    }
+    #header {
         justify-content: center;
     }
-
-    .info-pic {
-        text-align: center;
+    .container-box .item-box {
+        width: 50%;
     }
-
-
-    .main-title {
-        background-color: #006DBB;
-        color: #fff;
+    .menu-box {
+        margin-left: 0;
+        width: 100%;
+        flex: none;
     }
-
-    .scale-pic {
-        overflow: hidden;
+    .container-box .item-box .item-pic {
+        aspect-ratio: 1 / 0.85;
     }
-
-    .scale-pic img {
-        transform: scale(1);
-        transition: transform .2s;
+    .menu-box ul {
+        justify-content: center;
     }
-
-    .scale-pic img:hover {
-        transform: scale(1.2);
-        transition: transform .2s;
+    .menu-box ul li {
+        padding: 0 15px;
     }
-
-    .desc-pic {
-        display: flex;
-        justify-content: space-between;
+    #header .logo {
         flex-wrap: wrap;
     }
-
-    .desc-pic .pic {
-        width: 49.5%;
-        aspect-ratio: 1 / 0.7;
-        margin-top: 15px;
+    .logo a {
+        font-size: 18px;
     }
-
-    .desc-pic .pic img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    .main-title {
+        font-size: 22px;
+        margin-top: 20px;
+        margin-bottom: 15px;
     }
-
-
-    .info p {
-        text-indent: 2em;
+    .container-box .item-box .item-info .title {
+        font-size: 20px;
     }
-</style>
-<body>
-
-<div>
-    <!--  头部  -->
-    <div id="top"></div>
-    <div class="header-box">
-        <div id="header" class="w">
-            <div class="logo">
-                <img src="image/logo.png" alt="">
-                <a href="javascript:">德思意科技(深圳)有限公司</a>
-            </div>
-            <div class="menu-box">
-                <ul>
-                    <li class="active">
-                        <a href="#top">首页</a>
-                    </li>
-                    <li>
-                        <a href="#a">产品与服务</a>
-                    </li>
-                    <li>
-                        <a href="#b">关于我们</a>
-                    </li>
-                    <li>
-                        <a href="#c">联系我们</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-    <!--    主体  -->
-    <div id="main-box" class="w">
-
-        <div id="a">　</div>
-        <h2 class="main-title">产品与服务</h2>
-        <div class="container-box x-box">
-
-            <a class="item-box" href="javascript:">
-                <div class="item-pic">
-                    <img src="image/a_1.jpg" alt="">
-                </div>
-                <div class="item-info">
-                    <h2 class="title">物联网医院</h2>
-                    <p class="info">
-                        <!--医疗物联网是物联网的细分场景。-->
-                    </p>
-                </div>
-            </a>
-
-            <a class="item-box" href="javascript:">
-                <div class="item-pic">
-                    <img src="image/a_4.jpg" alt="">
-                </div>
-                <div class="item-info">
-                    <h2 class="title">互联网医院</h2>
-                    <p class="info">
-                        <!--互联网医院承载能力基本覆盖了患者诊前。-->
-                    </p>
-                </div>
-            </a>
-            <a class="item-box" href="javascript:">
-                <div class="item-pic">
-                    <img src="image/a_10.jpg" alt="">
-                </div>
-                <div class="item-info">
-                    <h2 class="title">智慧医院</h2>
-                    <p class="info">
-                        <!--基于医院的智慧医疗健康服务基本建立。-->
-                    </p>
-                </div>
-            </a>
-            <a class="item-box" href="javascript:">
-                <div class="item-pic">
-                    <img src="image/a_13.jpg" alt="">
-                </div>
-                <div class="item-info">
-                    <h2 class="title">智慧酒店</h2>
-                    <p class="info">
-                        <!--通过数字化与网络化实现酒店数字信息化服务技术。-->
-                    </p>
-                </div>
-            </a>
-            <a class="item-box" href="javascript:">
-                <div class="item-pic">
-                    <img src="image/a_6.jpg" alt="">
-                </div>
-                <div class="item-info">
-                    <h2 class="title">产业物联网</h2>
-                    <p class="info">
-                        <!--智慧公交、旅游、建筑产业等。-->
-                    </p>
-                </div>
-            </a>
-            <a class="item-box" href="javascript:">
-                <div class="item-pic">
-                    <img src="image/a_4.jpg" alt="">
-                </div>
-                <div class="item-info">
-                    <h2 class="title">IOT物联网设备</h2>
-                    <p class="info">
-                        <!--数宁档案管理系统，IOT物联网设备。-->
-                    </p>
-                </div>
-            </a>
-
-        </div>
-
-
-        <div id="b">　</div>
-        <h2 class="main-title">关于我们</h2>
-        <div class="container-box">
-            <div class="info">
-                <p>
-                    德思意科技有限公司是一家技术驱动型的创新公司。
-                </p>
-                <p>
-                    团队核心成员均来自知名互联网企业的精英骨干，具有丰富国际化业务经验，凭借领先的应用技术和专业的产品品质、丰富的互联网经验和行业积累，帮助客户低成本实现智慧化、数字化体系改造。
-                </p>
-                <p>
-                    秉承务实、高效的工作态度，营造热情轻松的氛围环境，不断发掘与引导用户，从业务战略高度，帮助企业持续推进品牌形象传播和口碑塑造。
-                </p>
-                <p>
-                    未来，公司将用卓越的产品和服务，推动企业管理和社会进步，发展成为国内领先的企业管理和社会服务信息系统供应商！
-                </p>
-            </div>
-        </div>
-        <div id="wenhua">　</div>
-        <h2 class="main-title">企业文化</h2>
-        <div class="desc">
-            <p>
-                公司愿景：“提供具有国际品质的软件开发和服务，提供行业最佳解决方案”。
-            </p>
-            <p>
-                公司宗旨：“客户利益、员工利益、股东利益的最大化，即公司价值的最大化”。
-            </p>
-            <p>
-                企业精神：“诚信、创新、服务、卓越、以人为本”。
-            </p>
-        </div>
-        <div class="desc-pic">
-            <div class="pic scale-pic"><img src="image/a_9.jpg" alt=""></div>
-            <div class="pic scale-pic"><img src="image/a_7.jpg" alt=""></div>
-            <div class="pic scale-pic"><img src="image/a_8.jpg" alt=""></div>
-            <div class="pic scale-pic"><img src="image/a_11.jpg" alt=""></div>
-        </div>
-        <div id="c"></div>
-        <h2 class="main-title">联系我们</h2>
-        <div class="desc">
-            <div class="info-pic">
-                <img src="image/qr.png" alt="">
-                <div class="">
-                    <p><a href="tel:15626121215">联系电话(微信)：15626121215</a></p>
-                </div>
-                <div>
-                    <p>
-                        联系地址：深圳市福田区福田南路7号
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!--    底部      -->
-    <!--<div id="footer" class="w">
-
-        <span><i class="iconfont icon-xingxing"></i>版权政策</span>
-        <span><i class="iconfont icon-weixin"></i>隐私政策</span>
-        <span><i class="iconfont icon-QQ"></i>报告中心</span>
-        <span><i class="iconfont icon-Qweibo"></i>合规信息</span>
-        <span>闽公网安备：35050302000183号 © Greenpeace East Asia 2019, Design by HOLY</span>
-    </div>-->
-    <!--    <audio id="audio" src="js/i.m4a" autoplay="autoplay" controls style="display: none;"></audio>-->
-</div>
-
-</body>
-<script type="text/javascript" src="js/myfocus-2.0.1.min.js"></script>
-
-<script type="text/javascript">
-    //设置
-    /*myFocus.set({
-        id: 'banner',//ID
-        pattern: 'mF_fancy',//风格
-        loadIMGTimeout: 0,
-        height: 350,
-        time: 3,
-        wrap: false,
-        auto: true,
-        // autoZoom: true,
-    }); */
-    document.querySelector('.menu-box').addEventListener('click', function (e) {
-        e.preventDefault();
-        const t = e.target;
-        if (t.tagName.toLowerCase() === 'a') {
-            var lis = this.querySelectorAll('li');
-            for (var i = 0; i < lis.length; i++) {
-                lis[i].classList.remove('active')
-            }
-            e.target.parentNode.classList.add('active')
-            scrollDom(e.target.hash)
-        }
-    })
-
-    function scrollDom(name) {
-        var top = document.querySelector(name).offsetTop;
-        window.scrollTo({
-            top: top,
-            behavior: "smooth"
-        })
+    .container-box .item-box .item-info .info {
+        font-size: 18px;
+        height: 60px;
     }
-
-    var audio = document.querySelector('#audio')
-    // document.onclick = (function() {
-    //     audio.volume = 0.1
-    //     audio.play()
-    // })
-</script>
-</html>
+}
