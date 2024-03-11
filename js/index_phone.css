@@ -1,0 +1,52 @@
+
+@media screen and (max-width: 750px) {
+    #main-box {
+        padding: 0 10px;
+    }
+    #header {
+        justify-content: center;
+    }
+    .container-box .item-box {
+        width: 50%;
+    }
+    .menu-box {
+        margin-left: 0;
+        width: 100%;
+        flex: none;
+    }
+    .container-box .item-box .item-pic {
+        aspect-ratio: 1 / 0.85;
+    }
+    .menu-box ul {
+        justify-content: center;
+    }
+    .menu-box ul li {
+        padding: 0 15px;
+    }
+    #header .logo {
+        flex-wrap: wrap;
+    }
+    .logo span {
+        padding-left: 15px;
+    }
+    .main-title {
+        font-size: 22px;
+    }
+    .container-box .item-box .item-info .title {
+        font-size: 20px;
+    }
+    .container-box .item-box .item-info .info {
+        font-size: 18px;
+    }
+    .desc-pic .pic {
+        width: 50%;
+    }
+    .contact-map {
+        width: 100%;
+    }
+    .contact-info {
+        width: 100%;
+        margin: 0;
+
+    }
+}
