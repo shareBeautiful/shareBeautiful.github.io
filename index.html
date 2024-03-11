@@ -37,7 +37,7 @@
     <!-- 轮播 -->
     <div id="banner">
         <!-- Swiper -->
-        <div class="swiper mySwiper">
+        <div class="swiper" id="swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="item in dsy_data.banner">
                     <img :src="imgSrc+'banner/'+item.img" alt="">
@@ -178,9 +178,9 @@
         methods: {
             // banner 轮播
             bannerShow() {
-                let swiper = new Swiper("#mySwiper", {
+                new Swiper("#swiper", {
                     autoplay: {
-                        delay: 3000,
+                        delay: 5000,
                         disableOnInteraction: false,
                     },
                     speed: 500,
@@ -211,8 +211,10 @@
         },
         mounted() {
             document.title = this.title;
-            this.bannerShow();
             this.windowScroll();
+            window.onload = () => {
+                 this.bannerShow();
+            }
         }
     }
     Vue.createApp(app).mount('#app')
