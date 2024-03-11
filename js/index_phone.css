@@ -49,4 +49,7 @@
         margin: 0;
 
     }
+    #swiper {
+        height: 250px;
+    }
 }
