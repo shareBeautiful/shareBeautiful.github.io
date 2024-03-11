@@ -163,7 +163,8 @@ body {
 
 
 #banner {
-    height: 400px;
+    width: 100%;
+    height: 500px;
 }
 #banner img {
     height: 100%;
@@ -443,14 +444,12 @@ body {
 #to-top:hover {
     background-color: rgb(45, 150, 233);
 }
-
-.swiper-container {
-    width: 100%;
-    height: 100%;
+#swiper {
+    height: 500px;
 }
+
 .swiper-slide img{
     width:100%;
-    height:auto;
     min-height:100%;
     transition:1s linear 2s;
     transform:scale(1.2);
@@ -461,5 +460,5 @@ body {
 }
 
 .swiper-button-next, .swiper-button-prev {
-    color: brown !important;
+    color: brown
 }
